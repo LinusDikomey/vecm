@@ -2,6 +2,8 @@
 #![feature(const_generics)]
 #![feature(const_evaluatable_checked)]
 
+extern crate number_traits;
+
 use std::ops;
 
 pub mod mat;

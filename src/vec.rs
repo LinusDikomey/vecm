@@ -1,5 +1,7 @@
+use std::cmp;
 use std::ops;
 use std::fmt;
+use crate::number_traits::Zero;
 
 // ---------- PolyVec2 ----------
 
@@ -8,6 +10,8 @@ pub struct PolyVec2<T> {
     pub x: T,
     pub y: T
 }
+
+// constructors
 
 impl<T> PolyVec2<T> {
 
@@ -20,6 +24,87 @@ impl<T> PolyVec2<T> {
         Self {x: val.clone(), y: val}
     }
 }
+
+// zero/one
+
+impl<T> number_traits::Zero for PolyVec2<T>
+where T : number_traits::Zero {
+    fn is_zero(&self) -> bool { self.x.is_zero() && self.y.is_zero() }
+    fn zero() -> Self { Self {x: T::zero(), y: T::zero() }}
+}
+
+impl<T> number_traits::One for PolyVec2<T>
+where T : number_traits::One {
+    fn is_one(&self) -> bool { self.x.is_one() && self.y.is_one() }
+    fn one() -> Self { Self {x: T::one(), y: T::one() }}
+}
+
+// magnitude mathematics
+
+impl<T> PolyVec2<T> 
+where T : ops::Add<T, Output = T> + ops::Mul<T, Output = T> + Copy {
+    pub fn square_magnitude(&self) -> T {
+        self.x * self.x + self.y * self.y
+    }
+}
+
+impl<T> PolyVec2<T>
+where T : ops::Add<T, Output = T> + ops::Mul<T, Output = T> + number_traits::Sqrt + Copy {
+    pub fn magnitude(&self) -> T {
+        self.square_magnitude().sqrt()
+    }
+}
+
+impl<T> PolyVec2<T>
+where T : ops::Add<T, Output = T> + ops::Mul<T, Output = T> + number_traits::Sqrt + ops::Div<T, Output = T> + cmp::PartialEq + number_traits::Zero + Copy {
+    pub fn normalized(&self) -> Self {
+        let m = self.magnitude();
+        if m.is_zero() {
+            Self::zero()
+        } else {
+            *self / m
+        }
+    }
+
+    pub fn normalize(&mut self) {
+        *self = self.normalized();
+    }
+}
+
+impl<T> PolyVec2<T>
+where T : number_traits::Trig {
+    pub fn sin(&self) -> Self { Self { x: self.x.sin(), y: self.y.sin() } }
+    pub fn asin(&self) -> Self { Self { x: self.x.asin(), y: self.y.asin() } }
+    pub fn sinh(&self) -> Self { Self { x: self.x.sinh(), y: self.y.sinh() } }
+    pub fn asinh(&self) -> Self { Self { x: self.x.asinh(), y: self.y.asinh() } }
+
+    pub fn cos(&self) -> Self { Self { x: self.x.cos(), y: self.y.cos() } }
+    pub fn acos(&self) -> Self { Self { x: self.x.acos(), y: self.y.acos() } }
+    pub fn cosh(&self) -> Self { Self { x: self.x.cosh(), y: self.y.cosh() } }
+    pub fn acosh(&self) -> Self { Self { x: self.x.acosh(), y: self.y.acosh() } }
+
+    pub fn tan(&self) -> Self { Self { x: self.x.tan(), y: self.y.tan() } }
+    pub fn atan(&self) -> Self { Self { x: self.x.atan(), y: self.y.atan() } }
+    pub fn tanh(&self) -> Self { Self { x: self.x.tanh(), y: self.y.tanh() } }
+    pub fn atanh(&self) -> Self { Self { x: self.x.atanh(), y: self.y.atanh() } }   
+}
+
+// angle mathematics
+
+impl<T> PolyVec2<T> 
+where T : ops::Add<T, Output = T> + ops::Mul<T, Output = T> + ops::Div<T, Output = T> + number_traits::Sqrt + number_traits::Trig + Copy {
+    /// returns the angle between two vectors in radians
+    pub fn angle(&self, other: &Self) -> T {
+        ((self.x * other.x + self.y * other.y) / (self.magnitude() * other.magnitude())).acos()
+    }
+
+    /// returns the angle between two vectors in degrees and assumes that both vectors have a length of 1 to simplify the calculation
+    pub fn angle_normalized(&self, other: &Self) -> T {
+        (self.x * other.x + self.y * other.y).acos()
+    }
+}
+
+// display
 
 impl<T> fmt::Display for PolyVec2<T>
     where T: fmt::Display {
@@ -145,6 +230,87 @@ impl<T> PolyVec3<T> {
         Self {x: val.clone(), y: val.clone(), z: val}
     }
 }
+
+// zero/one
+
+impl<T> number_traits::Zero for PolyVec3<T>
+where T : number_traits::Zero {
+    fn is_zero(&self) -> bool { self.x.is_zero() && self.y.is_zero() && self.z.is_zero() }
+    fn zero() -> Self { Self {x: T::zero(), y: T::zero(), z: T::zero() }}
+}
+
+impl<T> number_traits::One for PolyVec3<T>
+where T : number_traits::One {
+    fn is_one(&self) -> bool { self.x.is_one() && self.y.is_one() && self.z.is_one() }
+    fn one() -> Self { Self {x: T::one(), y: T::one(), z: T::one() }}
+}
+
+// magnitude mathematics
+
+impl<T> PolyVec3<T> 
+where T : ops::Add<T, Output = T> + ops::Mul<T, Output = T> + Copy {
+    pub fn square_magnitude(&self) -> T {
+        self.x * self.x + self.y * self.y + self.z * self.z
+    }
+}
+
+impl<T> PolyVec3<T>
+where T : ops::Add<T, Output = T> + ops::Mul<T, Output = T> + number_traits::Sqrt + Copy {
+    pub fn magnitude(&self) -> T {
+        self.square_magnitude().sqrt()
+    }
+}
+
+impl<T> PolyVec3<T>
+where T : ops::Add<T, Output = T> + ops::Mul<T, Output = T> + number_traits::Sqrt + ops::Div<T, Output = T> + cmp::PartialEq + number_traits::Zero + Copy {
+    pub fn normalized(&self) -> Self {
+        let m = self.magnitude();
+        if m.is_zero() {
+            Self::zero()
+        } else {
+            *self / m
+        }
+    }
+
+    pub fn normalize(&mut self) {
+        *self = self.normalized();
+    }
+}
+
+impl<T> PolyVec3<T>
+where T : number_traits::Trig {
+    pub fn sin(&self) -> Self { Self { x: self.x.sin(), y: self.y.sin(), z: self.z.sin() } }
+    pub fn asin(&self) -> Self { Self { x: self.x.asin(), y: self.y.asin(), z: self.z.asin() } }
+    pub fn sinh(&self) -> Self { Self { x: self.x.sinh(), y: self.y.sinh(), z: self.z.sinh() } }
+    pub fn asinh(&self) -> Self { Self { x: self.x.asinh(), y: self.y.asinh(), z: self.z.asinh() } }
+
+    pub fn cos(&self) -> Self { Self { x: self.x.cos(), y: self.y.cos(), z: self.z.cos() } }
+    pub fn acos(&self) -> Self { Self { x: self.x.acos(), y: self.y.acos(), z: self.z.acos() } }
+    pub fn cosh(&self) -> Self { Self { x: self.x.cosh(), y: self.y.cosh(), z: self.z.cosh() } }
+    pub fn acosh(&self) -> Self { Self { x: self.x.acosh(), y: self.y.acosh(), z: self.z.acosh() } }
+
+    pub fn tan(&self) -> Self { Self { x: self.x.tan(), y: self.y.tan(), z: self.z.tan() } }
+    pub fn atan(&self) -> Self { Self { x: self.x.atan(), y: self.y.atan(), z: self.z.atan() } }
+    pub fn tanh(&self) -> Self { Self { x: self.x.tanh(), y: self.y.tanh(), z: self.z.tanh() } }
+    pub fn atanh(&self) -> Self { Self { x: self.x.atanh(), y: self.y.atanh(), z: self.z.atanh() } }   
+}
+
+// angle mathematics
+
+impl<T> PolyVec3<T> 
+where T : ops::Add<T, Output = T> + ops::Mul<T, Output = T> + ops::Div<T, Output = T> + number_traits::Sqrt + number_traits::Trig + Copy {
+    /// returns the angle between two vectors in radians
+    pub fn angle(&self, other: &Self) -> T {
+        ((self.x * other.x + self.y * other.y + self.z * other.z) / (self.magnitude() * other.magnitude())).acos()
+    }
+
+    /// returns the angle between two vectors in degrees and assumes that both vectors have a length of 1 to simplify the calculation
+    pub fn angle_normalized(&self, other: &Self) -> T {
+        (self.x * other.x + self.y * other.y + self.z * other.z).acos()
+    }
+}
+
+// display
 
 impl<T> fmt::Display for PolyVec3<T>
     where T: fmt::Display {
@@ -275,6 +441,87 @@ impl<T> PolyVec4<T> {
     }
 }
 
+// zero/one
+
+impl<T> number_traits::Zero for PolyVec4<T>
+where T : number_traits::Zero {
+    fn is_zero(&self) -> bool { self.x.is_zero() && self.y.is_zero() && self.z.is_zero() && self.w.is_zero() }
+    fn zero() -> Self { Self {x: T::zero(), y: T::zero(), z: T::zero(), w: T::zero() }}
+}
+
+impl<T> number_traits::One for PolyVec4<T>
+where T : number_traits::One {
+    fn is_one(&self) -> bool { self.x.is_one() && self.y.is_one() && self.z.is_one() && self.w.is_one() }
+    fn one() -> Self { Self {x: T::one(), y: T::one(), z: T::one(), w: T::one() }}
+}
+
+// magnitude mathematics
+
+impl<T> PolyVec4<T> 
+where T : ops::Add<T, Output = T> + ops::Mul<T, Output = T> + Copy {
+    pub fn square_magnitude(&self) -> T {
+        self.x * self.x + self.y * self.y + self.z * self.z + self.w * self.w
+    }
+}
+
+impl<T> PolyVec4<T>
+where T : ops::Add<T, Output = T> + ops::Mul<T, Output = T> + number_traits::Sqrt + Copy {
+    pub fn magnitude(&self) -> T {
+        self.square_magnitude().sqrt()
+    }
+}
+
+impl<T> PolyVec4<T>
+where T : ops::Add<T, Output = T> + ops::Mul<T, Output = T> + number_traits::Sqrt + ops::Div<T, Output = T> + cmp::PartialEq + number_traits::Zero + Copy {
+    pub fn normalized(&self) -> Self {
+        let m = self.magnitude();
+        if m.is_zero() {
+            Self::zero()
+        } else {
+            *self / m
+        }
+    }
+
+    pub fn normalize(&mut self) {
+        *self = self.normalized();
+    }
+}
+
+impl<T> PolyVec4<T>
+where T : number_traits::Trig {
+    pub fn sin(&self) -> Self { Self { x: self.x.sin(), y: self.y.sin(), z: self.z.sin(), w: self.w.sin() } }
+    pub fn asin(&self) -> Self { Self { x: self.x.asin(), y: self.y.asin(), z: self.z.asin(), w: self.w.asin() } }
+    pub fn sinh(&self) -> Self { Self { x: self.x.sinh(), y: self.y.sinh(), z: self.z.sinh(), w: self.w.sinh() } }
+    pub fn asinh(&self) -> Self { Self { x: self.x.asinh(), y: self.y.asinh(), z: self.z.asinh(), w: self.w.asinh() } }
+
+    pub fn cos(&self) -> Self { Self { x: self.x.cos(), y: self.y.cos(), z: self.z.cos(), w: self.w.cos() } }
+    pub fn acos(&self) -> Self { Self { x: self.x.acos(), y: self.y.acos(), z: self.z.acos(), w: self.w.acos() } }
+    pub fn cosh(&self) -> Self { Self { x: self.x.cosh(), y: self.y.cosh(), z: self.z.cosh(), w: self.w.cosh() } }
+    pub fn acosh(&self) -> Self { Self { x: self.x.acosh(), y: self.y.acosh(), z: self.z.acosh(), w: self.w.acosh() } }
+
+    pub fn tan(&self) -> Self { Self { x: self.x.tan(), y: self.y.tan(), z: self.z.tan(), w: self.w.tan() } }
+    pub fn atan(&self) -> Self { Self { x: self.x.atan(), y: self.y.atan(), z: self.z.atan(), w: self.w.atan() } }
+    pub fn tanh(&self) -> Self { Self { x: self.x.tanh(), y: self.y.tanh(), z: self.z.tanh(), w: self.w.tanh() } }
+    pub fn atanh(&self) -> Self { Self { x: self.x.atanh(), y: self.y.atanh(), z: self.z.atanh(), w: self.w.atanh() } }   
+}
+
+// angle mathematics
+
+impl<T> PolyVec4<T> 
+where T : ops::Add<T, Output = T> + ops::Mul<T, Output = T> + ops::Div<T, Output = T> + number_traits::Sqrt + number_traits::Trig + Copy {
+    /// returns the angle between two vectors in radians
+    pub fn angle(&self, other: &Self) -> T {
+        ((self.x * other.x + self.y * other.y + self.z * other.z + self.w * other.w) / (self.magnitude() * other.magnitude())).acos()
+    }
+
+    /// returns the angle between two vectors in degrees and assumes that both vectors have a length of 1 to simplify the calculation
+    pub fn angle_normalized(&self, other: &Self) -> T {
+        (self.x * other.x + self.y * other.y + self.z * other.z + self.w * other.w).acos()
+    }
+}
+
+// display
+
 impl<T> fmt::Display for PolyVec4<T>
     where T: fmt::Display {
     
@@ -391,114 +638,9 @@ impl<T> ops::Neg for PolyVec4<T>
 // ---------- type definitions ----------
 
 pub type Vec2 = PolyVec2<f32>;
-
-impl Vec2 {
-
-    pub const ZERO: Self = Self {x: 0.0, y: 0.0};
-    pub const ONE: Self = Self {x: 1.0, y: 1.0};
-
-    pub fn magnitude(&self) -> f32 {
-        (self.x * self.x + self.y * self.y).sqrt()
-    }
-    pub fn square_magnitude(&self) -> f32 {
-        self.x * self.x + self.y * self.y
-    }
-
-    pub fn normalize(&mut self) {
-        let m = self.magnitude();
-        if m != 0.0 {
-            *self /= m;
-        }
-    }
-
-    /// returns the angle between two vectors in radians
-    pub fn angle(&self, other: &Self) -> f32 {
-        ((self.x * other.x + self.y * other.y) / (self.magnitude() * other.magnitude())).acos()
-    }
-
-    /// returns the angle between two vectors in degrees and assumes that both vectors have a length of 1 to simplify the calculation
-    pub fn angle_normalized(&self, other: &Self) -> f32 {
-        (self.x * other.x + self.y * other.y).acos()
-    }
-}
-
 pub type Vec3 = PolyVec3<f32>;
-
-impl Vec3 {
-
-    pub const ZERO: Self = Self {x: 0.0, y: 0.0, z: 0.0};
-    pub const ONE: Self = Self {x: 1.0, y: 1.0, z: 1.0};
-    
-    pub fn magnitude(&self) -> f32 {
-        (self.x * self.x + self.y * self.y + self.z * self.z).sqrt()
-    }
-    pub fn square_magnitude(&self) -> f32 {
-        self.x * self.x + self.y * self.y + self.z * self.z
-    }
-
-    pub fn normalize(mut self) -> Self {
-        let m = self.magnitude();
-        if m != 0.0 {
-            self /= m;
-        }
-        self
-    }
-
-    /// returns the angle between two vectors in degrees
-    pub fn angle(&self, other: &Self) -> f32 {
-        ((self.x * other.x + self.y * other.y + self.z * other.z) / (self.magnitude() * other.magnitude())).acos()
-    }
-
-    /// returns the angle between two vectors in degrees and assumes that both vectors have a length of 1 to simplify the calculation
-    pub fn angle_normalized(&self, other: &Self) -> f32 {
-        (self.x * other.x + self.y * other.y + self.z * other.z).acos()
-    }
-
-    pub fn dot(&self, other: &Self) -> f32 {
-        self.x * other.x + self.y * other.y + self.z * other.z
-    }
-
-    pub fn lerp(a: &Vec3, b: &Vec3, t: f32) -> Vec3 {
-        Vec3 {
-            x: crate::lerp(a.x, b.x, t),
-            y: crate::lerp(a.y, b.y, t),
-            z: crate::lerp(a.z, b.z, t),
-        }
-    }
-}
-
 pub type Vec4 = PolyVec4<f32>;
 
-impl Vec4 {
-
-    pub const ZERO: Self = Self {x: 0.0, y: 0.0, z: 0.0, w: 0.0};
-    pub const ONE: Self = Self {x: 1.0, y: 1.0, z: 1.0, w: 0.0};
-
-    pub fn magnitude(&self) -> f32 {
-        (self.x * self.x + self.y * self.y + self.z * self.z + self.w * self.w).sqrt()
-    }
-    pub fn square_magnitude(&self) -> f32 {
-        self.x * self.x + self.y * self.y + self.z * self.z + self.w * self.w
-    }
-
-    pub fn normalize(&mut self) {
-        let m = self.magnitude();
-        if m != 0.0 {
-            *self /= m;
-        }
-    }
-
-    /// returns the angle between two vectors in radians
-    pub fn angle(&self, other: &Self) -> f32 {
-        ((self.x * other.x + self.y * other.y + self.z * other.z + self.w * other.w) / (self.magnitude() * other.magnitude())).acos()
-    }
-
-    /// returns the angle between two vectors in degrees and assumes that both vectors have a length of 1 to simplify the calculation
-    pub fn angle_normalized(&self, other: &Self) -> f32 {
-        (self.x * other.x + self.y * other.y + self.z * other.z + self.w * other.w).acos()
-    }
-
-}
 
 pub type Vec2i = PolyVec2<i32>;
 impl From<Vec2> for Vec2i { 
@@ -516,16 +658,9 @@ impl From<Vec2u> for Vec2 {
     fn from(f: Vec2u) -> Self { Self::new(f.x as f32, f.y as f32) }
 }
 
+
+
 pub type Vec3i = PolyVec3<i32>;
-impl Vec3i {
-    pub const ZERO: Vec3i = Vec3i {x: 0, y: 0, z: 0};
-    pub fn length(&self) -> f32 {
-        ((self.x * self.x + self.y * self.y + self.z * self.z) as f32).sqrt()
-    }
-    pub fn square_magnitude(&self) -> i32 {
-        self.x * self.x + self.y * self.y + self.z * self.z
-    }
-}
 impl From<Vec3> for Vec3i { 
     fn from(f: Vec3) -> Self { Self::new(f.x as i32, f.y as i32, f.z as i32) }
 }
@@ -540,6 +675,8 @@ impl From<Vec3> for Vec3u {
 impl From<Vec3u> for Vec3 { 
     fn from(f: Vec3u) -> Self { Self::new(f.x as f32, f.y as f32, f.z as f32) }
 }
+
+
 
 pub type Vec4i = PolyVec4<i32>;
 impl From<Vec4> for Vec4i { 
@@ -556,6 +693,7 @@ impl From<Vec4> for Vec4u {
 impl From<Vec4u> for Vec4 { 
     fn from(f: Vec4u) -> Self { Self::new(f.x as f32, f.y as f32, f.z as f32, f.w as f32) }
 }
+
 
 // ---------- packed ----------
 
