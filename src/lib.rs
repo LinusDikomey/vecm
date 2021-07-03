@@ -2,7 +2,7 @@
 #![feature(const_generics)]
 #![feature(const_evaluatable_checked)]
 
-extern crate number_traits;
+extern crate num_traits;
 
 use std::ops;
 

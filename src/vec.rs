@@ -1,7 +1,6 @@
 use std::cmp;
 use std::ops;
 use std::fmt;
-use crate::number_traits::Zero;
 
 // ---------- PolyVec2 ----------
 
@@ -27,16 +26,16 @@ impl<T> PolyVec2<T> {
 
 // zero/one
 
-impl<T> number_traits::Zero for PolyVec2<T>
-where T : number_traits::Zero {
-    fn is_zero(&self) -> bool { self.x.is_zero() && self.y.is_zero() }
-    fn zero() -> Self { Self {x: T::zero(), y: T::zero() }}
+impl<T> PolyVec2<T>
+where T : num_traits::Zero {
+    pub fn is_zero(&self) -> bool { self.x.is_zero() && self.y.is_zero() }
+    pub fn zero() -> Self { Self {x: T::zero(), y: T::zero() }}
 }
 
-impl<T> number_traits::One for PolyVec2<T>
-where T : number_traits::One {
-    fn is_one(&self) -> bool { self.x.is_one() && self.y.is_one() }
-    fn one() -> Self { Self {x: T::one(), y: T::one() }}
+impl<T> PolyVec2<T>
+where T : num_traits::One + PartialEq {
+    pub fn is_one(&self) -> bool { self.x.is_one() && self.y.is_one() }
+    pub fn one() -> Self { Self {x: T::one(), y: T::one() }}
 }
 
 // magnitude mathematics
@@ -49,14 +48,14 @@ where T : ops::Add<T, Output = T> + ops::Mul<T, Output = T> + Copy {
 }
 
 impl<T> PolyVec2<T>
-where T : ops::Add<T, Output = T> + ops::Mul<T, Output = T> + number_traits::Sqrt + Copy {
+where T : ops::Add<T, Output = T> + ops::Mul<T, Output = T> + num_traits::Float + Copy {
     pub fn magnitude(&self) -> T {
         self.square_magnitude().sqrt()
     }
 }
 
 impl<T> PolyVec2<T>
-where T : ops::Add<T, Output = T> + ops::Mul<T, Output = T> + number_traits::Sqrt + ops::Div<T, Output = T> + cmp::PartialEq + number_traits::Zero + Copy {
+where T : ops::Add<T, Output = T> + ops::Mul<T, Output = T> + num_traits::Float + ops::Div<T, Output = T> + cmp::PartialEq + Copy {
     pub fn normalized(&self) -> Self {
         let m = self.magnitude();
         if m.is_zero() {
@@ -72,7 +71,7 @@ where T : ops::Add<T, Output = T> + ops::Mul<T, Output = T> + number_traits::Sqr
 }
 
 impl<T> PolyVec2<T>
-where T : number_traits::Trig {
+where T : num_traits::Float {
     pub fn sin(&self) -> Self { Self { x: self.x.sin(), y: self.y.sin() } }
     pub fn asin(&self) -> Self { Self { x: self.x.asin(), y: self.y.asin() } }
     pub fn sinh(&self) -> Self { Self { x: self.x.sinh(), y: self.y.sinh() } }
@@ -92,7 +91,7 @@ where T : number_traits::Trig {
 // angle mathematics
 
 impl<T> PolyVec2<T> 
-where T : ops::Add<T, Output = T> + ops::Mul<T, Output = T> + ops::Div<T, Output = T> + number_traits::Sqrt + number_traits::Trig + Copy {
+where T : ops::Add<T, Output = T> + ops::Mul<T, Output = T> + ops::Div<T, Output = T> + num_traits::float::Float + Copy {
     /// returns the angle between two vectors in radians
     pub fn angle(&self, other: &Self) -> T {
         ((self.x * other.x + self.y * other.y) / (self.magnitude() * other.magnitude())).acos()
@@ -233,16 +232,16 @@ impl<T> PolyVec3<T> {
 
 // zero/one
 
-impl<T> number_traits::Zero for PolyVec3<T>
-where T : number_traits::Zero {
-    fn is_zero(&self) -> bool { self.x.is_zero() && self.y.is_zero() && self.z.is_zero() }
-    fn zero() -> Self { Self {x: T::zero(), y: T::zero(), z: T::zero() }}
+impl<T> PolyVec3<T>
+where T : num_traits::Zero {
+    pub fn is_zero(&self) -> bool { self.x.is_zero() && self.y.is_zero() && self.z.is_zero() }
+    pub fn zero() -> Self { Self {x: T::zero(), y: T::zero(), z: T::zero() }}
 }
 
-impl<T> number_traits::One for PolyVec3<T>
-where T : number_traits::One {
-    fn is_one(&self) -> bool { self.x.is_one() && self.y.is_one() && self.z.is_one() }
-    fn one() -> Self { Self {x: T::one(), y: T::one(), z: T::one() }}
+impl<T> PolyVec3<T>
+where T : num_traits::One + PartialEq {
+    pub fn is_one(&self) -> bool { self.x.is_one() && self.y.is_one() && self.z.is_one() }
+    pub fn one() -> Self { Self {x: T::one(), y: T::one(), z: T::one() }}
 }
 
 // magnitude mathematics
@@ -255,14 +254,14 @@ where T : ops::Add<T, Output = T> + ops::Mul<T, Output = T> + Copy {
 }
 
 impl<T> PolyVec3<T>
-where T : ops::Add<T, Output = T> + ops::Mul<T, Output = T> + number_traits::Sqrt + Copy {
+where T : ops::Add<T, Output = T> + ops::Mul<T, Output = T> + num_traits::Float + Copy {
     pub fn magnitude(&self) -> T {
         self.square_magnitude().sqrt()
     }
 }
 
 impl<T> PolyVec3<T>
-where T : ops::Add<T, Output = T> + ops::Mul<T, Output = T> + number_traits::Sqrt + ops::Div<T, Output = T> + cmp::PartialEq + number_traits::Zero + Copy {
+where T : ops::Add<T, Output = T> + ops::Mul<T, Output = T> + num_traits::Float + ops::Div<T, Output = T> + cmp::PartialEq + num_traits::Zero + Copy {
     pub fn normalized(&self) -> Self {
         let m = self.magnitude();
         if m.is_zero() {
@@ -278,7 +277,7 @@ where T : ops::Add<T, Output = T> + ops::Mul<T, Output = T> + number_traits::Sqr
 }
 
 impl<T> PolyVec3<T>
-where T : number_traits::Trig {
+where T : num_traits::Float {
     pub fn sin(&self) -> Self { Self { x: self.x.sin(), y: self.y.sin(), z: self.z.sin() } }
     pub fn asin(&self) -> Self { Self { x: self.x.asin(), y: self.y.asin(), z: self.z.asin() } }
     pub fn sinh(&self) -> Self { Self { x: self.x.sinh(), y: self.y.sinh(), z: self.z.sinh() } }
@@ -298,7 +297,7 @@ where T : number_traits::Trig {
 // angle mathematics
 
 impl<T> PolyVec3<T> 
-where T : ops::Add<T, Output = T> + ops::Mul<T, Output = T> + ops::Div<T, Output = T> + number_traits::Sqrt + number_traits::Trig + Copy {
+where T : ops::Add<T, Output = T> + ops::Mul<T, Output = T> + ops::Div<T, Output = T> + num_traits::Float + Copy {
     /// returns the angle between two vectors in radians
     pub fn angle(&self, other: &Self) -> T {
         ((self.x * other.x + self.y * other.y + self.z * other.z) / (self.magnitude() * other.magnitude())).acos()
@@ -443,16 +442,16 @@ impl<T> PolyVec4<T> {
 
 // zero/one
 
-impl<T> number_traits::Zero for PolyVec4<T>
-where T : number_traits::Zero {
-    fn is_zero(&self) -> bool { self.x.is_zero() && self.y.is_zero() && self.z.is_zero() && self.w.is_zero() }
-    fn zero() -> Self { Self {x: T::zero(), y: T::zero(), z: T::zero(), w: T::zero() }}
+impl<T> PolyVec4<T>
+where T : num_traits::Zero {
+    pub fn is_zero(&self) -> bool { self.x.is_zero() && self.y.is_zero() && self.z.is_zero() && self.w.is_zero() }
+    pub fn zero() -> Self { Self {x: T::zero(), y: T::zero(), z: T::zero(), w: T::zero() }}
 }
 
-impl<T> number_traits::One for PolyVec4<T>
-where T : number_traits::One {
-    fn is_one(&self) -> bool { self.x.is_one() && self.y.is_one() && self.z.is_one() && self.w.is_one() }
-    fn one() -> Self { Self {x: T::one(), y: T::one(), z: T::one(), w: T::one() }}
+impl<T> PolyVec4<T>
+where T : num_traits::One + PartialEq {
+    pub fn is_one(&self) -> bool { self.x.is_one() && self.y.is_one() && self.z.is_one() && self.w.is_one() }
+    pub fn one() -> Self { Self {x: T::one(), y: T::one(), z: T::one(), w: T::one() }}
 }
 
 // magnitude mathematics
@@ -465,14 +464,14 @@ where T : ops::Add<T, Output = T> + ops::Mul<T, Output = T> + Copy {
 }
 
 impl<T> PolyVec4<T>
-where T : ops::Add<T, Output = T> + ops::Mul<T, Output = T> + number_traits::Sqrt + Copy {
+where T : ops::Add<T, Output = T> + ops::Mul<T, Output = T> + num_traits::Float + Copy {
     pub fn magnitude(&self) -> T {
         self.square_magnitude().sqrt()
     }
 }
 
 impl<T> PolyVec4<T>
-where T : ops::Add<T, Output = T> + ops::Mul<T, Output = T> + number_traits::Sqrt + ops::Div<T, Output = T> + cmp::PartialEq + number_traits::Zero + Copy {
+where T : ops::Add<T, Output = T> + ops::Mul<T, Output = T> + num_traits::Float + ops::Div<T, Output = T> + cmp::PartialEq + Copy {
     pub fn normalized(&self) -> Self {
         let m = self.magnitude();
         if m.is_zero() {
@@ -488,7 +487,7 @@ where T : ops::Add<T, Output = T> + ops::Mul<T, Output = T> + number_traits::Sqr
 }
 
 impl<T> PolyVec4<T>
-where T : number_traits::Trig {
+where T : num_traits::Float {
     pub fn sin(&self) -> Self { Self { x: self.x.sin(), y: self.y.sin(), z: self.z.sin(), w: self.w.sin() } }
     pub fn asin(&self) -> Self { Self { x: self.x.asin(), y: self.y.asin(), z: self.z.asin(), w: self.w.asin() } }
     pub fn sinh(&self) -> Self { Self { x: self.x.sinh(), y: self.y.sinh(), z: self.z.sinh(), w: self.w.sinh() } }
@@ -508,7 +507,7 @@ where T : number_traits::Trig {
 // angle mathematics
 
 impl<T> PolyVec4<T> 
-where T : ops::Add<T, Output = T> + ops::Mul<T, Output = T> + ops::Div<T, Output = T> + number_traits::Sqrt + number_traits::Trig + Copy {
+where T : ops::Add<T, Output = T> + ops::Mul<T, Output = T> + ops::Div<T, Output = T> + num_traits::Float + Copy {
     /// returns the angle between two vectors in radians
     pub fn angle(&self, other: &Self) -> T {
         ((self.x * other.x + self.y * other.y + self.z * other.z + self.w * other.w) / (self.magnitude() * other.magnitude())).acos()
