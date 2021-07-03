@@ -13,14 +13,16 @@ pub struct PolyVec2<T> {
 // constructors
 
 impl<T> PolyVec2<T> {
-
     pub const fn new(x: T, y: T) -> PolyVec2<T> {
         PolyVec2 {x, y}
     }
+}
 
-    pub fn fill(val: T) -> Self
-        where T : Clone {
-        Self {x: val.clone(), y: val}
+impl<T> PolyVec2<T>
+where T : Copy {
+    pub const fn fill(val: T) -> Self
+        where T: Clone {
+        Self {x: val, y: val}
     }
 }
 
@@ -223,10 +225,13 @@ impl<T> PolyVec3<T> {
     pub const fn new(x: T, y: T, z: T) -> PolyVec3<T> {
         PolyVec3 {x, y, z}
     }
+}
 
-    pub fn fill(val: T) -> Self
+impl<T> PolyVec3<T>
+where T : Copy {
+    pub const fn fill(val: T) -> Self
         where T: Clone {
-        Self {x: val.clone(), y: val.clone(), z: val}
+        Self {x: val, y: val, z: val}
     }
 }
 
@@ -429,14 +434,16 @@ pub struct PolyVec4<T> {
 }
 
 impl<T> PolyVec4<T> {
-
     pub const fn new(x: T, y: T, z: T, w: T) -> PolyVec4<T> {
         PolyVec4 {x, y, z, w}
     }
+}
 
-    pub fn fill(val: T) -> Self
+impl<T> PolyVec4<T>
+where T : Copy {
+    pub const fn fill(val: T) -> Self
         where T: Clone {
-        Self {x: val.clone(), y: val.clone(), z: val.clone(), w: val}
+        Self {x: val, y: val, z: val, w: val}
     }
 }
 

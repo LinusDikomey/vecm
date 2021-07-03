@@ -1,6 +1,7 @@
 #![allow(incomplete_features)]
 #![feature(const_generics)]
 #![feature(const_evaluatable_checked)]
+#![feature(const_fn_trait_bound)]
 
 extern crate num_traits;
 
