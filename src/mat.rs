@@ -83,10 +83,10 @@ impl Mat4x4 {
         mat
     }
 
-    pub fn view_matrix(position: Vec3, pitch: f32, yaw: f32) -> Mat4x4 {
+    pub fn view_matrix(position: Vec3, pitch: f32, yaw: f32, roll: f32) -> Mat4x4 {
         let mut mat = Mat4x4::identity();
         mat.translate(-position);
-        mat.rotate(Vec3::new(pitch, yaw, 0.0));
+        mat.rotate(Vec3::new(-pitch, -yaw, -roll));
         mat
     }
 
