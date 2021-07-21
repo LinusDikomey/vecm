@@ -18,12 +18,13 @@ pub struct Mat4x4Packed {
     data: [[f32; 4]; 4]
 }
 impl From<Mat4x4> for Mat4x4Packed {
+    #[inline]
     fn from(mat: Mat4x4) -> Mat4x4Packed { 
         Mat4x4Packed{data: mat.data}
     }
 }
 impl Mat4x4Packed {
-
+    #[inline]
     pub unsafe fn ptr<'a>(&self) -> *const f32 {
         #[allow(unaligned_references)]
         &self.data[0][0]
@@ -33,7 +34,7 @@ impl Mat4x4Packed {
 
 
 impl Mat4x4 {
-
+    #[inline]
     pub fn new(input: [[f32; 4]; 4]) -> Mat4x4 {
         let mut data: [[f32; 4]; 4] = [[0.0; 4]; 4];
         for x in 0..4 {
@@ -43,7 +44,7 @@ impl Mat4x4 {
         }
         Mat4x4{data}
     }
-
+    #[inline]
     pub fn identity() -> Mat4x4 {
         Mat4x4 {data: [
             [1.0, 0.0, 0.0, 0.0],
@@ -52,7 +53,7 @@ impl Mat4x4 {
             [0.0, 0.0, 0.0, 1.0]
         ]}
     }
-
+    #[inline]
     pub fn zero() -> Mat4x4 {
         Mat4x4 {data: [
             [0.0, 0.0, 0.0, 0.0],
@@ -61,7 +62,7 @@ impl Mat4x4 {
             [0.0, 0.0, 0.0, 0.0]
         ]}
     }
-
+    #[inline]
     pub fn projection_matrix(aspect: (u32, u32), near_plane: f32, far_plane: f32, fov: f32) -> Mat4x4 {
         let aspect_ratio = aspect.0 as f32 / aspect.1 as f32;
         let y_scale = (1.0 / (fov / 2.0).to_radians().tan()) * aspect_ratio;
@@ -74,7 +75,7 @@ impl Mat4x4 {
             [0.0    , 0.0    , -1.0, 0.0],
         ])
     }
-
+    #[inline]
     pub fn transformation_matrix(translation: Vec3, rot: Vec3, scale: Vec3) -> Mat4x4 {
         let mut mat = Mat4x4::identity();
         mat.scale(scale);
@@ -82,20 +83,20 @@ impl Mat4x4 {
         mat.translate(translation);
         mat
     }
-
+    #[inline]
     pub fn view_matrix(position: Vec3, pitch: f32, yaw: f32, roll: f32) -> Mat4x4 {
         let mut mat = Mat4x4::identity();
         mat.translate(-position);
         mat.rotate(Vec3::new(-pitch, -yaw, -roll));
         mat
     }
-
+    #[inline]
     pub fn scale(&mut self, scale: Vec3) {
         self[0][0] *= scale.x;
         self[1][1] *= scale.y;
         self[2][2] *= scale.z;
     }
-
+    #[inline]
     pub fn rx(r: f32) -> Mat4x4 {
         [
             [1.0, 0.0 , 0.0, 0.0],
@@ -104,7 +105,7 @@ impl Mat4x4 {
             [0.0, 0.0, 0.0, 1.0]
         ].into()
     }
-
+    #[inline]
     pub fn ry(r: f32) -> Mat4x4 {
         [
             [r.cos(), 0.0 , -r.sin(), 0.0],
@@ -113,7 +114,7 @@ impl Mat4x4 {
             [0.0, 0.0, 0.0, 1.0]
         ].into()
     }
-
+    #[inline]
     pub fn rz(r: f32) -> Mat4x4 {
         [
             [r.cos(), -r.sin() , 0.0, 0.0],
@@ -122,11 +123,11 @@ impl Mat4x4 {
             [0.0, 0.0, 0.0, 1.0]
         ].into()
     }
-
+    #[inline]
     pub fn rotate(&mut self, r: Vec3) {
         *self = Mat4x4::rx(r.x) * Mat4x4::ry(r.y) * Mat4x4::rz(r.z) * *self;
     }
-
+    #[inline]
     pub fn translate(&mut self, t: Vec3) {
         self[3][0] += t.x;
         self[3][1] += t.y;
@@ -136,7 +137,7 @@ impl Mat4x4 {
 }
 
 impl std::fmt::Display for Mat4x4 {
-
+    #[inline]
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         let mut out = "\n".to_owned();
         for y in 0..4 {
@@ -153,7 +154,7 @@ impl std::fmt::Display for Mat4x4 {
 
 impl Add<Mat4x4> for Mat4x4 {
     type Output = Mat4x4;
-
+    #[inline]
     fn add(self, b: Mat4x4) -> Self::Output {
         let mut c = Mat4x4::zero();
 
@@ -167,7 +168,7 @@ impl Add<Mat4x4> for Mat4x4 {
 }
 
 impl AddAssign<Mat4x4> for Mat4x4 {
-
+    #[inline]
     fn add_assign(&mut self, b: Mat4x4) {
         for x in 0..4 {
             for y in 0..4 {
@@ -180,7 +181,7 @@ impl AddAssign<Mat4x4> for Mat4x4 {
 
 impl Mul<Mat4x4> for Mat4x4 {
     type Output = Mat4x4;
-
+    #[inline]
     fn mul(self, b: Mat4x4) -> Self::Output {
         let mut c = Mat4x4::zero();
 
@@ -196,7 +197,7 @@ impl Mul<Mat4x4> for Mat4x4 {
 }
 
 impl From<[[f32; 4]; 4]> for Mat4x4 {
-
+    #[inline]
     fn from(data: [[f32; 4]; 4]) -> Mat4x4 {
         Mat4x4::new(data)
     }
@@ -205,20 +206,20 @@ impl From<[[f32; 4]; 4]> for Mat4x4 {
 
 impl Index<usize> for Mat4x4 {
     type Output = [f32; 4];
-
+    #[inline]
     fn index(&self, i: usize) -> &Self::Output {
         &self.data[i]
     }
 }
 impl IndexMut<usize> for Mat4x4 {
- 
+    #[inline]
     fn index_mut(&mut self, i: usize) -> &mut Self::Output {
         &mut self.data[i]
     }
 }
 
 impl AddAssign<Vec3> for Mat4x4 {
-
+    #[inline]
     fn add_assign(&mut self, v: Vec3) {
         self[0][3] += v.x;
         self[1][3] += v.y;

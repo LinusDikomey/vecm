@@ -22,11 +22,13 @@ pub fn max(a: f32, b: f32) -> f32 {
     if a > b { a } else {b}
 }
 
+#[inline(always)]
 pub fn lerp<T>(a: T, b: T, t: T) -> T 
 where T : ops::Add<Output = T> + ops::Sub<Output = T> + ops::Mul<Output = T> + Copy {
     a + (b - a) * t
 }
 
+#[inline(always)]
 pub fn cubic<T>(x: T) -> T 
 where T : ops::Mul<Output = T> + Copy {
     x * x * x
