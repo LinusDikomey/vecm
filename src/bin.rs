@@ -8,7 +8,23 @@ pub trait ByteConvert<const N: usize> {
     fn from_bytes(b: &[u8]) -> Self;
 }
 
+impl ByteConvert<1> for u8 {
+    fn to_bytes(&self) -> [u8; 1] {
+        [*self]
+    }
+    fn from_bytes(b: &[u8]) -> Self {
+        b[0]
+    }
+}
+impl ByteConvert<1> for i8 {
+    fn to_bytes(&self) -> [u8; 1] {
+        (*self as u8).to_bytes()
+    }
 
+    fn from_bytes(b: &[u8]) -> Self {
+        u8::from_bytes(b) as i8
+    }
+}
 
 impl ByteConvert<2> for u16 {
     fn to_bytes(&self) -> [u8; 2] {
