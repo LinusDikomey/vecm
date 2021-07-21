@@ -165,6 +165,25 @@ impl ByteConvert<8> for f64 {
     }
 }
 
+// The ugly combination with the ZST-array has to be done to bind S to the type. 
+impl<B: ByteConvert<S>, const S: usize, const N: usize> ByteConvert<{S * N}> for ([B; N], [(); S]) {
+    fn to_bytes(&self) -> [u8; S * N] {
+        let mut bytes: [u8; S * N] = unsafe { std::mem::MaybeUninit::uninit().assume_init() };
+        for (i, elem) in self.0.iter().enumerate() {
+            bytes[i*S..(i+1)*S].clone_from_slice(&elem.to_bytes())
+        }
+        bytes
+    }
+
+    fn from_bytes(b: &[u8]) -> Self {
+        let mut arr: [B; N] = unsafe { std::mem::MaybeUninit::uninit().assume_init() };
+        for i in 0..N {
+            arr[i] = B::from_bytes(&b[i*S..(i+1)*S]);
+        }
+        (arr, [(); S])
+    }
+}
+
 
 // I don't know why these extra traits are needed but they are for some reason. Might work better in the future when const generics are finished
 pub trait Vec2ByteConvert<const N: usize> {
