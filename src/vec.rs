@@ -1,3 +1,4 @@
+use std::array::IntoIter;
 use std::cmp;
 use std::ops;
 use std::fmt;
@@ -44,6 +45,30 @@ where T : num_traits::One + PartialEq {
     pub fn is_one(&self) -> bool { self.x.is_one() && self.y.is_one() }
     #[inline]
     pub fn one() -> Self { Self {x: T::one(), y: T::one() }}
+}
+
+// From/Into array
+impl<T> From<[T; 2]> for PolyVec2<T> {
+    fn from(a: [T; 2]) -> Self {
+        let mut iter = IntoIter::new(a);
+        Self::new(iter.next().unwrap(), iter.next().unwrap())
+    }
+}
+impl<T> Into<[T; 2]> for PolyVec2<T> {
+    fn into(self) -> [T; 2] {
+        [self.x, self.y]  
+    }
+}
+// From/Into tuple
+impl<T> From<(T, T)> for PolyVec2<T> {
+    fn from(t: (T, T)) -> Self {
+        Self::new(t.0, t.1)
+    }
+}
+impl<T> Into<(T, T)> for PolyVec2<T> {
+    fn into(self) -> (T, T) {
+        (self.x, self.y)  
+    }
 }
 
 // magnitude mathematics
@@ -135,13 +160,6 @@ impl<T> fmt::Display for PolyVec2<T>
     #[inline]
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "[{}, {}]", self.x, self.y)
-    }
-}
-
-impl<T> From<(T, T)> for PolyVec2<T> {
-    #[inline]
-    fn from(other: (T, T)) -> Self {
-        PolyVec2 {x: other.0, y: other.1}
     }
 }
 
@@ -347,6 +365,30 @@ where T : num_traits::Float {
     pub fn atanh(&self) -> Self { Self { x: self.x.atanh(), y: self.y.atanh(), z: self.z.atanh() } }   
 }
 
+// From/Into array
+impl<T> From<[T; 3]> for PolyVec3<T> {
+    fn from(a: [T; 3]) -> Self {
+        let mut iter = IntoIter::new(a);
+        Self::new(iter.next().unwrap(), iter.next().unwrap(), iter.next().unwrap())
+    }
+}
+impl<T> Into<[T; 3]> for PolyVec3<T> {
+    fn into(self) -> [T; 3] {
+        [self.x, self.y, self.z]
+    }
+}
+// From/Into tuple
+impl<T> From<(T, T, T)> for PolyVec3<T> {
+    fn from(t: (T, T, T)) -> Self {
+        Self::new(t.0, t.1, t.2)
+    }
+}
+impl<T> Into<(T, T, T)> for PolyVec3<T> {
+    fn into(self) -> (T, T, T) {
+        (self.x, self.y, self.z) 
+    }
+}
+
 // angle mathematics
 
 impl<T> PolyVec3<T> 
@@ -371,13 +413,6 @@ impl<T> fmt::Display for PolyVec3<T>
     #[inline]
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "[{}, {}, {}]", self.x, self.y, self.z)
-    }
-}
-
-impl<T> From<(T, T, T)> for PolyVec3<T> {
-    #[inline]
-    fn from(other: (T, T, T)) -> Self {
-        PolyVec3 {x: other.0, y: other.1, z: other.2}
     }
 }
 
@@ -519,6 +554,30 @@ where T : num_traits::One + PartialEq {
     pub fn one() -> Self { Self {x: T::one(), y: T::one(), z: T::one(), w: T::one() }}
 }
 
+// From/Into array
+impl<T> From<[T; 4]> for PolyVec4<T> {
+    fn from(a: [T; 4]) -> Self {
+        let mut iter = IntoIter::new(a);
+        Self::new(iter.next().unwrap(), iter.next().unwrap(), iter.next().unwrap(), iter.next().unwrap())
+    }
+}
+impl<T> Into<[T; 4]> for PolyVec4<T> {
+    fn into(self) -> [T; 4] {
+        [self.x, self.y, self.z, self.w]
+    }
+}
+// From/Into tuple
+impl<T> From<(T, T, T, T)> for PolyVec4<T> {
+    fn from(t: (T, T, T, T)) -> Self {
+        Self::new(t.0, t.1, t.2, t.3)
+    }
+}
+impl<T> Into<(T, T, T, T)> for PolyVec4<T> {
+    fn into(self) -> (T, T, T, T) {
+        (self.x, self.y, self.z, self.w)
+    }
+}
+
 // magnitude mathematics
 
 impl<T> PolyVec4<T> 
@@ -610,13 +669,6 @@ impl<T> fmt::Display for PolyVec4<T>
     #[inline]
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "[{}, {}, {}, {}]", self.x, self.y, self.z, self.w)
-    }
-}
-
-impl<T> From<(T, T, T, T)> for PolyVec4<T> {
-    #[inline]
-    fn from(other: (T, T, T, T)) -> Self {
-        PolyVec4 {x: other.0, y: other.1, z: other.2, w: other.3}
     }
 }
 
