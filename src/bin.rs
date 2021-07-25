@@ -275,6 +275,70 @@ impl<T, const N: usize> Vec4ByteConvert<N> for PolyVec4<T> where T : ByteConvert
     }
 }
 
+// Vec2
+
+impl ByteConvert<8> for Vec2 {
+    #[inline]
+    fn to_bytes(&self) -> [u8; 8] { Vec2ByteConvert::to_bytes(self) }
+    #[inline]
+    fn from_bytes(bytes: &[u8]) -> Self { Vec2ByteConvert::from_bytes(bytes) }
+}
+impl ByteConvert<8> for Vec2i {
+    #[inline]
+    fn to_bytes(&self) -> [u8; 8] { Vec2ByteConvert::to_bytes(self) }
+    #[inline]
+    fn from_bytes(bytes: &[u8]) -> Self { Vec2ByteConvert::from_bytes(bytes) }
+}
+impl ByteConvert<8> for Vec2u {
+    #[inline]
+    fn to_bytes(&self) -> [u8; 8] { Vec2ByteConvert::to_bytes(self) }
+    #[inline]
+    fn from_bytes(bytes: &[u8]) -> Self { Vec2ByteConvert::from_bytes(bytes) }
+}
+
+// Vec3
+
+impl ByteConvert<12> for Vec3 {
+    #[inline]
+    fn to_bytes(&self) -> [u8; 12] { Vec3ByteConvert::to_bytes(self) }
+    #[inline]
+    fn from_bytes(bytes: &[u8]) -> Self { Vec3ByteConvert::from_bytes(bytes) }
+}
+impl ByteConvert<12> for Vec3i {
+    #[inline]
+    fn to_bytes(&self) -> [u8; 12] { Vec3ByteConvert::to_bytes(self) }
+    #[inline]
+    fn from_bytes(bytes: &[u8]) -> Self { Vec3ByteConvert::from_bytes(bytes) }
+}
+impl ByteConvert<12> for Vec3u {
+    #[inline]
+    fn to_bytes(&self) -> [u8; 12] { Vec3ByteConvert::to_bytes(self) }
+    #[inline]
+    fn from_bytes(bytes: &[u8]) -> Self { Vec3ByteConvert::from_bytes(bytes) }
+}
+
+// Vec4
+
+impl ByteConvert<16> for Vec4 {
+    #[inline]
+    fn to_bytes(&self) -> [u8; 16] { Vec4ByteConvert::to_bytes(self) }
+    #[inline]
+    fn from_bytes(bytes: &[u8]) -> Self { Vec4ByteConvert::from_bytes(bytes) }
+}
+impl ByteConvert<16> for Vec4i {
+    #[inline]
+    fn to_bytes(&self) -> [u8; 16] { Vec4ByteConvert::to_bytes(self) }
+    #[inline]
+    fn from_bytes(bytes: &[u8]) -> Self { Vec4ByteConvert::from_bytes(bytes) }
+}
+impl ByteConvert<16> for Vec4u {
+    #[inline]
+    fn to_bytes(&self) -> [u8; 16] { Vec4ByteConvert::to_bytes(self) }
+    #[inline]
+    fn from_bytes(bytes: &[u8]) -> Self { Vec4ByteConvert::from_bytes(bytes) }
+}
+
+
 
 #[cfg(test)]
 mod tests {
