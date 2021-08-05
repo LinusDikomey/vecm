@@ -3,6 +3,10 @@ use std::cmp;
 use std::ops;
 use std::fmt;
 
+pub trait Convertible<T> {
+    fn convert(t: T) -> Self;
+}
+
 // ---------- PolyVec2 ----------
 
 #[derive(Clone, Copy, Debug, Default, Eq, PartialEq, Hash)]
@@ -253,6 +257,15 @@ impl<T> ops::Neg for PolyVec2<T>
     #[inline]
     fn neg(self) -> Self::Output {
         Self::Output {x: -self.x, y: -self.y}
+    }
+}
+impl<T, U> Convertible<PolyVec2<U>> for PolyVec2<T>
+where T: From<U> {
+    fn convert(from: PolyVec2<U>) -> Self {
+        Self {
+            x: from.x.into(),
+            y: from.y.into()
+        }
     }
 }
 
@@ -510,6 +523,17 @@ impl<T> ops::Neg for PolyVec3<T>
         Self::Output {x: -self.x, y: -self.y, z: -self.z}
     }
 }
+impl<T, U> Convertible<PolyVec3<U>> for PolyVec3<T>
+where T: From<U> {
+    fn convert(from: PolyVec3<U>) -> Self {
+        Self {
+            x: from.x.into(),
+            y: from.y.into(),
+            z: from.z.into()
+        }
+    }
+}
+
 // ---------- PolyVec4 ----------
 
 #[derive(Clone, Copy, Debug, Default, Eq, PartialEq, Hash)]
@@ -779,6 +803,17 @@ impl<T> ops::Neg for PolyVec4<T>
     #[inline]
     fn neg(self) -> Self::Output {
         Self::Output {x: -self.x, y: -self.y, z: -self.z, w: -self.w}
+    }
+}
+impl<T, U> Convertible<PolyVec4<U>> for PolyVec4<T>
+where T: From<U> {
+    fn convert(from: PolyVec4<U>) -> Self {
+        Self {
+            x: from.x.into(),
+            y: from.y.into(),
+            z: from.z.into(),
+            w: from.w.into()
+        }
     }
 }
 
