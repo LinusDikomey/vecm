@@ -4,7 +4,7 @@ use std::ops;
 use std::fmt;
 
 pub trait Convertible<T> {
-    fn convert(t: T) -> Self;
+    fn convert(self) -> T;
 }
 
 // ---------- PolyVec2 ----------
@@ -260,11 +260,11 @@ impl<T> ops::Neg for PolyVec2<T>
     }
 }
 impl<T, U> Convertible<PolyVec2<U>> for PolyVec2<T>
-where T: From<U> {
-    fn convert(from: PolyVec2<U>) -> Self {
-        Self {
-            x: from.x.into(),
-            y: from.y.into()
+where T: Into<U> {
+    fn convert(self) -> PolyVec2<U> {
+        PolyVec2::<U> {
+            x: self.x.into(),
+            y: self.y.into()
         }
     }
 }
@@ -524,12 +524,12 @@ impl<T> ops::Neg for PolyVec3<T>
     }
 }
 impl<T, U> Convertible<PolyVec3<U>> for PolyVec3<T>
-where T: From<U> {
-    fn convert(from: PolyVec3<U>) -> Self {
-        Self {
-            x: from.x.into(),
-            y: from.y.into(),
-            z: from.z.into()
+where T: Into<U> {
+    fn convert(self) -> PolyVec3<U> {
+        PolyVec3::<U> {
+            x: self.x.into(),
+            y: self.y.into(),
+            z: self.z.into()
         }
     }
 }
@@ -806,13 +806,13 @@ impl<T> ops::Neg for PolyVec4<T>
     }
 }
 impl<T, U> Convertible<PolyVec4<U>> for PolyVec4<T>
-where T: From<U> {
-    fn convert(from: PolyVec4<U>) -> Self {
-        Self {
-            x: from.x.into(),
-            y: from.y.into(),
-            z: from.z.into(),
-            w: from.w.into()
+where T: Into<U> {
+    fn convert(self) -> PolyVec4<U> {
+        PolyVec4::<U> {
+            x: self.x.into(),
+            y: self.y.into(),
+            z: self.z.into(),
+            w: self.w.into()
         }
     }
 }
