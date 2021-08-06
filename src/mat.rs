@@ -76,6 +76,15 @@ impl Mat4x4 {
         ])
     }
     #[inline]
+    pub fn ortho(left: f32, right: f32, bottom: f32, top: f32, near: f32, far: f32) -> Self {
+        Mat4x4::new([
+            [2.0 / (right - left), 0.0, 0.0, -((right + left) / (right - left))],
+            [0.0, 2.0 / (top - bottom), 0.0, (top + bottom) / (top - bottom)],
+            [0.0, 0.0, -2.0 / (far - near), (far + near) / (far - near)],
+            [0.0, 0.0, 0.0, 1.0]
+        ])
+    }
+    #[inline]
     pub fn transformation_matrix(translation: Vec3, rot: Vec3, scale: Vec3) -> Mat4x4 {
         let mut mat = Mat4x4::identity();
         mat.scale(scale);
