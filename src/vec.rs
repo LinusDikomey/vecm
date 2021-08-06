@@ -269,6 +269,30 @@ where T: Into<U> {
     }
 }
 
+impl<T> PolyVec2<T> 
+where T : num_traits::Float {
+    pub fn round(&self) -> Self {
+        Self {
+            x: self.x.round(),
+            y: self.y.round(),
+        }
+    }
+
+    pub fn floor(&self) -> Self {
+        Self {
+            x: self.x.floor(),
+            y: self.y.floor(),
+        }
+    }
+    
+    pub fn ceil(&self) -> Self {
+        Self {
+            x: self.x.ceil(),
+            y: self.y.ceil(),
+        }
+    }
+}
+
 // ---------- PolyVec3 ----------
 
 #[derive(Clone, Copy, Debug, Default, Eq, PartialEq, Hash)]
@@ -530,6 +554,33 @@ where T: Into<U> {
             x: self.x.into(),
             y: self.y.into(),
             z: self.z.into()
+        }
+    }
+}
+
+impl<T> PolyVec3<T> 
+where T : num_traits::Float {
+    pub fn round(&self) -> Self {
+        Self {
+            x: self.x.round(),
+            y: self.y.round(),
+            z: self.z.round()
+        }
+    }
+
+    pub fn floor(&self) -> Self {
+        Self {
+            x: self.x.floor(),
+            y: self.y.floor(),
+            z: self.z.floor()
+        }
+    }
+    
+    pub fn ceil(&self) -> Self {
+        Self {
+            x: self.x.ceil(),
+            y: self.y.ceil(),
+            z: self.z.ceil()
         }
     }
 }
@@ -813,6 +864,35 @@ where T: Into<U> {
             y: self.y.into(),
             z: self.z.into(),
             w: self.w.into()
+        }
+    }
+}
+impl<T> PolyVec4<T> 
+where T : num_traits::Float {
+    pub fn round(&self) -> Self {
+        Self {
+            x: self.x.round(),
+            y: self.y.round(),
+            z: self.z.round(),
+            w: self.w.round()
+        }
+    }
+
+    pub fn floor(&self) -> Self {
+        Self {
+            x: self.x.floor(),
+            y: self.y.floor(),
+            z: self.z.floor(),
+            w: self.w.floor()
+        }
+    }
+    
+    pub fn ceil(&self) -> Self {
+        Self {
+            x: self.x.ceil(),
+            y: self.y.ceil(),
+            z: self.z.ceil(),
+            w: self.w.ceil()
         }
     }
 }
