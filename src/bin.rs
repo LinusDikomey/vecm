@@ -1,4 +1,4 @@
-use std::{mem::MaybeUninit, usize};
+use std::usize;
 
 use crate::vec::*;
 
@@ -203,7 +203,8 @@ impl<B: ByteConvert<S>, const S: usize, const N: usize> ByteConvert<{S * N}> for
 }
 
 
-// I don't know why these extra traits are needed but they are for some reason. Might work better in the future when const generics are finished
+// I don't know why these extra traits are needed but they are for some reason. Might work better in the future when const generics are finished/*
+/*
 pub trait Vec2ByteConvert<const N: usize> {
     fn to_bytes(&self) -> [u8; 2*N];
     fn from_bytes(b: &[u8]) -> Self;
@@ -274,6 +275,155 @@ impl<T, const N: usize> Vec4ByteConvert<N> for PolyVec4<T> where T : ByteConvert
         }
     }
 }
+*/
+
+impl ByteConvert<8> for Vec2 {
+    fn to_bytes(&self) -> [u8; 8] {
+        let mut out = [0; 8];
+        out[0..4].clone_from_slice(&self.x.to_bytes());
+        out[4..8].clone_from_slice(&self.y.to_bytes());
+        out
+    }
+    fn from_bytes(b: &[u8]) -> Self {
+        Self {
+            x: f32::from_bytes(&b[0..4]),
+            y: f32::from_bytes(&b[4..8])
+        }
+    }
+}
+impl ByteConvert<12> for Vec3 {
+    fn to_bytes(&self) -> [u8; 12] {
+        let mut out = [0; 12];
+        out[0..4].clone_from_slice(&self.x.to_bytes());
+        out[4..8].clone_from_slice(&self.y.to_bytes());
+        out[8..12].clone_from_slice(&self.z.to_bytes());
+        out
+    }
+    fn from_bytes(b: &[u8]) -> Self {
+        Self {
+            x: f32::from_bytes(&b[0..4]),
+            y: f32::from_bytes(&b[4..8]),
+            z: f32::from_bytes(&b[8..12])
+        }
+    }
+}
+impl ByteConvert<16> for Vec4 {
+    fn to_bytes(&self) -> [u8; 16] {
+        let mut out = [0; 16];
+        out[0..4].clone_from_slice(&self.x.to_bytes());
+        out[4..8].clone_from_slice(&self.y.to_bytes());
+        out[8..12].clone_from_slice(&self.z.to_bytes());
+        out[12..16].clone_from_slice(&self.w.to_bytes());
+        out
+    }
+    fn from_bytes(b: &[u8]) -> Self {
+        Self {
+            x: f32::from_bytes(&b[0..4]),
+            y: f32::from_bytes(&b[4..8]),
+            z: f32::from_bytes(&b[8..12]),
+            w: f32::from_bytes(&b[12..16])
+        }
+    }
+}
+
+impl ByteConvert<8> for Vec2u {
+    fn to_bytes(&self) -> [u8; 8] {
+        let mut out = [0; 8];
+        out[0..4].clone_from_slice(&self.x.to_bytes());
+        out[4..8].clone_from_slice(&self.y.to_bytes());
+        out
+    }
+    fn from_bytes(b: &[u8]) -> Self {
+        Self {
+            x: u32::from_bytes(&b[0..4]),
+            y: u32::from_bytes(&b[4..8])
+        }
+    }
+}
+impl ByteConvert<12> for Vec3u {
+    fn to_bytes(&self) -> [u8; 12] {
+        let mut out = [0; 12];
+        out[0..4].clone_from_slice(&self.x.to_bytes());
+        out[4..8].clone_from_slice(&self.y.to_bytes());
+        out[8..12].clone_from_slice(&self.z.to_bytes());
+        out
+    }
+    fn from_bytes(b: &[u8]) -> Self {
+        Self {
+            x: u32::from_bytes(&b[0..4]),
+            y: u32::from_bytes(&b[4..8]),
+            z: u32::from_bytes(&b[8..12])
+        }
+    }
+}
+impl ByteConvert<16> for Vec4u {
+    fn to_bytes(&self) -> [u8; 16] {
+        let mut out = [0; 16];
+        out[0..4].clone_from_slice(&self.x.to_bytes());
+        out[4..8].clone_from_slice(&self.y.to_bytes());
+        out[8..12].clone_from_slice(&self.z.to_bytes());
+        out[12..16].clone_from_slice(&self.w.to_bytes());
+        out
+    }
+    fn from_bytes(b: &[u8]) -> Self {
+        Self {
+            x: u32::from_bytes(&b[0..4]),
+            y: u32::from_bytes(&b[4..8]),
+            z: u32::from_bytes(&b[8..12]),
+            w: u32::from_bytes(&b[12..16])
+        }
+    }
+}
+
+impl ByteConvert<8> for Vec2i {
+    fn to_bytes(&self) -> [u8; 8] {
+        let mut out = [0; 8];
+        out[0..4].clone_from_slice(&self.x.to_bytes());
+        out[4..8].clone_from_slice(&self.y.to_bytes());
+        out
+    }
+    fn from_bytes(b: &[u8]) -> Self {
+        Self {
+            x: i32::from_bytes(&b[0..4]),
+            y: i32::from_bytes(&b[4..8])
+        }
+    }
+}
+impl ByteConvert<12> for Vec3i {
+    fn to_bytes(&self) -> [u8; 12] {
+        let mut out = [0; 12];
+        out[0..4].clone_from_slice(&self.x.to_bytes());
+        out[4..8].clone_from_slice(&self.y.to_bytes());
+        out[8..12].clone_from_slice(&self.z.to_bytes());
+        out
+    }
+    fn from_bytes(b: &[u8]) -> Self {
+        Self {
+            x: i32::from_bytes(&b[0..4]),
+            y: i32::from_bytes(&b[4..8]),
+            z: i32::from_bytes(&b[8..12])
+        }
+    }
+}
+impl ByteConvert<16> for Vec4i {
+    fn to_bytes(&self) -> [u8; 16] {
+        let mut out = [0; 16];
+        out[0..4].clone_from_slice(&self.x.to_bytes());
+        out[4..8].clone_from_slice(&self.y.to_bytes());
+        out[8..12].clone_from_slice(&self.z.to_bytes());
+        out[12..16].clone_from_slice(&self.w.to_bytes());
+        out
+    }
+    fn from_bytes(b: &[u8]) -> Self {
+        Self {
+            x: i32::from_bytes(&b[0..4]),
+            y: i32::from_bytes(&b[4..8]),
+            z: i32::from_bytes(&b[8..12]),
+            w: i32::from_bytes(&b[12..16])
+        }
+    }
+}
+
 
 #[cfg(test)]
 mod tests {
