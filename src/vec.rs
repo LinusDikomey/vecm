@@ -293,6 +293,30 @@ where T : num_traits::Float {
     }
 }
 
+// binverse serialization
+
+#[cfg(feature = "binverse_impl")]
+impl<T, W: std::io::Write> binverse::serialize::Serialize<W> for PolyVec2<T>
+where T: binverse::serialize::Serialize<W> {
+    #[inline]
+    fn serialize(&self, s: &mut binverse::streams::Serializer<W>) -> binverse::error::BinverseResult<()> {
+        self.x.serialize(s)?;
+        self.y.serialize(s)?;
+        Ok(())
+    }
+}
+#[cfg(feature = "binverse_impl")]
+impl<T, R: std::io::Read> binverse::serialize::Deserialize<R> for PolyVec2<T>
+where T: binverse::serialize::Deserialize<R> {
+    #[inline]
+    fn deserialize(d: &mut binverse::streams::Deserializer<R>) -> binverse::error::BinverseResult<Self> {
+        Ok(Self {
+            x: d.deserialize()?,
+            y: d.deserialize()?
+        })
+    }
+}
+
 // ---------- PolyVec3 ----------
 
 #[derive(Clone, Copy, Debug, Default, Eq, PartialEq, Hash)]
@@ -582,6 +606,32 @@ where T : num_traits::Float {
             y: self.y.ceil(),
             z: self.z.ceil()
         }
+    }
+}
+
+// binverse serialization
+
+#[cfg(feature = "binverse_impl")]
+impl<T, W: std::io::Write> binverse::serialize::Serialize<W> for PolyVec3<T>
+where T: binverse::serialize::Serialize<W> {
+    #[inline]
+    fn serialize(&self, s: &mut binverse::streams::Serializer<W>) -> binverse::error::BinverseResult<()> {
+        self.x.serialize(s)?;
+        self.y.serialize(s)?;
+        self.z.serialize(s)?;
+        Ok(())
+    }
+}
+#[cfg(feature = "binverse_impl")]
+impl<T, R: std::io::Read> binverse::serialize::Deserialize<R> for PolyVec3<T>
+where T: binverse::serialize::Deserialize<R> {
+    #[inline]
+    fn deserialize(d: &mut binverse::streams::Deserializer<R>) -> binverse::error::BinverseResult<Self> {
+        Ok(Self {
+            x: d.deserialize()?,
+            y: d.deserialize()?,
+            z: d.deserialize()?,
+        })
     }
 }
 
@@ -894,6 +944,34 @@ where T : num_traits::Float {
             z: self.z.ceil(),
             w: self.w.ceil()
         }
+    }
+}
+
+// binverse serialization
+
+#[cfg(feature = "binverse_impl")]
+impl<T, W: std::io::Write> binverse::serialize::Serialize<W> for PolyVec4<T>
+where T: binverse::serialize::Serialize<W> {
+    #[inline]
+    fn serialize(&self, s: &mut binverse::streams::Serializer<W>) -> binverse::error::BinverseResult<()> {
+        self.x.serialize(s)?;
+        self.y.serialize(s)?;
+        self.z.serialize(s)?;
+        self.w.serialize(s)?;
+        Ok(())
+    }
+}
+#[cfg(feature = "binverse_impl")]
+impl<T, R: std::io::Read> binverse::serialize::Deserialize<R> for PolyVec4<T>
+where T: binverse::serialize::Deserialize<R> {
+    #[inline]
+    fn deserialize(d: &mut binverse::streams::Deserializer<R>) -> binverse::error::BinverseResult<Self> {
+        Ok(Self {
+            x: d.deserialize()?,
+            y: d.deserialize()?,
+            z: d.deserialize()?,
+            w: d.deserialize()?,
+        })
     }
 }
 

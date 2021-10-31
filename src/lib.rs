@@ -3,6 +3,8 @@
 #![feature(generic_const_exprs)]
 
 extern crate num_traits;
+#[cfg(binverse_impls)]
+extern crate binverse;
 
 use std::ops;
 
