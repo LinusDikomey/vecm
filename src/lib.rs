@@ -1,6 +1,4 @@
-#![allow(incomplete_features)]
 #![feature(const_fn_trait_bound)]
-#![feature(generic_const_exprs)]
 
 extern crate num_traits;
 #[cfg(binverse_impls)]
@@ -10,7 +8,6 @@ use std::ops;
 
 pub mod mat;
 pub mod vec;
-pub mod bin;
 
 pub const RADIANS_TO_DEGREES: f32 = 180.0 / std::f32::consts::PI;
 

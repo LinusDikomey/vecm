@@ -7,33 +7,6 @@ pub struct Mat4x4 {
     data: [[f32; 4]; 4]
 }
 impl Mat4x4 {
-    pub fn into_packed(&self) -> Mat4x4Packed {
-        Mat4x4Packed{data: self.data}
-    }
-}
-
-#[derive(Copy, Clone)]
-#[repr(C, packed)]
-pub struct Mat4x4Packed {
-    data: [[f32; 4]; 4]
-}
-impl From<Mat4x4> for Mat4x4Packed {
-    #[inline]
-    fn from(mat: Mat4x4) -> Mat4x4Packed { 
-        Mat4x4Packed{data: mat.data}
-    }
-}
-impl Mat4x4Packed {
-    #[inline]
-    pub unsafe fn ptr<'a>(&self) -> *const f32 {
-        #[allow(unaligned_references)]
-        &self.data[0][0]
-    }
-
-}
-
-
-impl Mat4x4 {
     #[inline]
     pub fn new(input: [[f32; 4]; 4]) -> Mat4x4 {
         let mut data: [[f32; 4]; 4] = [[0.0; 4]; 4];
@@ -143,6 +116,11 @@ impl Mat4x4 {
         self[3][2] += t.z;
     }
 
+    #[inline]
+    pub unsafe fn data_ptr<'a>(&self) -> *const f32 {
+        //#[allow(unaligned_references)]
+        &self.data[0][0]
+    }
 }
 
 impl std::fmt::Display for Mat4x4 {
