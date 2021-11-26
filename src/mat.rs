@@ -218,14 +218,14 @@ impl AddAssign<Vec3> for Mat4x4 {
 
 // binverse serialization
 
-#[cfg(feature = "binverse_impl")]
+#[cfg(feature = "binverse_impls")]
 impl<W: std::io::Write> binverse::serialize::Serialize<W> for Mat4x4 {
     #[inline]
     fn serialize(&self, s: &mut binverse::streams::Serializer<W>) -> binverse::error::BinverseResult<()> {
         self.data.serialize(s)
     }
 }
-#[cfg(feature = "binverse_impl")]
+#[cfg(feature = "binverse_impls")]
 impl<R: std::io::Read> binverse::serialize::Deserialize<R> for Mat4x4 {
     #[inline]
     fn deserialize(d: &mut binverse::streams::Deserializer<R>) -> binverse::error::BinverseResult<Self> {

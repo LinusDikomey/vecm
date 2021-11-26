@@ -16,7 +16,6 @@ T: Copy {
         PolyVec2::new(*self.x(), *self.x())
     }
 }
-
 pub trait SwizzleXY<T> {
     fn xy(&self) -> PolyVec2<T>;
 }
@@ -28,7 +27,6 @@ T: Copy {
         PolyVec2::new(*self.x(), *self.y())
     }
 }
-
 pub trait SwizzleXZ<T> {
     fn xz(&self) -> PolyVec2<T>;
 }
@@ -40,7 +38,6 @@ T: Copy {
         PolyVec2::new(*self.x(), *self.z())
     }
 }
-
 pub trait SwizzleXW<T> {
     fn xw(&self) -> PolyVec2<T>;
 }
@@ -52,7 +49,6 @@ T: Copy {
         PolyVec2::new(*self.x(), *self.w())
     }
 }
-
 pub trait SwizzleYX<T> {
     fn yx(&self) -> PolyVec2<T>;
 }
@@ -64,7 +60,6 @@ T: Copy {
         PolyVec2::new(*self.y(), *self.x())
     }
 }
-
 pub trait SwizzleYY<T> {
     fn yy(&self) -> PolyVec2<T>;
 }
@@ -76,7 +71,6 @@ T: Copy {
         PolyVec2::new(*self.y(), *self.y())
     }
 }
-
 pub trait SwizzleYZ<T> {
     fn yz(&self) -> PolyVec2<T>;
 }
@@ -88,7 +82,6 @@ T: Copy {
         PolyVec2::new(*self.y(), *self.z())
     }
 }
-
 pub trait SwizzleYW<T> {
     fn yw(&self) -> PolyVec2<T>;
 }
@@ -100,7 +93,6 @@ T: Copy {
         PolyVec2::new(*self.y(), *self.w())
     }
 }
-
 pub trait SwizzleZX<T> {
     fn zx(&self) -> PolyVec2<T>;
 }
@@ -112,7 +104,6 @@ T: Copy {
         PolyVec2::new(*self.z(), *self.x())
     }
 }
-
 pub trait SwizzleZY<T> {
     fn zy(&self) -> PolyVec2<T>;
 }
@@ -124,7 +115,6 @@ T: Copy {
         PolyVec2::new(*self.z(), *self.y())
     }
 }
-
 pub trait SwizzleZZ<T> {
     fn zz(&self) -> PolyVec2<T>;
 }
@@ -136,7 +126,6 @@ T: Copy {
         PolyVec2::new(*self.z(), *self.z())
     }
 }
-
 pub trait SwizzleZW<T> {
     fn zw(&self) -> PolyVec2<T>;
 }
@@ -148,7 +137,6 @@ T: Copy {
         PolyVec2::new(*self.z(), *self.w())
     }
 }
-
 pub trait SwizzleWX<T> {
     fn wx(&self) -> PolyVec2<T>;
 }
@@ -160,7 +148,6 @@ T: Copy {
         PolyVec2::new(*self.w(), *self.x())
     }
 }
-
 pub trait SwizzleWY<T> {
     fn wy(&self) -> PolyVec2<T>;
 }
@@ -172,7 +159,6 @@ T: Copy {
         PolyVec2::new(*self.w(), *self.y())
     }
 }
-
 pub trait SwizzleWZ<T> {
     fn wz(&self) -> PolyVec2<T>;
 }
@@ -184,7 +170,6 @@ T: Copy {
         PolyVec2::new(*self.w(), *self.z())
     }
 }
-
 pub trait SwizzleWW<T> {
     fn ww(&self) -> PolyVec2<T>;
 }
@@ -196,7 +181,6 @@ T: Copy {
         PolyVec2::new(*self.w(), *self.w())
     }
 }
-
 
 // ---------- 3-Component Swizzle ----------
 
@@ -212,7 +196,6 @@ T: Copy {
         PolyVec3::new(*self.x(), *self.x(), *self.x())
     }
 }
-
 pub trait SwizzleXXY<T> {
     fn xxy(&self) -> PolyVec3<T>;
 }
@@ -224,7 +207,6 @@ T: Copy {
         PolyVec3::new(*self.x(), *self.x(), *self.y())
     }
 }
-
 pub trait SwizzleXXZ<T> {
     fn xxz(&self) -> PolyVec3<T>;
 }
@@ -236,7 +218,6 @@ T: Copy {
         PolyVec3::new(*self.x(), *self.x(), *self.z())
     }
 }
-
 pub trait SwizzleXXW<T> {
     fn xxw(&self) -> PolyVec3<T>;
 }
@@ -248,7 +229,6 @@ T: Copy {
         PolyVec3::new(*self.x(), *self.x(), *self.w())
     }
 }
-
 pub trait SwizzleXYX<T> {
     fn xyx(&self) -> PolyVec3<T>;
 }
@@ -260,7 +240,6 @@ T: Copy {
         PolyVec3::new(*self.x(), *self.y(), *self.x())
     }
 }
-
 pub trait SwizzleXYY<T> {
     fn xyy(&self) -> PolyVec3<T>;
 }
@@ -272,7 +251,6 @@ T: Copy {
         PolyVec3::new(*self.x(), *self.y(), *self.y())
     }
 }
-
 pub trait SwizzleXYZ<T> {
     fn xyz(&self) -> PolyVec3<T>;
 }
@@ -284,7 +262,6 @@ T: Copy {
         PolyVec3::new(*self.x(), *self.y(), *self.z())
     }
 }
-
 pub trait SwizzleXYW<T> {
     fn xyw(&self) -> PolyVec3<T>;
 }
@@ -296,7 +273,6 @@ T: Copy {
         PolyVec3::new(*self.x(), *self.y(), *self.w())
     }
 }
-
 pub trait SwizzleXZX<T> {
     fn xzx(&self) -> PolyVec3<T>;
 }
@@ -308,7 +284,6 @@ T: Copy {
         PolyVec3::new(*self.x(), *self.z(), *self.x())
     }
 }
-
 pub trait SwizzleXZY<T> {
     fn xzy(&self) -> PolyVec3<T>;
 }
@@ -320,7 +295,6 @@ T: Copy {
         PolyVec3::new(*self.x(), *self.z(), *self.y())
     }
 }
-
 pub trait SwizzleXZZ<T> {
     fn xzz(&self) -> PolyVec3<T>;
 }
@@ -332,7 +306,6 @@ T: Copy {
         PolyVec3::new(*self.x(), *self.z(), *self.z())
     }
 }
-
 pub trait SwizzleXZW<T> {
     fn xzw(&self) -> PolyVec3<T>;
 }
@@ -344,7 +317,6 @@ T: Copy {
         PolyVec3::new(*self.x(), *self.z(), *self.w())
     }
 }
-
 pub trait SwizzleXWX<T> {
     fn xwx(&self) -> PolyVec3<T>;
 }
@@ -356,7 +328,6 @@ T: Copy {
         PolyVec3::new(*self.x(), *self.w(), *self.x())
     }
 }
-
 pub trait SwizzleXWY<T> {
     fn xwy(&self) -> PolyVec3<T>;
 }
@@ -368,7 +339,6 @@ T: Copy {
         PolyVec3::new(*self.x(), *self.w(), *self.y())
     }
 }
-
 pub trait SwizzleXWZ<T> {
     fn xwz(&self) -> PolyVec3<T>;
 }
@@ -380,7 +350,6 @@ T: Copy {
         PolyVec3::new(*self.x(), *self.w(), *self.z())
     }
 }
-
 pub trait SwizzleXWW<T> {
     fn xww(&self) -> PolyVec3<T>;
 }
@@ -392,7 +361,6 @@ T: Copy {
         PolyVec3::new(*self.x(), *self.w(), *self.w())
     }
 }
-
 pub trait SwizzleYXX<T> {
     fn yxx(&self) -> PolyVec3<T>;
 }
@@ -404,7 +372,6 @@ T: Copy {
         PolyVec3::new(*self.y(), *self.x(), *self.x())
     }
 }
-
 pub trait SwizzleYXY<T> {
     fn yxy(&self) -> PolyVec3<T>;
 }
@@ -416,7 +383,6 @@ T: Copy {
         PolyVec3::new(*self.y(), *self.x(), *self.y())
     }
 }
-
 pub trait SwizzleYXZ<T> {
     fn yxz(&self) -> PolyVec3<T>;
 }
@@ -428,7 +394,6 @@ T: Copy {
         PolyVec3::new(*self.y(), *self.x(), *self.z())
     }
 }
-
 pub trait SwizzleYXW<T> {
     fn yxw(&self) -> PolyVec3<T>;
 }
@@ -440,7 +405,6 @@ T: Copy {
         PolyVec3::new(*self.y(), *self.x(), *self.w())
     }
 }
-
 pub trait SwizzleYYX<T> {
     fn yyx(&self) -> PolyVec3<T>;
 }
@@ -452,7 +416,6 @@ T: Copy {
         PolyVec3::new(*self.y(), *self.y(), *self.x())
     }
 }
-
 pub trait SwizzleYYY<T> {
     fn yyy(&self) -> PolyVec3<T>;
 }
@@ -464,7 +427,6 @@ T: Copy {
         PolyVec3::new(*self.y(), *self.y(), *self.y())
     }
 }
-
 pub trait SwizzleYYZ<T> {
     fn yyz(&self) -> PolyVec3<T>;
 }
@@ -476,7 +438,6 @@ T: Copy {
         PolyVec3::new(*self.y(), *self.y(), *self.z())
     }
 }
-
 pub trait SwizzleYYW<T> {
     fn yyw(&self) -> PolyVec3<T>;
 }
@@ -488,7 +449,6 @@ T: Copy {
         PolyVec3::new(*self.y(), *self.y(), *self.w())
     }
 }
-
 pub trait SwizzleYZX<T> {
     fn yzx(&self) -> PolyVec3<T>;
 }
@@ -500,7 +460,6 @@ T: Copy {
         PolyVec3::new(*self.y(), *self.z(), *self.x())
     }
 }
-
 pub trait SwizzleYZY<T> {
     fn yzy(&self) -> PolyVec3<T>;
 }
@@ -512,7 +471,6 @@ T: Copy {
         PolyVec3::new(*self.y(), *self.z(), *self.y())
     }
 }
-
 pub trait SwizzleYZZ<T> {
     fn yzz(&self) -> PolyVec3<T>;
 }
@@ -524,7 +482,6 @@ T: Copy {
         PolyVec3::new(*self.y(), *self.z(), *self.z())
     }
 }
-
 pub trait SwizzleYZW<T> {
     fn yzw(&self) -> PolyVec3<T>;
 }
@@ -536,7 +493,6 @@ T: Copy {
         PolyVec3::new(*self.y(), *self.z(), *self.w())
     }
 }
-
 pub trait SwizzleYWX<T> {
     fn ywx(&self) -> PolyVec3<T>;
 }
@@ -548,7 +504,6 @@ T: Copy {
         PolyVec3::new(*self.y(), *self.w(), *self.x())
     }
 }
-
 pub trait SwizzleYWY<T> {
     fn ywy(&self) -> PolyVec3<T>;
 }
@@ -560,7 +515,6 @@ T: Copy {
         PolyVec3::new(*self.y(), *self.w(), *self.y())
     }
 }
-
 pub trait SwizzleYWZ<T> {
     fn ywz(&self) -> PolyVec3<T>;
 }
@@ -572,7 +526,6 @@ T: Copy {
         PolyVec3::new(*self.y(), *self.w(), *self.z())
     }
 }
-
 pub trait SwizzleYWW<T> {
     fn yww(&self) -> PolyVec3<T>;
 }
@@ -584,7 +537,6 @@ T: Copy {
         PolyVec3::new(*self.y(), *self.w(), *self.w())
     }
 }
-
 pub trait SwizzleZXX<T> {
     fn zxx(&self) -> PolyVec3<T>;
 }
@@ -596,7 +548,6 @@ T: Copy {
         PolyVec3::new(*self.z(), *self.x(), *self.x())
     }
 }
-
 pub trait SwizzleZXY<T> {
     fn zxy(&self) -> PolyVec3<T>;
 }
@@ -608,7 +559,6 @@ T: Copy {
         PolyVec3::new(*self.z(), *self.x(), *self.y())
     }
 }
-
 pub trait SwizzleZXZ<T> {
     fn zxz(&self) -> PolyVec3<T>;
 }
@@ -620,7 +570,6 @@ T: Copy {
         PolyVec3::new(*self.z(), *self.x(), *self.z())
     }
 }
-
 pub trait SwizzleZXW<T> {
     fn zxw(&self) -> PolyVec3<T>;
 }
@@ -632,7 +581,6 @@ T: Copy {
         PolyVec3::new(*self.z(), *self.x(), *self.w())
     }
 }
-
 pub trait SwizzleZYX<T> {
     fn zyx(&self) -> PolyVec3<T>;
 }
@@ -644,7 +592,6 @@ T: Copy {
         PolyVec3::new(*self.z(), *self.y(), *self.x())
     }
 }
-
 pub trait SwizzleZYY<T> {
     fn zyy(&self) -> PolyVec3<T>;
 }
@@ -656,7 +603,6 @@ T: Copy {
         PolyVec3::new(*self.z(), *self.y(), *self.y())
     }
 }
-
 pub trait SwizzleZYZ<T> {
     fn zyz(&self) -> PolyVec3<T>;
 }
@@ -668,7 +614,6 @@ T: Copy {
         PolyVec3::new(*self.z(), *self.y(), *self.z())
     }
 }
-
 pub trait SwizzleZYW<T> {
     fn zyw(&self) -> PolyVec3<T>;
 }
@@ -680,7 +625,6 @@ T: Copy {
         PolyVec3::new(*self.z(), *self.y(), *self.w())
     }
 }
-
 pub trait SwizzleZZX<T> {
     fn zzx(&self) -> PolyVec3<T>;
 }
@@ -692,7 +636,6 @@ T: Copy {
         PolyVec3::new(*self.z(), *self.z(), *self.x())
     }
 }
-
 pub trait SwizzleZZY<T> {
     fn zzy(&self) -> PolyVec3<T>;
 }
@@ -704,7 +647,6 @@ T: Copy {
         PolyVec3::new(*self.z(), *self.z(), *self.y())
     }
 }
-
 pub trait SwizzleZZZ<T> {
     fn zzz(&self) -> PolyVec3<T>;
 }
@@ -716,7 +658,6 @@ T: Copy {
         PolyVec3::new(*self.z(), *self.z(), *self.z())
     }
 }
-
 pub trait SwizzleZZW<T> {
     fn zzw(&self) -> PolyVec3<T>;
 }
@@ -728,7 +669,6 @@ T: Copy {
         PolyVec3::new(*self.z(), *self.z(), *self.w())
     }
 }
-
 pub trait SwizzleZWX<T> {
     fn zwx(&self) -> PolyVec3<T>;
 }
@@ -740,7 +680,6 @@ T: Copy {
         PolyVec3::new(*self.z(), *self.w(), *self.x())
     }
 }
-
 pub trait SwizzleZWY<T> {
     fn zwy(&self) -> PolyVec3<T>;
 }
@@ -752,7 +691,6 @@ T: Copy {
         PolyVec3::new(*self.z(), *self.w(), *self.y())
     }
 }
-
 pub trait SwizzleZWZ<T> {
     fn zwz(&self) -> PolyVec3<T>;
 }
@@ -764,7 +702,6 @@ T: Copy {
         PolyVec3::new(*self.z(), *self.w(), *self.z())
     }
 }
-
 pub trait SwizzleZWW<T> {
     fn zww(&self) -> PolyVec3<T>;
 }
@@ -776,7 +713,6 @@ T: Copy {
         PolyVec3::new(*self.z(), *self.w(), *self.w())
     }
 }
-
 pub trait SwizzleWXX<T> {
     fn wxx(&self) -> PolyVec3<T>;
 }
@@ -788,7 +724,6 @@ T: Copy {
         PolyVec3::new(*self.w(), *self.x(), *self.x())
     }
 }
-
 pub trait SwizzleWXY<T> {
     fn wxy(&self) -> PolyVec3<T>;
 }
@@ -800,7 +735,6 @@ T: Copy {
         PolyVec3::new(*self.w(), *self.x(), *self.y())
     }
 }
-
 pub trait SwizzleWXZ<T> {
     fn wxz(&self) -> PolyVec3<T>;
 }
@@ -812,7 +746,6 @@ T: Copy {
         PolyVec3::new(*self.w(), *self.x(), *self.z())
     }
 }
-
 pub trait SwizzleWXW<T> {
     fn wxw(&self) -> PolyVec3<T>;
 }
@@ -824,7 +757,6 @@ T: Copy {
         PolyVec3::new(*self.w(), *self.x(), *self.w())
     }
 }
-
 pub trait SwizzleWYX<T> {
     fn wyx(&self) -> PolyVec3<T>;
 }
@@ -836,7 +768,6 @@ T: Copy {
         PolyVec3::new(*self.w(), *self.y(), *self.x())
     }
 }
-
 pub trait SwizzleWYY<T> {
     fn wyy(&self) -> PolyVec3<T>;
 }
@@ -848,7 +779,6 @@ T: Copy {
         PolyVec3::new(*self.w(), *self.y(), *self.y())
     }
 }
-
 pub trait SwizzleWYZ<T> {
     fn wyz(&self) -> PolyVec3<T>;
 }
@@ -860,7 +790,6 @@ T: Copy {
         PolyVec3::new(*self.w(), *self.y(), *self.z())
     }
 }
-
 pub trait SwizzleWYW<T> {
     fn wyw(&self) -> PolyVec3<T>;
 }
@@ -872,7 +801,6 @@ T: Copy {
         PolyVec3::new(*self.w(), *self.y(), *self.w())
     }
 }
-
 pub trait SwizzleWZX<T> {
     fn wzx(&self) -> PolyVec3<T>;
 }
@@ -884,7 +812,6 @@ T: Copy {
         PolyVec3::new(*self.w(), *self.z(), *self.x())
     }
 }
-
 pub trait SwizzleWZY<T> {
     fn wzy(&self) -> PolyVec3<T>;
 }
@@ -896,7 +823,6 @@ T: Copy {
         PolyVec3::new(*self.w(), *self.z(), *self.y())
     }
 }
-
 pub trait SwizzleWZZ<T> {
     fn wzz(&self) -> PolyVec3<T>;
 }
@@ -908,7 +834,6 @@ T: Copy {
         PolyVec3::new(*self.w(), *self.z(), *self.z())
     }
 }
-
 pub trait SwizzleWZW<T> {
     fn wzw(&self) -> PolyVec3<T>;
 }
@@ -920,7 +845,6 @@ T: Copy {
         PolyVec3::new(*self.w(), *self.z(), *self.w())
     }
 }
-
 pub trait SwizzleWWX<T> {
     fn wwx(&self) -> PolyVec3<T>;
 }
@@ -932,7 +856,6 @@ T: Copy {
         PolyVec3::new(*self.w(), *self.w(), *self.x())
     }
 }
-
 pub trait SwizzleWWY<T> {
     fn wwy(&self) -> PolyVec3<T>;
 }
@@ -944,7 +867,6 @@ T: Copy {
         PolyVec3::new(*self.w(), *self.w(), *self.y())
     }
 }
-
 pub trait SwizzleWWZ<T> {
     fn wwz(&self) -> PolyVec3<T>;
 }
@@ -956,7 +878,6 @@ T: Copy {
         PolyVec3::new(*self.w(), *self.w(), *self.z())
     }
 }
-
 pub trait SwizzleWWW<T> {
     fn www(&self) -> PolyVec3<T>;
 }
@@ -968,7 +889,6 @@ T: Copy {
         PolyVec3::new(*self.w(), *self.w(), *self.w())
     }
 }
-
 
 // ---------- 4-Component Swizzle ----------
 
@@ -984,7 +904,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.x(), *self.x(), *self.x())
     }
 }
-
 pub trait SwizzleXXXY<T> {
     fn xxxy(&self) -> PolyVec4<T>;
 }
@@ -996,7 +915,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.x(), *self.x(), *self.y())
     }
 }
-
 pub trait SwizzleXXXZ<T> {
     fn xxxz(&self) -> PolyVec4<T>;
 }
@@ -1008,7 +926,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.x(), *self.x(), *self.z())
     }
 }
-
 pub trait SwizzleXXXW<T> {
     fn xxxw(&self) -> PolyVec4<T>;
 }
@@ -1020,7 +937,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.x(), *self.x(), *self.w())
     }
 }
-
 pub trait SwizzleXXYX<T> {
     fn xxyx(&self) -> PolyVec4<T>;
 }
@@ -1032,7 +948,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.x(), *self.y(), *self.x())
     }
 }
-
 pub trait SwizzleXXYY<T> {
     fn xxyy(&self) -> PolyVec4<T>;
 }
@@ -1044,7 +959,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.x(), *self.y(), *self.y())
     }
 }
-
 pub trait SwizzleXXYZ<T> {
     fn xxyz(&self) -> PolyVec4<T>;
 }
@@ -1056,7 +970,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.x(), *self.y(), *self.z())
     }
 }
-
 pub trait SwizzleXXYW<T> {
     fn xxyw(&self) -> PolyVec4<T>;
 }
@@ -1068,7 +981,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.x(), *self.y(), *self.w())
     }
 }
-
 pub trait SwizzleXXZX<T> {
     fn xxzx(&self) -> PolyVec4<T>;
 }
@@ -1080,7 +992,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.x(), *self.z(), *self.x())
     }
 }
-
 pub trait SwizzleXXZY<T> {
     fn xxzy(&self) -> PolyVec4<T>;
 }
@@ -1092,7 +1003,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.x(), *self.z(), *self.y())
     }
 }
-
 pub trait SwizzleXXZZ<T> {
     fn xxzz(&self) -> PolyVec4<T>;
 }
@@ -1104,7 +1014,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.x(), *self.z(), *self.z())
     }
 }
-
 pub trait SwizzleXXZW<T> {
     fn xxzw(&self) -> PolyVec4<T>;
 }
@@ -1116,7 +1025,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.x(), *self.z(), *self.w())
     }
 }
-
 pub trait SwizzleXXWX<T> {
     fn xxwx(&self) -> PolyVec4<T>;
 }
@@ -1128,7 +1036,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.x(), *self.w(), *self.x())
     }
 }
-
 pub trait SwizzleXXWY<T> {
     fn xxwy(&self) -> PolyVec4<T>;
 }
@@ -1140,7 +1047,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.x(), *self.w(), *self.y())
     }
 }
-
 pub trait SwizzleXXWZ<T> {
     fn xxwz(&self) -> PolyVec4<T>;
 }
@@ -1152,7 +1058,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.x(), *self.w(), *self.z())
     }
 }
-
 pub trait SwizzleXXWW<T> {
     fn xxww(&self) -> PolyVec4<T>;
 }
@@ -1164,7 +1069,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.x(), *self.w(), *self.w())
     }
 }
-
 pub trait SwizzleXYXX<T> {
     fn xyxx(&self) -> PolyVec4<T>;
 }
@@ -1176,7 +1080,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.y(), *self.x(), *self.x())
     }
 }
-
 pub trait SwizzleXYXY<T> {
     fn xyxy(&self) -> PolyVec4<T>;
 }
@@ -1188,7 +1091,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.y(), *self.x(), *self.y())
     }
 }
-
 pub trait SwizzleXYXZ<T> {
     fn xyxz(&self) -> PolyVec4<T>;
 }
@@ -1200,7 +1102,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.y(), *self.x(), *self.z())
     }
 }
-
 pub trait SwizzleXYXW<T> {
     fn xyxw(&self) -> PolyVec4<T>;
 }
@@ -1212,7 +1113,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.y(), *self.x(), *self.w())
     }
 }
-
 pub trait SwizzleXYYX<T> {
     fn xyyx(&self) -> PolyVec4<T>;
 }
@@ -1224,7 +1124,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.y(), *self.y(), *self.x())
     }
 }
-
 pub trait SwizzleXYYY<T> {
     fn xyyy(&self) -> PolyVec4<T>;
 }
@@ -1236,7 +1135,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.y(), *self.y(), *self.y())
     }
 }
-
 pub trait SwizzleXYYZ<T> {
     fn xyyz(&self) -> PolyVec4<T>;
 }
@@ -1248,7 +1146,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.y(), *self.y(), *self.z())
     }
 }
-
 pub trait SwizzleXYYW<T> {
     fn xyyw(&self) -> PolyVec4<T>;
 }
@@ -1260,7 +1157,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.y(), *self.y(), *self.w())
     }
 }
-
 pub trait SwizzleXYZX<T> {
     fn xyzx(&self) -> PolyVec4<T>;
 }
@@ -1272,7 +1168,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.y(), *self.z(), *self.x())
     }
 }
-
 pub trait SwizzleXYZY<T> {
     fn xyzy(&self) -> PolyVec4<T>;
 }
@@ -1284,7 +1179,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.y(), *self.z(), *self.y())
     }
 }
-
 pub trait SwizzleXYZZ<T> {
     fn xyzz(&self) -> PolyVec4<T>;
 }
@@ -1296,7 +1190,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.y(), *self.z(), *self.z())
     }
 }
-
 pub trait SwizzleXYZW<T> {
     fn xyzw(&self) -> PolyVec4<T>;
 }
@@ -1308,7 +1201,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.y(), *self.z(), *self.w())
     }
 }
-
 pub trait SwizzleXYWX<T> {
     fn xywx(&self) -> PolyVec4<T>;
 }
@@ -1320,7 +1212,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.y(), *self.w(), *self.x())
     }
 }
-
 pub trait SwizzleXYWY<T> {
     fn xywy(&self) -> PolyVec4<T>;
 }
@@ -1332,7 +1223,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.y(), *self.w(), *self.y())
     }
 }
-
 pub trait SwizzleXYWZ<T> {
     fn xywz(&self) -> PolyVec4<T>;
 }
@@ -1344,7 +1234,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.y(), *self.w(), *self.z())
     }
 }
-
 pub trait SwizzleXYWW<T> {
     fn xyww(&self) -> PolyVec4<T>;
 }
@@ -1356,7 +1245,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.y(), *self.w(), *self.w())
     }
 }
-
 pub trait SwizzleXZXX<T> {
     fn xzxx(&self) -> PolyVec4<T>;
 }
@@ -1368,7 +1256,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.z(), *self.x(), *self.x())
     }
 }
-
 pub trait SwizzleXZXY<T> {
     fn xzxy(&self) -> PolyVec4<T>;
 }
@@ -1380,7 +1267,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.z(), *self.x(), *self.y())
     }
 }
-
 pub trait SwizzleXZXZ<T> {
     fn xzxz(&self) -> PolyVec4<T>;
 }
@@ -1392,7 +1278,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.z(), *self.x(), *self.z())
     }
 }
-
 pub trait SwizzleXZXW<T> {
     fn xzxw(&self) -> PolyVec4<T>;
 }
@@ -1404,7 +1289,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.z(), *self.x(), *self.w())
     }
 }
-
 pub trait SwizzleXZYX<T> {
     fn xzyx(&self) -> PolyVec4<T>;
 }
@@ -1416,7 +1300,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.z(), *self.y(), *self.x())
     }
 }
-
 pub trait SwizzleXZYY<T> {
     fn xzyy(&self) -> PolyVec4<T>;
 }
@@ -1428,7 +1311,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.z(), *self.y(), *self.y())
     }
 }
-
 pub trait SwizzleXZYZ<T> {
     fn xzyz(&self) -> PolyVec4<T>;
 }
@@ -1440,7 +1322,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.z(), *self.y(), *self.z())
     }
 }
-
 pub trait SwizzleXZYW<T> {
     fn xzyw(&self) -> PolyVec4<T>;
 }
@@ -1452,7 +1333,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.z(), *self.y(), *self.w())
     }
 }
-
 pub trait SwizzleXZZX<T> {
     fn xzzx(&self) -> PolyVec4<T>;
 }
@@ -1464,7 +1344,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.z(), *self.z(), *self.x())
     }
 }
-
 pub trait SwizzleXZZY<T> {
     fn xzzy(&self) -> PolyVec4<T>;
 }
@@ -1476,7 +1355,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.z(), *self.z(), *self.y())
     }
 }
-
 pub trait SwizzleXZZZ<T> {
     fn xzzz(&self) -> PolyVec4<T>;
 }
@@ -1488,7 +1366,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.z(), *self.z(), *self.z())
     }
 }
-
 pub trait SwizzleXZZW<T> {
     fn xzzw(&self) -> PolyVec4<T>;
 }
@@ -1500,7 +1377,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.z(), *self.z(), *self.w())
     }
 }
-
 pub trait SwizzleXZWX<T> {
     fn xzwx(&self) -> PolyVec4<T>;
 }
@@ -1512,7 +1388,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.z(), *self.w(), *self.x())
     }
 }
-
 pub trait SwizzleXZWY<T> {
     fn xzwy(&self) -> PolyVec4<T>;
 }
@@ -1524,7 +1399,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.z(), *self.w(), *self.y())
     }
 }
-
 pub trait SwizzleXZWZ<T> {
     fn xzwz(&self) -> PolyVec4<T>;
 }
@@ -1536,7 +1410,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.z(), *self.w(), *self.z())
     }
 }
-
 pub trait SwizzleXZWW<T> {
     fn xzww(&self) -> PolyVec4<T>;
 }
@@ -1548,7 +1421,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.z(), *self.w(), *self.w())
     }
 }
-
 pub trait SwizzleXWXX<T> {
     fn xwxx(&self) -> PolyVec4<T>;
 }
@@ -1560,7 +1432,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.w(), *self.x(), *self.x())
     }
 }
-
 pub trait SwizzleXWXY<T> {
     fn xwxy(&self) -> PolyVec4<T>;
 }
@@ -1572,7 +1443,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.w(), *self.x(), *self.y())
     }
 }
-
 pub trait SwizzleXWXZ<T> {
     fn xwxz(&self) -> PolyVec4<T>;
 }
@@ -1584,7 +1454,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.w(), *self.x(), *self.z())
     }
 }
-
 pub trait SwizzleXWXW<T> {
     fn xwxw(&self) -> PolyVec4<T>;
 }
@@ -1596,7 +1465,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.w(), *self.x(), *self.w())
     }
 }
-
 pub trait SwizzleXWYX<T> {
     fn xwyx(&self) -> PolyVec4<T>;
 }
@@ -1608,7 +1476,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.w(), *self.y(), *self.x())
     }
 }
-
 pub trait SwizzleXWYY<T> {
     fn xwyy(&self) -> PolyVec4<T>;
 }
@@ -1620,7 +1487,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.w(), *self.y(), *self.y())
     }
 }
-
 pub trait SwizzleXWYZ<T> {
     fn xwyz(&self) -> PolyVec4<T>;
 }
@@ -1632,7 +1498,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.w(), *self.y(), *self.z())
     }
 }
-
 pub trait SwizzleXWYW<T> {
     fn xwyw(&self) -> PolyVec4<T>;
 }
@@ -1644,7 +1509,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.w(), *self.y(), *self.w())
     }
 }
-
 pub trait SwizzleXWZX<T> {
     fn xwzx(&self) -> PolyVec4<T>;
 }
@@ -1656,7 +1520,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.w(), *self.z(), *self.x())
     }
 }
-
 pub trait SwizzleXWZY<T> {
     fn xwzy(&self) -> PolyVec4<T>;
 }
@@ -1668,7 +1531,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.w(), *self.z(), *self.y())
     }
 }
-
 pub trait SwizzleXWZZ<T> {
     fn xwzz(&self) -> PolyVec4<T>;
 }
@@ -1680,7 +1542,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.w(), *self.z(), *self.z())
     }
 }
-
 pub trait SwizzleXWZW<T> {
     fn xwzw(&self) -> PolyVec4<T>;
 }
@@ -1692,7 +1553,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.w(), *self.z(), *self.w())
     }
 }
-
 pub trait SwizzleXWWX<T> {
     fn xwwx(&self) -> PolyVec4<T>;
 }
@@ -1704,7 +1564,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.w(), *self.w(), *self.x())
     }
 }
-
 pub trait SwizzleXWWY<T> {
     fn xwwy(&self) -> PolyVec4<T>;
 }
@@ -1716,7 +1575,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.w(), *self.w(), *self.y())
     }
 }
-
 pub trait SwizzleXWWZ<T> {
     fn xwwz(&self) -> PolyVec4<T>;
 }
@@ -1728,7 +1586,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.w(), *self.w(), *self.z())
     }
 }
-
 pub trait SwizzleXWWW<T> {
     fn xwww(&self) -> PolyVec4<T>;
 }
@@ -1740,7 +1597,6 @@ T: Copy {
         PolyVec4::new(*self.x(), *self.w(), *self.w(), *self.w())
     }
 }
-
 pub trait SwizzleYXXX<T> {
     fn yxxx(&self) -> PolyVec4<T>;
 }
@@ -1752,7 +1608,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.x(), *self.x(), *self.x())
     }
 }
-
 pub trait SwizzleYXXY<T> {
     fn yxxy(&self) -> PolyVec4<T>;
 }
@@ -1764,7 +1619,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.x(), *self.x(), *self.y())
     }
 }
-
 pub trait SwizzleYXXZ<T> {
     fn yxxz(&self) -> PolyVec4<T>;
 }
@@ -1776,7 +1630,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.x(), *self.x(), *self.z())
     }
 }
-
 pub trait SwizzleYXXW<T> {
     fn yxxw(&self) -> PolyVec4<T>;
 }
@@ -1788,7 +1641,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.x(), *self.x(), *self.w())
     }
 }
-
 pub trait SwizzleYXYX<T> {
     fn yxyx(&self) -> PolyVec4<T>;
 }
@@ -1800,7 +1652,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.x(), *self.y(), *self.x())
     }
 }
-
 pub trait SwizzleYXYY<T> {
     fn yxyy(&self) -> PolyVec4<T>;
 }
@@ -1812,7 +1663,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.x(), *self.y(), *self.y())
     }
 }
-
 pub trait SwizzleYXYZ<T> {
     fn yxyz(&self) -> PolyVec4<T>;
 }
@@ -1824,7 +1674,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.x(), *self.y(), *self.z())
     }
 }
-
 pub trait SwizzleYXYW<T> {
     fn yxyw(&self) -> PolyVec4<T>;
 }
@@ -1836,7 +1685,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.x(), *self.y(), *self.w())
     }
 }
-
 pub trait SwizzleYXZX<T> {
     fn yxzx(&self) -> PolyVec4<T>;
 }
@@ -1848,7 +1696,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.x(), *self.z(), *self.x())
     }
 }
-
 pub trait SwizzleYXZY<T> {
     fn yxzy(&self) -> PolyVec4<T>;
 }
@@ -1860,7 +1707,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.x(), *self.z(), *self.y())
     }
 }
-
 pub trait SwizzleYXZZ<T> {
     fn yxzz(&self) -> PolyVec4<T>;
 }
@@ -1872,7 +1718,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.x(), *self.z(), *self.z())
     }
 }
-
 pub trait SwizzleYXZW<T> {
     fn yxzw(&self) -> PolyVec4<T>;
 }
@@ -1884,7 +1729,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.x(), *self.z(), *self.w())
     }
 }
-
 pub trait SwizzleYXWX<T> {
     fn yxwx(&self) -> PolyVec4<T>;
 }
@@ -1896,7 +1740,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.x(), *self.w(), *self.x())
     }
 }
-
 pub trait SwizzleYXWY<T> {
     fn yxwy(&self) -> PolyVec4<T>;
 }
@@ -1908,7 +1751,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.x(), *self.w(), *self.y())
     }
 }
-
 pub trait SwizzleYXWZ<T> {
     fn yxwz(&self) -> PolyVec4<T>;
 }
@@ -1920,7 +1762,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.x(), *self.w(), *self.z())
     }
 }
-
 pub trait SwizzleYXWW<T> {
     fn yxww(&self) -> PolyVec4<T>;
 }
@@ -1932,7 +1773,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.x(), *self.w(), *self.w())
     }
 }
-
 pub trait SwizzleYYXX<T> {
     fn yyxx(&self) -> PolyVec4<T>;
 }
@@ -1944,7 +1784,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.y(), *self.x(), *self.x())
     }
 }
-
 pub trait SwizzleYYXY<T> {
     fn yyxy(&self) -> PolyVec4<T>;
 }
@@ -1956,7 +1795,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.y(), *self.x(), *self.y())
     }
 }
-
 pub trait SwizzleYYXZ<T> {
     fn yyxz(&self) -> PolyVec4<T>;
 }
@@ -1968,7 +1806,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.y(), *self.x(), *self.z())
     }
 }
-
 pub trait SwizzleYYXW<T> {
     fn yyxw(&self) -> PolyVec4<T>;
 }
@@ -1980,7 +1817,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.y(), *self.x(), *self.w())
     }
 }
-
 pub trait SwizzleYYYX<T> {
     fn yyyx(&self) -> PolyVec4<T>;
 }
@@ -1992,7 +1828,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.y(), *self.y(), *self.x())
     }
 }
-
 pub trait SwizzleYYYY<T> {
     fn yyyy(&self) -> PolyVec4<T>;
 }
@@ -2004,7 +1839,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.y(), *self.y(), *self.y())
     }
 }
-
 pub trait SwizzleYYYZ<T> {
     fn yyyz(&self) -> PolyVec4<T>;
 }
@@ -2016,7 +1850,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.y(), *self.y(), *self.z())
     }
 }
-
 pub trait SwizzleYYYW<T> {
     fn yyyw(&self) -> PolyVec4<T>;
 }
@@ -2028,7 +1861,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.y(), *self.y(), *self.w())
     }
 }
-
 pub trait SwizzleYYZX<T> {
     fn yyzx(&self) -> PolyVec4<T>;
 }
@@ -2040,7 +1872,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.y(), *self.z(), *self.x())
     }
 }
-
 pub trait SwizzleYYZY<T> {
     fn yyzy(&self) -> PolyVec4<T>;
 }
@@ -2052,7 +1883,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.y(), *self.z(), *self.y())
     }
 }
-
 pub trait SwizzleYYZZ<T> {
     fn yyzz(&self) -> PolyVec4<T>;
 }
@@ -2064,7 +1894,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.y(), *self.z(), *self.z())
     }
 }
-
 pub trait SwizzleYYZW<T> {
     fn yyzw(&self) -> PolyVec4<T>;
 }
@@ -2076,7 +1905,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.y(), *self.z(), *self.w())
     }
 }
-
 pub trait SwizzleYYWX<T> {
     fn yywx(&self) -> PolyVec4<T>;
 }
@@ -2088,7 +1916,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.y(), *self.w(), *self.x())
     }
 }
-
 pub trait SwizzleYYWY<T> {
     fn yywy(&self) -> PolyVec4<T>;
 }
@@ -2100,7 +1927,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.y(), *self.w(), *self.y())
     }
 }
-
 pub trait SwizzleYYWZ<T> {
     fn yywz(&self) -> PolyVec4<T>;
 }
@@ -2112,7 +1938,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.y(), *self.w(), *self.z())
     }
 }
-
 pub trait SwizzleYYWW<T> {
     fn yyww(&self) -> PolyVec4<T>;
 }
@@ -2124,7 +1949,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.y(), *self.w(), *self.w())
     }
 }
-
 pub trait SwizzleYZXX<T> {
     fn yzxx(&self) -> PolyVec4<T>;
 }
@@ -2136,7 +1960,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.z(), *self.x(), *self.x())
     }
 }
-
 pub trait SwizzleYZXY<T> {
     fn yzxy(&self) -> PolyVec4<T>;
 }
@@ -2148,7 +1971,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.z(), *self.x(), *self.y())
     }
 }
-
 pub trait SwizzleYZXZ<T> {
     fn yzxz(&self) -> PolyVec4<T>;
 }
@@ -2160,7 +1982,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.z(), *self.x(), *self.z())
     }
 }
-
 pub trait SwizzleYZXW<T> {
     fn yzxw(&self) -> PolyVec4<T>;
 }
@@ -2172,7 +1993,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.z(), *self.x(), *self.w())
     }
 }
-
 pub trait SwizzleYZYX<T> {
     fn yzyx(&self) -> PolyVec4<T>;
 }
@@ -2184,7 +2004,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.z(), *self.y(), *self.x())
     }
 }
-
 pub trait SwizzleYZYY<T> {
     fn yzyy(&self) -> PolyVec4<T>;
 }
@@ -2196,7 +2015,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.z(), *self.y(), *self.y())
     }
 }
-
 pub trait SwizzleYZYZ<T> {
     fn yzyz(&self) -> PolyVec4<T>;
 }
@@ -2208,7 +2026,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.z(), *self.y(), *self.z())
     }
 }
-
 pub trait SwizzleYZYW<T> {
     fn yzyw(&self) -> PolyVec4<T>;
 }
@@ -2220,7 +2037,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.z(), *self.y(), *self.w())
     }
 }
-
 pub trait SwizzleYZZX<T> {
     fn yzzx(&self) -> PolyVec4<T>;
 }
@@ -2232,7 +2048,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.z(), *self.z(), *self.x())
     }
 }
-
 pub trait SwizzleYZZY<T> {
     fn yzzy(&self) -> PolyVec4<T>;
 }
@@ -2244,7 +2059,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.z(), *self.z(), *self.y())
     }
 }
-
 pub trait SwizzleYZZZ<T> {
     fn yzzz(&self) -> PolyVec4<T>;
 }
@@ -2256,7 +2070,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.z(), *self.z(), *self.z())
     }
 }
-
 pub trait SwizzleYZZW<T> {
     fn yzzw(&self) -> PolyVec4<T>;
 }
@@ -2268,7 +2081,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.z(), *self.z(), *self.w())
     }
 }
-
 pub trait SwizzleYZWX<T> {
     fn yzwx(&self) -> PolyVec4<T>;
 }
@@ -2280,7 +2092,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.z(), *self.w(), *self.x())
     }
 }
-
 pub trait SwizzleYZWY<T> {
     fn yzwy(&self) -> PolyVec4<T>;
 }
@@ -2292,7 +2103,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.z(), *self.w(), *self.y())
     }
 }
-
 pub trait SwizzleYZWZ<T> {
     fn yzwz(&self) -> PolyVec4<T>;
 }
@@ -2304,7 +2114,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.z(), *self.w(), *self.z())
     }
 }
-
 pub trait SwizzleYZWW<T> {
     fn yzww(&self) -> PolyVec4<T>;
 }
@@ -2316,7 +2125,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.z(), *self.w(), *self.w())
     }
 }
-
 pub trait SwizzleYWXX<T> {
     fn ywxx(&self) -> PolyVec4<T>;
 }
@@ -2328,7 +2136,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.w(), *self.x(), *self.x())
     }
 }
-
 pub trait SwizzleYWXY<T> {
     fn ywxy(&self) -> PolyVec4<T>;
 }
@@ -2340,7 +2147,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.w(), *self.x(), *self.y())
     }
 }
-
 pub trait SwizzleYWXZ<T> {
     fn ywxz(&self) -> PolyVec4<T>;
 }
@@ -2352,7 +2158,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.w(), *self.x(), *self.z())
     }
 }
-
 pub trait SwizzleYWXW<T> {
     fn ywxw(&self) -> PolyVec4<T>;
 }
@@ -2364,7 +2169,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.w(), *self.x(), *self.w())
     }
 }
-
 pub trait SwizzleYWYX<T> {
     fn ywyx(&self) -> PolyVec4<T>;
 }
@@ -2376,7 +2180,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.w(), *self.y(), *self.x())
     }
 }
-
 pub trait SwizzleYWYY<T> {
     fn ywyy(&self) -> PolyVec4<T>;
 }
@@ -2388,7 +2191,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.w(), *self.y(), *self.y())
     }
 }
-
 pub trait SwizzleYWYZ<T> {
     fn ywyz(&self) -> PolyVec4<T>;
 }
@@ -2400,7 +2202,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.w(), *self.y(), *self.z())
     }
 }
-
 pub trait SwizzleYWYW<T> {
     fn ywyw(&self) -> PolyVec4<T>;
 }
@@ -2412,7 +2213,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.w(), *self.y(), *self.w())
     }
 }
-
 pub trait SwizzleYWZX<T> {
     fn ywzx(&self) -> PolyVec4<T>;
 }
@@ -2424,7 +2224,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.w(), *self.z(), *self.x())
     }
 }
-
 pub trait SwizzleYWZY<T> {
     fn ywzy(&self) -> PolyVec4<T>;
 }
@@ -2436,7 +2235,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.w(), *self.z(), *self.y())
     }
 }
-
 pub trait SwizzleYWZZ<T> {
     fn ywzz(&self) -> PolyVec4<T>;
 }
@@ -2448,7 +2246,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.w(), *self.z(), *self.z())
     }
 }
-
 pub trait SwizzleYWZW<T> {
     fn ywzw(&self) -> PolyVec4<T>;
 }
@@ -2460,7 +2257,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.w(), *self.z(), *self.w())
     }
 }
-
 pub trait SwizzleYWWX<T> {
     fn ywwx(&self) -> PolyVec4<T>;
 }
@@ -2472,7 +2268,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.w(), *self.w(), *self.x())
     }
 }
-
 pub trait SwizzleYWWY<T> {
     fn ywwy(&self) -> PolyVec4<T>;
 }
@@ -2484,7 +2279,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.w(), *self.w(), *self.y())
     }
 }
-
 pub trait SwizzleYWWZ<T> {
     fn ywwz(&self) -> PolyVec4<T>;
 }
@@ -2496,7 +2290,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.w(), *self.w(), *self.z())
     }
 }
-
 pub trait SwizzleYWWW<T> {
     fn ywww(&self) -> PolyVec4<T>;
 }
@@ -2508,7 +2301,6 @@ T: Copy {
         PolyVec4::new(*self.y(), *self.w(), *self.w(), *self.w())
     }
 }
-
 pub trait SwizzleZXXX<T> {
     fn zxxx(&self) -> PolyVec4<T>;
 }
@@ -2520,7 +2312,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.x(), *self.x(), *self.x())
     }
 }
-
 pub trait SwizzleZXXY<T> {
     fn zxxy(&self) -> PolyVec4<T>;
 }
@@ -2532,7 +2323,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.x(), *self.x(), *self.y())
     }
 }
-
 pub trait SwizzleZXXZ<T> {
     fn zxxz(&self) -> PolyVec4<T>;
 }
@@ -2544,7 +2334,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.x(), *self.x(), *self.z())
     }
 }
-
 pub trait SwizzleZXXW<T> {
     fn zxxw(&self) -> PolyVec4<T>;
 }
@@ -2556,7 +2345,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.x(), *self.x(), *self.w())
     }
 }
-
 pub trait SwizzleZXYX<T> {
     fn zxyx(&self) -> PolyVec4<T>;
 }
@@ -2568,7 +2356,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.x(), *self.y(), *self.x())
     }
 }
-
 pub trait SwizzleZXYY<T> {
     fn zxyy(&self) -> PolyVec4<T>;
 }
@@ -2580,7 +2367,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.x(), *self.y(), *self.y())
     }
 }
-
 pub trait SwizzleZXYZ<T> {
     fn zxyz(&self) -> PolyVec4<T>;
 }
@@ -2592,7 +2378,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.x(), *self.y(), *self.z())
     }
 }
-
 pub trait SwizzleZXYW<T> {
     fn zxyw(&self) -> PolyVec4<T>;
 }
@@ -2604,7 +2389,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.x(), *self.y(), *self.w())
     }
 }
-
 pub trait SwizzleZXZX<T> {
     fn zxzx(&self) -> PolyVec4<T>;
 }
@@ -2616,7 +2400,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.x(), *self.z(), *self.x())
     }
 }
-
 pub trait SwizzleZXZY<T> {
     fn zxzy(&self) -> PolyVec4<T>;
 }
@@ -2628,7 +2411,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.x(), *self.z(), *self.y())
     }
 }
-
 pub trait SwizzleZXZZ<T> {
     fn zxzz(&self) -> PolyVec4<T>;
 }
@@ -2640,7 +2422,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.x(), *self.z(), *self.z())
     }
 }
-
 pub trait SwizzleZXZW<T> {
     fn zxzw(&self) -> PolyVec4<T>;
 }
@@ -2652,7 +2433,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.x(), *self.z(), *self.w())
     }
 }
-
 pub trait SwizzleZXWX<T> {
     fn zxwx(&self) -> PolyVec4<T>;
 }
@@ -2664,7 +2444,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.x(), *self.w(), *self.x())
     }
 }
-
 pub trait SwizzleZXWY<T> {
     fn zxwy(&self) -> PolyVec4<T>;
 }
@@ -2676,7 +2455,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.x(), *self.w(), *self.y())
     }
 }
-
 pub trait SwizzleZXWZ<T> {
     fn zxwz(&self) -> PolyVec4<T>;
 }
@@ -2688,7 +2466,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.x(), *self.w(), *self.z())
     }
 }
-
 pub trait SwizzleZXWW<T> {
     fn zxww(&self) -> PolyVec4<T>;
 }
@@ -2700,7 +2477,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.x(), *self.w(), *self.w())
     }
 }
-
 pub trait SwizzleZYXX<T> {
     fn zyxx(&self) -> PolyVec4<T>;
 }
@@ -2712,7 +2488,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.y(), *self.x(), *self.x())
     }
 }
-
 pub trait SwizzleZYXY<T> {
     fn zyxy(&self) -> PolyVec4<T>;
 }
@@ -2724,7 +2499,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.y(), *self.x(), *self.y())
     }
 }
-
 pub trait SwizzleZYXZ<T> {
     fn zyxz(&self) -> PolyVec4<T>;
 }
@@ -2736,7 +2510,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.y(), *self.x(), *self.z())
     }
 }
-
 pub trait SwizzleZYXW<T> {
     fn zyxw(&self) -> PolyVec4<T>;
 }
@@ -2748,7 +2521,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.y(), *self.x(), *self.w())
     }
 }
-
 pub trait SwizzleZYYX<T> {
     fn zyyx(&self) -> PolyVec4<T>;
 }
@@ -2760,7 +2532,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.y(), *self.y(), *self.x())
     }
 }
-
 pub trait SwizzleZYYY<T> {
     fn zyyy(&self) -> PolyVec4<T>;
 }
@@ -2772,7 +2543,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.y(), *self.y(), *self.y())
     }
 }
-
 pub trait SwizzleZYYZ<T> {
     fn zyyz(&self) -> PolyVec4<T>;
 }
@@ -2784,7 +2554,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.y(), *self.y(), *self.z())
     }
 }
-
 pub trait SwizzleZYYW<T> {
     fn zyyw(&self) -> PolyVec4<T>;
 }
@@ -2796,7 +2565,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.y(), *self.y(), *self.w())
     }
 }
-
 pub trait SwizzleZYZX<T> {
     fn zyzx(&self) -> PolyVec4<T>;
 }
@@ -2808,7 +2576,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.y(), *self.z(), *self.x())
     }
 }
-
 pub trait SwizzleZYZY<T> {
     fn zyzy(&self) -> PolyVec4<T>;
 }
@@ -2820,7 +2587,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.y(), *self.z(), *self.y())
     }
 }
-
 pub trait SwizzleZYZZ<T> {
     fn zyzz(&self) -> PolyVec4<T>;
 }
@@ -2832,7 +2598,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.y(), *self.z(), *self.z())
     }
 }
-
 pub trait SwizzleZYZW<T> {
     fn zyzw(&self) -> PolyVec4<T>;
 }
@@ -2844,7 +2609,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.y(), *self.z(), *self.w())
     }
 }
-
 pub trait SwizzleZYWX<T> {
     fn zywx(&self) -> PolyVec4<T>;
 }
@@ -2856,7 +2620,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.y(), *self.w(), *self.x())
     }
 }
-
 pub trait SwizzleZYWY<T> {
     fn zywy(&self) -> PolyVec4<T>;
 }
@@ -2868,7 +2631,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.y(), *self.w(), *self.y())
     }
 }
-
 pub trait SwizzleZYWZ<T> {
     fn zywz(&self) -> PolyVec4<T>;
 }
@@ -2880,7 +2642,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.y(), *self.w(), *self.z())
     }
 }
-
 pub trait SwizzleZYWW<T> {
     fn zyww(&self) -> PolyVec4<T>;
 }
@@ -2892,7 +2653,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.y(), *self.w(), *self.w())
     }
 }
-
 pub trait SwizzleZZXX<T> {
     fn zzxx(&self) -> PolyVec4<T>;
 }
@@ -2904,7 +2664,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.z(), *self.x(), *self.x())
     }
 }
-
 pub trait SwizzleZZXY<T> {
     fn zzxy(&self) -> PolyVec4<T>;
 }
@@ -2916,7 +2675,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.z(), *self.x(), *self.y())
     }
 }
-
 pub trait SwizzleZZXZ<T> {
     fn zzxz(&self) -> PolyVec4<T>;
 }
@@ -2928,7 +2686,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.z(), *self.x(), *self.z())
     }
 }
-
 pub trait SwizzleZZXW<T> {
     fn zzxw(&self) -> PolyVec4<T>;
 }
@@ -2940,7 +2697,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.z(), *self.x(), *self.w())
     }
 }
-
 pub trait SwizzleZZYX<T> {
     fn zzyx(&self) -> PolyVec4<T>;
 }
@@ -2952,7 +2708,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.z(), *self.y(), *self.x())
     }
 }
-
 pub trait SwizzleZZYY<T> {
     fn zzyy(&self) -> PolyVec4<T>;
 }
@@ -2964,7 +2719,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.z(), *self.y(), *self.y())
     }
 }
-
 pub trait SwizzleZZYZ<T> {
     fn zzyz(&self) -> PolyVec4<T>;
 }
@@ -2976,7 +2730,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.z(), *self.y(), *self.z())
     }
 }
-
 pub trait SwizzleZZYW<T> {
     fn zzyw(&self) -> PolyVec4<T>;
 }
@@ -2988,7 +2741,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.z(), *self.y(), *self.w())
     }
 }
-
 pub trait SwizzleZZZX<T> {
     fn zzzx(&self) -> PolyVec4<T>;
 }
@@ -3000,7 +2752,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.z(), *self.z(), *self.x())
     }
 }
-
 pub trait SwizzleZZZY<T> {
     fn zzzy(&self) -> PolyVec4<T>;
 }
@@ -3012,7 +2763,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.z(), *self.z(), *self.y())
     }
 }
-
 pub trait SwizzleZZZZ<T> {
     fn zzzz(&self) -> PolyVec4<T>;
 }
@@ -3024,7 +2774,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.z(), *self.z(), *self.z())
     }
 }
-
 pub trait SwizzleZZZW<T> {
     fn zzzw(&self) -> PolyVec4<T>;
 }
@@ -3036,7 +2785,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.z(), *self.z(), *self.w())
     }
 }
-
 pub trait SwizzleZZWX<T> {
     fn zzwx(&self) -> PolyVec4<T>;
 }
@@ -3048,7 +2796,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.z(), *self.w(), *self.x())
     }
 }
-
 pub trait SwizzleZZWY<T> {
     fn zzwy(&self) -> PolyVec4<T>;
 }
@@ -3060,7 +2807,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.z(), *self.w(), *self.y())
     }
 }
-
 pub trait SwizzleZZWZ<T> {
     fn zzwz(&self) -> PolyVec4<T>;
 }
@@ -3072,7 +2818,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.z(), *self.w(), *self.z())
     }
 }
-
 pub trait SwizzleZZWW<T> {
     fn zzww(&self) -> PolyVec4<T>;
 }
@@ -3084,7 +2829,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.z(), *self.w(), *self.w())
     }
 }
-
 pub trait SwizzleZWXX<T> {
     fn zwxx(&self) -> PolyVec4<T>;
 }
@@ -3096,7 +2840,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.w(), *self.x(), *self.x())
     }
 }
-
 pub trait SwizzleZWXY<T> {
     fn zwxy(&self) -> PolyVec4<T>;
 }
@@ -3108,7 +2851,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.w(), *self.x(), *self.y())
     }
 }
-
 pub trait SwizzleZWXZ<T> {
     fn zwxz(&self) -> PolyVec4<T>;
 }
@@ -3120,7 +2862,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.w(), *self.x(), *self.z())
     }
 }
-
 pub trait SwizzleZWXW<T> {
     fn zwxw(&self) -> PolyVec4<T>;
 }
@@ -3132,7 +2873,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.w(), *self.x(), *self.w())
     }
 }
-
 pub trait SwizzleZWYX<T> {
     fn zwyx(&self) -> PolyVec4<T>;
 }
@@ -3144,7 +2884,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.w(), *self.y(), *self.x())
     }
 }
-
 pub trait SwizzleZWYY<T> {
     fn zwyy(&self) -> PolyVec4<T>;
 }
@@ -3156,7 +2895,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.w(), *self.y(), *self.y())
     }
 }
-
 pub trait SwizzleZWYZ<T> {
     fn zwyz(&self) -> PolyVec4<T>;
 }
@@ -3168,7 +2906,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.w(), *self.y(), *self.z())
     }
 }
-
 pub trait SwizzleZWYW<T> {
     fn zwyw(&self) -> PolyVec4<T>;
 }
@@ -3180,7 +2917,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.w(), *self.y(), *self.w())
     }
 }
-
 pub trait SwizzleZWZX<T> {
     fn zwzx(&self) -> PolyVec4<T>;
 }
@@ -3192,7 +2928,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.w(), *self.z(), *self.x())
     }
 }
-
 pub trait SwizzleZWZY<T> {
     fn zwzy(&self) -> PolyVec4<T>;
 }
@@ -3204,7 +2939,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.w(), *self.z(), *self.y())
     }
 }
-
 pub trait SwizzleZWZZ<T> {
     fn zwzz(&self) -> PolyVec4<T>;
 }
@@ -3216,7 +2950,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.w(), *self.z(), *self.z())
     }
 }
-
 pub trait SwizzleZWZW<T> {
     fn zwzw(&self) -> PolyVec4<T>;
 }
@@ -3228,7 +2961,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.w(), *self.z(), *self.w())
     }
 }
-
 pub trait SwizzleZWWX<T> {
     fn zwwx(&self) -> PolyVec4<T>;
 }
@@ -3240,7 +2972,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.w(), *self.w(), *self.x())
     }
 }
-
 pub trait SwizzleZWWY<T> {
     fn zwwy(&self) -> PolyVec4<T>;
 }
@@ -3252,7 +2983,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.w(), *self.w(), *self.y())
     }
 }
-
 pub trait SwizzleZWWZ<T> {
     fn zwwz(&self) -> PolyVec4<T>;
 }
@@ -3264,7 +2994,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.w(), *self.w(), *self.z())
     }
 }
-
 pub trait SwizzleZWWW<T> {
     fn zwww(&self) -> PolyVec4<T>;
 }
@@ -3276,7 +3005,6 @@ T: Copy {
         PolyVec4::new(*self.z(), *self.w(), *self.w(), *self.w())
     }
 }
-
 pub trait SwizzleWXXX<T> {
     fn wxxx(&self) -> PolyVec4<T>;
 }
@@ -3288,7 +3016,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.x(), *self.x(), *self.x())
     }
 }
-
 pub trait SwizzleWXXY<T> {
     fn wxxy(&self) -> PolyVec4<T>;
 }
@@ -3300,7 +3027,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.x(), *self.x(), *self.y())
     }
 }
-
 pub trait SwizzleWXXZ<T> {
     fn wxxz(&self) -> PolyVec4<T>;
 }
@@ -3312,7 +3038,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.x(), *self.x(), *self.z())
     }
 }
-
 pub trait SwizzleWXXW<T> {
     fn wxxw(&self) -> PolyVec4<T>;
 }
@@ -3324,7 +3049,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.x(), *self.x(), *self.w())
     }
 }
-
 pub trait SwizzleWXYX<T> {
     fn wxyx(&self) -> PolyVec4<T>;
 }
@@ -3336,7 +3060,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.x(), *self.y(), *self.x())
     }
 }
-
 pub trait SwizzleWXYY<T> {
     fn wxyy(&self) -> PolyVec4<T>;
 }
@@ -3348,7 +3071,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.x(), *self.y(), *self.y())
     }
 }
-
 pub trait SwizzleWXYZ<T> {
     fn wxyz(&self) -> PolyVec4<T>;
 }
@@ -3360,7 +3082,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.x(), *self.y(), *self.z())
     }
 }
-
 pub trait SwizzleWXYW<T> {
     fn wxyw(&self) -> PolyVec4<T>;
 }
@@ -3372,7 +3093,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.x(), *self.y(), *self.w())
     }
 }
-
 pub trait SwizzleWXZX<T> {
     fn wxzx(&self) -> PolyVec4<T>;
 }
@@ -3384,7 +3104,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.x(), *self.z(), *self.x())
     }
 }
-
 pub trait SwizzleWXZY<T> {
     fn wxzy(&self) -> PolyVec4<T>;
 }
@@ -3396,7 +3115,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.x(), *self.z(), *self.y())
     }
 }
-
 pub trait SwizzleWXZZ<T> {
     fn wxzz(&self) -> PolyVec4<T>;
 }
@@ -3408,7 +3126,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.x(), *self.z(), *self.z())
     }
 }
-
 pub trait SwizzleWXZW<T> {
     fn wxzw(&self) -> PolyVec4<T>;
 }
@@ -3420,7 +3137,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.x(), *self.z(), *self.w())
     }
 }
-
 pub trait SwizzleWXWX<T> {
     fn wxwx(&self) -> PolyVec4<T>;
 }
@@ -3432,7 +3148,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.x(), *self.w(), *self.x())
     }
 }
-
 pub trait SwizzleWXWY<T> {
     fn wxwy(&self) -> PolyVec4<T>;
 }
@@ -3444,7 +3159,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.x(), *self.w(), *self.y())
     }
 }
-
 pub trait SwizzleWXWZ<T> {
     fn wxwz(&self) -> PolyVec4<T>;
 }
@@ -3456,7 +3170,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.x(), *self.w(), *self.z())
     }
 }
-
 pub trait SwizzleWXWW<T> {
     fn wxww(&self) -> PolyVec4<T>;
 }
@@ -3468,7 +3181,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.x(), *self.w(), *self.w())
     }
 }
-
 pub trait SwizzleWYXX<T> {
     fn wyxx(&self) -> PolyVec4<T>;
 }
@@ -3480,7 +3192,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.y(), *self.x(), *self.x())
     }
 }
-
 pub trait SwizzleWYXY<T> {
     fn wyxy(&self) -> PolyVec4<T>;
 }
@@ -3492,7 +3203,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.y(), *self.x(), *self.y())
     }
 }
-
 pub trait SwizzleWYXZ<T> {
     fn wyxz(&self) -> PolyVec4<T>;
 }
@@ -3504,7 +3214,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.y(), *self.x(), *self.z())
     }
 }
-
 pub trait SwizzleWYXW<T> {
     fn wyxw(&self) -> PolyVec4<T>;
 }
@@ -3516,7 +3225,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.y(), *self.x(), *self.w())
     }
 }
-
 pub trait SwizzleWYYX<T> {
     fn wyyx(&self) -> PolyVec4<T>;
 }
@@ -3528,7 +3236,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.y(), *self.y(), *self.x())
     }
 }
-
 pub trait SwizzleWYYY<T> {
     fn wyyy(&self) -> PolyVec4<T>;
 }
@@ -3540,7 +3247,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.y(), *self.y(), *self.y())
     }
 }
-
 pub trait SwizzleWYYZ<T> {
     fn wyyz(&self) -> PolyVec4<T>;
 }
@@ -3552,7 +3258,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.y(), *self.y(), *self.z())
     }
 }
-
 pub trait SwizzleWYYW<T> {
     fn wyyw(&self) -> PolyVec4<T>;
 }
@@ -3564,7 +3269,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.y(), *self.y(), *self.w())
     }
 }
-
 pub trait SwizzleWYZX<T> {
     fn wyzx(&self) -> PolyVec4<T>;
 }
@@ -3576,7 +3280,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.y(), *self.z(), *self.x())
     }
 }
-
 pub trait SwizzleWYZY<T> {
     fn wyzy(&self) -> PolyVec4<T>;
 }
@@ -3588,7 +3291,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.y(), *self.z(), *self.y())
     }
 }
-
 pub trait SwizzleWYZZ<T> {
     fn wyzz(&self) -> PolyVec4<T>;
 }
@@ -3600,7 +3302,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.y(), *self.z(), *self.z())
     }
 }
-
 pub trait SwizzleWYZW<T> {
     fn wyzw(&self) -> PolyVec4<T>;
 }
@@ -3612,7 +3313,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.y(), *self.z(), *self.w())
     }
 }
-
 pub trait SwizzleWYWX<T> {
     fn wywx(&self) -> PolyVec4<T>;
 }
@@ -3624,7 +3324,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.y(), *self.w(), *self.x())
     }
 }
-
 pub trait SwizzleWYWY<T> {
     fn wywy(&self) -> PolyVec4<T>;
 }
@@ -3636,7 +3335,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.y(), *self.w(), *self.y())
     }
 }
-
 pub trait SwizzleWYWZ<T> {
     fn wywz(&self) -> PolyVec4<T>;
 }
@@ -3648,7 +3346,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.y(), *self.w(), *self.z())
     }
 }
-
 pub trait SwizzleWYWW<T> {
     fn wyww(&self) -> PolyVec4<T>;
 }
@@ -3660,7 +3357,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.y(), *self.w(), *self.w())
     }
 }
-
 pub trait SwizzleWZXX<T> {
     fn wzxx(&self) -> PolyVec4<T>;
 }
@@ -3672,7 +3368,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.z(), *self.x(), *self.x())
     }
 }
-
 pub trait SwizzleWZXY<T> {
     fn wzxy(&self) -> PolyVec4<T>;
 }
@@ -3684,7 +3379,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.z(), *self.x(), *self.y())
     }
 }
-
 pub trait SwizzleWZXZ<T> {
     fn wzxz(&self) -> PolyVec4<T>;
 }
@@ -3696,7 +3390,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.z(), *self.x(), *self.z())
     }
 }
-
 pub trait SwizzleWZXW<T> {
     fn wzxw(&self) -> PolyVec4<T>;
 }
@@ -3708,7 +3401,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.z(), *self.x(), *self.w())
     }
 }
-
 pub trait SwizzleWZYX<T> {
     fn wzyx(&self) -> PolyVec4<T>;
 }
@@ -3720,7 +3412,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.z(), *self.y(), *self.x())
     }
 }
-
 pub trait SwizzleWZYY<T> {
     fn wzyy(&self) -> PolyVec4<T>;
 }
@@ -3732,7 +3423,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.z(), *self.y(), *self.y())
     }
 }
-
 pub trait SwizzleWZYZ<T> {
     fn wzyz(&self) -> PolyVec4<T>;
 }
@@ -3744,7 +3434,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.z(), *self.y(), *self.z())
     }
 }
-
 pub trait SwizzleWZYW<T> {
     fn wzyw(&self) -> PolyVec4<T>;
 }
@@ -3756,7 +3445,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.z(), *self.y(), *self.w())
     }
 }
-
 pub trait SwizzleWZZX<T> {
     fn wzzx(&self) -> PolyVec4<T>;
 }
@@ -3768,7 +3456,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.z(), *self.z(), *self.x())
     }
 }
-
 pub trait SwizzleWZZY<T> {
     fn wzzy(&self) -> PolyVec4<T>;
 }
@@ -3780,7 +3467,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.z(), *self.z(), *self.y())
     }
 }
-
 pub trait SwizzleWZZZ<T> {
     fn wzzz(&self) -> PolyVec4<T>;
 }
@@ -3792,7 +3478,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.z(), *self.z(), *self.z())
     }
 }
-
 pub trait SwizzleWZZW<T> {
     fn wzzw(&self) -> PolyVec4<T>;
 }
@@ -3804,7 +3489,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.z(), *self.z(), *self.w())
     }
 }
-
 pub trait SwizzleWZWX<T> {
     fn wzwx(&self) -> PolyVec4<T>;
 }
@@ -3816,7 +3500,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.z(), *self.w(), *self.x())
     }
 }
-
 pub trait SwizzleWZWY<T> {
     fn wzwy(&self) -> PolyVec4<T>;
 }
@@ -3828,7 +3511,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.z(), *self.w(), *self.y())
     }
 }
-
 pub trait SwizzleWZWZ<T> {
     fn wzwz(&self) -> PolyVec4<T>;
 }
@@ -3840,7 +3522,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.z(), *self.w(), *self.z())
     }
 }
-
 pub trait SwizzleWZWW<T> {
     fn wzww(&self) -> PolyVec4<T>;
 }
@@ -3852,7 +3533,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.z(), *self.w(), *self.w())
     }
 }
-
 pub trait SwizzleWWXX<T> {
     fn wwxx(&self) -> PolyVec4<T>;
 }
@@ -3864,7 +3544,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.w(), *self.x(), *self.x())
     }
 }
-
 pub trait SwizzleWWXY<T> {
     fn wwxy(&self) -> PolyVec4<T>;
 }
@@ -3876,7 +3555,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.w(), *self.x(), *self.y())
     }
 }
-
 pub trait SwizzleWWXZ<T> {
     fn wwxz(&self) -> PolyVec4<T>;
 }
@@ -3888,7 +3566,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.w(), *self.x(), *self.z())
     }
 }
-
 pub trait SwizzleWWXW<T> {
     fn wwxw(&self) -> PolyVec4<T>;
 }
@@ -3900,7 +3577,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.w(), *self.x(), *self.w())
     }
 }
-
 pub trait SwizzleWWYX<T> {
     fn wwyx(&self) -> PolyVec4<T>;
 }
@@ -3912,7 +3588,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.w(), *self.y(), *self.x())
     }
 }
-
 pub trait SwizzleWWYY<T> {
     fn wwyy(&self) -> PolyVec4<T>;
 }
@@ -3924,7 +3599,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.w(), *self.y(), *self.y())
     }
 }
-
 pub trait SwizzleWWYZ<T> {
     fn wwyz(&self) -> PolyVec4<T>;
 }
@@ -3936,7 +3610,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.w(), *self.y(), *self.z())
     }
 }
-
 pub trait SwizzleWWYW<T> {
     fn wwyw(&self) -> PolyVec4<T>;
 }
@@ -3948,7 +3621,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.w(), *self.y(), *self.w())
     }
 }
-
 pub trait SwizzleWWZX<T> {
     fn wwzx(&self) -> PolyVec4<T>;
 }
@@ -3960,7 +3632,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.w(), *self.z(), *self.x())
     }
 }
-
 pub trait SwizzleWWZY<T> {
     fn wwzy(&self) -> PolyVec4<T>;
 }
@@ -3972,7 +3643,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.w(), *self.z(), *self.y())
     }
 }
-
 pub trait SwizzleWWZZ<T> {
     fn wwzz(&self) -> PolyVec4<T>;
 }
@@ -3984,7 +3654,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.w(), *self.z(), *self.z())
     }
 }
-
 pub trait SwizzleWWZW<T> {
     fn wwzw(&self) -> PolyVec4<T>;
 }
@@ -3996,7 +3665,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.w(), *self.z(), *self.w())
     }
 }
-
 pub trait SwizzleWWWX<T> {
     fn wwwx(&self) -> PolyVec4<T>;
 }
@@ -4008,7 +3676,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.w(), *self.w(), *self.x())
     }
 }
-
 pub trait SwizzleWWWY<T> {
     fn wwwy(&self) -> PolyVec4<T>;
 }
@@ -4020,7 +3687,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.w(), *self.w(), *self.y())
     }
 }
-
 pub trait SwizzleWWWZ<T> {
     fn wwwz(&self) -> PolyVec4<T>;
 }
@@ -4032,7 +3698,6 @@ T: Copy {
         PolyVec4::new(*self.w(), *self.w(), *self.w(), *self.z())
     }
 }
-
 pub trait SwizzleWWWW<T> {
     fn wwww(&self) -> PolyVec4<T>;
 }
