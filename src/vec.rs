@@ -3,8 +3,152 @@ use std::cmp;
 use std::ops;
 use std::fmt;
 
+pub trait X<T> {
+    fn x(&self) -> &T;
+    fn set_x(&mut self, x: T);
+}
+pub trait Y<T> {
+    fn y(&self) -> &T;
+    fn set_y(&mut self, y: T);
+}
+pub trait Z<T> {
+    fn z(&self) -> &T;
+    fn set_z(&mut self, z: T);
+}
+pub trait W<T> {
+    fn w(&self) -> &T;
+    fn set_w(&mut self, w: T);
+}
+
+/// Used for From/Into conversions of Vector components. For primitive conversions, look at [`VecFrom`]/[`VecInto`] 
 pub trait Convertible<T> {
     fn convert(self) -> T;
+}
+
+macro_rules! impl_ops2 {
+    ($t: ident: $($op: ident = $f: ident),*) => {
+        $(
+            impl<T> $op<$t<T>> for $t<T>
+            where T: $op<T> {
+                type Output = $t<<T as $op>::Output>;
+
+                #[inline]
+                fn $f(self, b: $t<T>) -> Self::Output {
+                    Self::Output {
+                        x: self.x.$f(b.x),
+                        y: self.y.$f(b.y),
+                    }
+                }
+            }
+            impl<T> $op<T> for $t<T>
+            where T: $op<T> + Clone {
+                type Output = $t<<T as $op>::Output>;
+
+                #[inline]
+                fn $f(self, b: T) -> Self::Output {
+                    Self::Output {
+                        x: self.x.$f(b.clone()),
+                        y: self.y.$f(b)
+                    }
+                }
+            }
+        )*
+    };
+}
+macro_rules! impl_ops3 {
+    ($t: ident: $($op: ident = $f: ident),*) => {
+        $(
+            impl<T> $op<$t<T>> for $t<T>
+            where T: $op<T> {
+                type Output = $t<<T as $op>::Output>;
+
+                #[inline]
+                fn $f(self, b: $t<T>) -> Self::Output {
+                    Self::Output {
+                        x: self.x.$f(b.x),
+                        y: self.y.$f(b.y),
+                        z: self.z.$f(b.z),
+                    }
+                }
+            }
+            impl<T> $op<T> for $t<T>
+            where T: $op<T> + Clone {
+                type Output = $t<<T as $op>::Output>;
+
+                #[inline]
+                fn $f(self, b: T) -> Self::Output {
+                    Self::Output {
+                        x: self.x.$f(b.clone()),
+                        y: self.y.$f(b.clone()),
+                        z: self.z.$f(b),
+                    }
+                }
+            }
+        )*
+    };
+}
+macro_rules! impl_ops4 {
+    ($t: ident: $($op: ident = $f: ident),*) => {
+        $(
+            impl<T> $op<$t<T>> for $t<T>
+            where T: $op<T> {
+                type Output = $t<<T as $op>::Output>;
+
+                #[inline]
+                fn $f(self, b: $t<T>) -> Self::Output {
+                    Self::Output {
+                        x: self.x.$f(b.x),
+                        y: self.y.$f(b.y),
+                        z: self.z.$f(b.z),
+                        w: self.w.$f(b.w),
+                    }
+                }
+            }
+            impl<T> $op<T> for $t<T>
+            where T: $op<T> + Clone {
+                type Output = $t<<T as $op>::Output>;
+
+                #[inline]
+                fn $f(self, b: T) -> Self::Output {
+                    Self::Output {
+                        x: self.x.$f(b.clone()),
+                        y: self.y.$f(b.clone()),
+                        z: self.z.$f(b.clone()),
+                        w: self.w.$f(b)
+                    }
+                }
+            }
+        )*
+    };
+}
+
+use std::ops::*;
+
+macro_rules! impl_ops {
+    ($($op: ident = $f: ident),*) => {
+        impl_ops2!{PolyVec2:
+            $($op = $f),*
+        }
+        impl_ops3!{PolyVec3:
+            $($op = $f),*
+        }
+        impl_ops4!{PolyVec4:
+            $($op = $f),*
+        }
+    };
+}
+
+impl_ops!{
+    Add = add,
+    Sub = sub,
+    Mul = mul,
+    Div = div,
+    Rem = rem,
+    BitAnd = bitand,
+    BitOr = bitor,
+    BitXor = bitxor,
+    Shl = shl,
+    Shr = shr    
 }
 
 // ---------- PolyVec2 ----------
@@ -15,20 +159,31 @@ pub struct PolyVec2<T> {
     pub y: T
 }
 
-// constructors
+// Component traits
+
+impl<T> X<T> for PolyVec2<T> {
+    #[inline(always)]
+    fn x(&self) -> &T { &self.x }
+    #[inline(always)]
+    fn set_x(&mut self, x: T) { self.x = x; }
+}
+impl<T> Y<T> for PolyVec2<T> {
+    #[inline(always)]
+    fn y(&self) -> &T { &self.y }
+    #[inline(always)]
+    fn set_y(&mut self, y: T) { self.y = y; }
+}
+
+// Constructors
 
 impl<T> PolyVec2<T> {
     #[inline]
     pub const fn new(x: T, y: T) -> PolyVec2<T> {
         PolyVec2 {x, y}
     }
-}
-
-impl<T> PolyVec2<T>
-where T : Copy {
     #[inline]
     pub const fn fill(val: T) -> Self
-        where T: Clone {
+        where T: Copy {
         Self {x: val, y: val}
     }
 }
@@ -166,59 +321,6 @@ impl<T> fmt::Display for PolyVec2<T>
         write!(f, "[{}, {}]", self.x, self.y)
     }
 }
-
-impl<T> ops::Add<Self> for PolyVec2<T>
-    where T: ops::Add<T> {
-    type Output = PolyVec2<<T as std::ops::Add>::Output>;
-
-    #[inline]
-    fn add(self, b: PolyVec2<T>) -> Self::Output {
-        Self::Output {x: self.x + b.x, y: self.y + b.y}
-    }
-}
-
-impl<T> ops::Sub<Self> for PolyVec2<T>
-    where T: ops::Sub<T> {
-    type Output = PolyVec2<<T as std::ops::Sub>::Output>;
-
-    #[inline]
-    fn sub(self, b: PolyVec2<T>) -> Self::Output {
-        Self::Output {x: self.x - b.x, y: self.y - b.y}
-    }
-}
-impl<T> ops::Mul<Self> for PolyVec2<T>
-    where T: ops::Mul<T> + Copy {
-    type Output = PolyVec2<<T as std::ops::Mul>::Output>;
-    #[inline]
-    fn mul(self, b: Self) -> Self::Output {
-        PolyVec2 {x: self.x * b.x, y: self.y * b.y}
-    }
-
-}
-impl<T> ops::Mul<T> for PolyVec2<T>
-    where T: ops::Mul<T> + Copy {
-    type Output = PolyVec2<<T as std::ops::Mul>::Output>;
-    #[inline]
-    fn mul(self, b: T) -> Self::Output {
-        Self::Output {x: self.x * b, y: self.y * b}
-    }
-}
-impl<T> ops::Div<T> for PolyVec2<T>
-    where T: ops::Div<T> + Copy {
-    type Output = PolyVec2<<T as std::ops::Div>::Output>;
-    #[inline]
-    fn div(self, b: T) -> Self::Output {
-        Self::Output {x: self.x / b, y: self.y / b}
-    }   
-}
-impl<T> ops::Rem<T> for PolyVec2<T>
-    where T: ops::Rem<T> + Copy {
-    type Output = PolyVec2<<T as std::ops::Rem>::Output>;
-    #[inline]
-    fn rem(self, b: T) -> Self::Output {
-        Self::Output {x: self.x % b, y: self.y % b}
-    }   
-}
 impl<T> ops::MulAssign<T> for PolyVec2<T>
     where T: ops::MulAssign<T> + Copy {
     #[inline]
@@ -326,18 +428,37 @@ pub struct PolyVec3<T> {
     pub z: T
 }
 
+// Component traits
+
+impl<T> X<T> for PolyVec3<T> {
+    #[inline(always)]
+    fn x(&self) -> &T { &self.x }
+    #[inline(always)]
+    fn set_x(&mut self, x: T) { self.x = x; }
+}
+impl<T> Y<T> for PolyVec3<T> {
+    #[inline(always)]
+    fn y(&self) -> &T { &self.y }
+    #[inline(always)]
+    fn set_y(&mut self, y: T) { self.y = y; }
+}
+impl<T> Z<T> for PolyVec3<T> {
+    #[inline(always)]
+    fn z(&self) -> &T { &self.z }
+    #[inline(always)]
+    fn set_z(&mut self, z: T) { self.z = z; }
+}
+
+// Constructors
+
 impl<T> PolyVec3<T> {
     #[inline]
     pub const fn new(x: T, y: T, z: T) -> PolyVec3<T> {
         PolyVec3 {x, y, z}
     }
-}
-
-impl<T> PolyVec3<T>
-where T : Copy {
     #[inline]
     pub const fn fill(val: T) -> Self
-        where T: Clone {
+        where T: Copy {
         Self {x: val, y: val, z: val}
     }
 }
@@ -476,57 +597,6 @@ impl<T> fmt::Display for PolyVec3<T>
         write!(f, "[{}, {}, {}]", self.x, self.y, self.z)
     }
 }
-
-impl<T> ops::Add<Self> for PolyVec3<T>
-    where T: ops::Add<T> {
-    type Output = PolyVec3<<T as std::ops::Add>::Output>;
-    #[inline]
-    fn add(self, b: PolyVec3<T>) -> Self::Output {
-        Self::Output {x: self.x + b.x, y: self.y + b.y, z: self.z + b.z}
-    }
-}
-
-impl<T> ops::Sub<Self> for PolyVec3<T>
-    where T: ops::Sub<T> + Copy {
-    type Output = PolyVec3<<T as std::ops::Sub>::Output>;
-    #[inline]
-    fn sub(self, b: PolyVec3<T>) -> Self::Output {
-        Self::Output {x: self.x - b.x, y: self.y - b.y, z: self.z - b.z}
-    }
-}
-impl<T> ops::Mul<Self> for PolyVec3<T>
-    where T: ops::Mul<T> + Copy {
-    type Output = PolyVec3<<T as std::ops::Mul>::Output>;
-    #[inline]
-    fn mul(self, b: Self) -> Self::Output {
-        PolyVec3 {x: self.x * b.x, y: self.y * b.y, z: self.z * b.z}
-    }
-
-}
-impl<T> ops::Mul<T> for PolyVec3<T>
-    where T: ops::Mul<T> + Copy {
-    type Output = PolyVec3<<T as std::ops::Mul>::Output>;
-    #[inline]
-    fn mul(self, b: T) -> Self::Output {
-        Self::Output {x: self.x * b, y: self.y * b, z: self.z * b}
-    }
-}
-impl<T> ops::Div<T> for PolyVec3<T>
-    where T: ops::Div<T> + Copy {
-    type Output = PolyVec3<<T as std::ops::Div>::Output>;
-    #[inline]
-    fn div(self, b: T) -> Self::Output {
-        Self::Output {x: self.x / b, y: self.y / b, z: self.z / b}
-    }   
-}
-impl<T> ops::Rem<T> for PolyVec3<T>
-    where T: ops::Rem<T> + Copy {
-    type Output = PolyVec3<<T as std::ops::Rem>::Output>;
-    #[inline]
-    fn rem(self, b: T) -> Self::Output {
-        Self::Output {x: self.x % b, y: self.y % b, z: self.z % b}
-    }   
-}
 impl<T> ops::MulAssign<T> for PolyVec3<T>
     where T: ops::MulAssign<T> + Copy {
     #[inline]
@@ -645,18 +715,43 @@ pub struct PolyVec4<T> {
     pub w: T
 }
 
+// Component traits
+
+impl<T> X<T> for PolyVec4<T> {
+    #[inline(always)]
+    fn x(&self) -> &T { &self.x }
+    #[inline(always)]
+    fn set_x(&mut self, x: T) { self.x = x; }
+}
+impl<T> Y<T> for PolyVec4<T> {
+    #[inline(always)]
+    fn y(&self) -> &T { &self.y }
+    #[inline(always)]
+    fn set_y(&mut self, y: T) { self.y = y; }
+}
+impl<T> Z<T> for PolyVec4<T> {
+    #[inline(always)]
+    fn z(&self) -> &T { &self.z }
+    #[inline(always)]
+    fn set_z(&mut self, z: T) { self.z = z; }
+}
+impl<T> W<T> for PolyVec4<T> {
+    #[inline(always)]
+    fn w(&self) -> &T { &self.w }
+    #[inline(always)]
+    fn set_w(&mut self, w: T) { self.w = w; }
+}
+
+// Constructors
+
 impl<T> PolyVec4<T> {
     #[inline]
     pub const fn new(x: T, y: T, z: T, w: T) -> PolyVec4<T> {
         PolyVec4 {x, y, z, w}
     }
-}
-
-impl<T> PolyVec4<T>
-where T : Copy {
     #[inline]
-    pub const fn fill(val: T) -> Self
-        where T: Clone {
+    pub const fn fill(val: T) -> Self where
+    T: Copy {
         Self {x: val, y: val, z: val, w: val}
     }
 }
@@ -796,63 +891,6 @@ impl<T> fmt::Display for PolyVec4<T>
         write!(f, "[{}, {}, {}, {}]", self.x, self.y, self.z, self.w)
     }
 }
-
-impl<T> ops::Add<Self> for PolyVec4<T>
-    where T: ops::Add<T> {
-    type Output = PolyVec4<<T as std::ops::Add>::Output>;
-
-    #[inline]
-    fn add(self, b: PolyVec4<T>) -> Self::Output {
-        Self::Output {x: self.x + b.x, y: self.y + b.y, z: self.z + b.z, w: self.w + b.w}
-    }
-}
-
-impl<T> ops::Sub<Self> for PolyVec4<T>
-    where T: ops::Sub<T> + Copy {
-    type Output = PolyVec4<<T as std::ops::Sub>::Output>;
-
-    #[inline]
-    fn sub(self, b: PolyVec4<T>) -> Self::Output {
-        Self::Output {x: self.x - b.x, y: self.y - b.y, z: self.z - b.z, w: self.w - b.w}
-    }
-}
-
-impl<T> ops::Mul<Self> for PolyVec4<T>
-    where T: ops::Mul<T> + Copy {
-    type Output = PolyVec4<<T as std::ops::Mul>::Output>;
-    #[inline]
-    fn mul(self, b: Self) -> Self::Output {
-        PolyVec4 {x: self.x * b.x, y: self.y * b.y, z: self.z * b.z, w: self.w * b.w}
-    }
-
-}
-impl<T> ops::Mul<T> for PolyVec4<T>
-    where T: ops::Mul<T> + Copy {
-    type Output = PolyVec4<<T as std::ops::Mul>::Output>;
-
-    #[inline]
-    fn mul(self, b: T) -> Self::Output {
-        Self::Output {x: self.x * b, y: self.y * b, z: self.z * b, w: self.w * b}
-    }
-}
-impl<T> ops::Div<T> for PolyVec4<T>
-    where T: ops::Div<T> + Copy {
-    type Output = PolyVec4<<T as std::ops::Div>::Output>;
-
-    #[inline]
-    fn div(self, b: T) -> Self::Output {
-        Self::Output {x: self.x / b, y: self.y / b, z: self.z / b, w: self.w / b}
-    }   
-}
-impl<T> ops::Rem<T> for PolyVec4<T>
-    where T: ops::Rem<T> + Copy {
-    type Output = PolyVec4<<T as std::ops::Rem>::Output>;
-
-    #[inline]
-    fn rem(self, b: T) -> Self::Output {
-        Self::Output {x: self.x % b, y: self.y % b, z: self.z % b, w: self.w % b}
-    }   
-}
 impl<T> ops::MulAssign<T> for PolyVec4<T>
     where T: ops::MulAssign<T> + Copy {
    
@@ -906,17 +944,7 @@ impl<T> ops::Neg for PolyVec4<T>
         Self::Output {x: -self.x, y: -self.y, z: -self.z, w: -self.w}
     }
 }
-impl<T, U> Convertible<PolyVec4<U>> for PolyVec4<T>
-where T: Into<U> {
-    fn convert(self) -> PolyVec4<U> {
-        PolyVec4::<U> {
-            x: self.x.into(),
-            y: self.y.into(),
-            z: self.z.into(),
-            w: self.w.into()
-        }
-    }
-}
+
 impl<T> PolyVec4<T> 
 where T : num_traits::Float {
     pub fn round(&self) -> Self {
@@ -975,77 +1003,226 @@ where T: binverse::serialize::Deserialize<R> {
     }
 }
 
-// ---------- type definitions ----------
+// ---------- type aliases ----------
 
 pub type Vec2 = PolyVec2<f32>;
-pub type Vec3 = PolyVec3<f32>;
-pub type Vec4 = PolyVec4<f32>;
-
-
 pub type Vec2i = PolyVec2<i32>;
-impl From<Vec2> for Vec2i {
-    #[inline]
-    fn from(f: Vec2) -> Self { Self::new(f.x as i32, f.y as i32) }
-}
-impl From<Vec2i> for Vec2 {
-    #[inline]
-    fn from(f: Vec2i) -> Self { Self::new(f.x as f32, f.y as f32) }
-}
-
 pub type Vec2u = PolyVec2<u32>;
-impl From<Vec2> for Vec2u { 
-    #[inline]
-    fn from(f: Vec2) -> Self { Self::new(f.x as u32, f.y as u32) }
-}
-impl From<Vec2u> for Vec2 { 
-    #[inline]
-    fn from(f: Vec2u) -> Self { Self::new(f.x as f32, f.y as f32) }
-}
 
-
-
+pub type Vec3 = PolyVec3<f32>;
 pub type Vec3i = PolyVec3<i32>;
-impl From<Vec3> for Vec3i { 
-    #[inline]
-    fn from(f: Vec3) -> Self { Self::new(f.x as i32, f.y as i32, f.z as i32) }
-}
-impl From<Vec3i> for Vec3 { 
-    #[inline]
-    fn from(f: Vec3i) -> Self { Self::new(f.x as f32, f.y as f32, f.z as f32) }
-}
-
 pub type Vec3u = PolyVec3<u32>;
-impl From<Vec3> for Vec3u { 
-    #[inline]
-    fn from(f: Vec3) -> Self { Self::new(f.x as u32, f.y as u32, f.z as u32) }
-}
-impl From<Vec3u> for Vec3 { 
-    #[inline]
-    fn from(f: Vec3u) -> Self { Self::new(f.x as f32, f.y as f32, f.z as f32) }
-}
 
-
-
+pub type Vec4 = PolyVec4<f32>;
 pub type Vec4i = PolyVec4<i32>;
-impl From<Vec4> for Vec4i { 
-    #[inline]
-    fn from(f: Vec4) -> Self { Self::new(f.x as i32, f.y as i32, f.z as i32, f.w as i32) }
-}
-impl From<Vec4i> for Vec4 { 
-    #[inline]
-    fn from(f: Vec4i) -> Self { Self::new(f.x as f32, f.y as f32, f.z as f32, f.w as f32) }
-}
-
 pub type Vec4u = PolyVec4<u32>;
-impl From<Vec4> for Vec4u { 
-    #[inline]
-    fn from(f: Vec4) -> Self { Self::new(f.x as u32, f.y as u32, f.z as u32, f.w as u32) }
-}
-impl From<Vec4u> for Vec4 { 
-    #[inline]
-    fn from(f: Vec4u) -> Self { Self::new(f.x as f32, f.y as f32, f.z as f32, f.w as f32) }
+
+// ---------- type conversions ----------
+
+/// Mirror trait for common `as` conversions for vectors not supported by From/Into implementations
+pub trait VecFrom<F> {
+    fn vec_from(f: F) -> Self;
 }
 
+/// Common `as` conversions for vectors not supported by From/Into implementations
+pub trait VecInto<I> {
+    fn vec_into(self) -> I;
+}
+
+impl<F, I> VecFrom<F> for I 
+where I: From<F> {
+    fn vec_from(f: F) -> Self {
+        f.into()
+    }
+}
+
+impl<F, I> VecInto<I> for F
+where I: VecFrom<F> {
+    fn vec_into(self) -> I {
+        I::vec_from(self)
+    }
+}
+
+macro_rules! impl_vec_as {
+    ($($a: ty => $b: ty),*) => {
+        $(
+            impl VecFrom<PolyVec2<$a>> for PolyVec2<$b> {
+                fn vec_from(a: PolyVec2<$a>) -> Self {
+                    Self {
+                        x: a.x as $b,
+                        y: a.y as $b,
+                    }
+                }
+            }
+            impl VecFrom<PolyVec3<$a>> for PolyVec3<$b> {
+                fn vec_from(a: PolyVec3<$a>) -> Self {
+                    Self {
+                        x: a.x as $b,
+                        y: a.y as $b,
+                        z: a.z as $b,
+                    }
+                }
+            }
+            impl VecFrom<PolyVec4<$a>> for PolyVec4<$b> {
+                fn vec_from(a: PolyVec4<$a>) -> Self {
+                    Self {
+                        x: a.x as $b,
+                        y: a.y as $b,
+                        z: a.z as $b,
+                        w: a.w as $b,
+                    }
+                }
+            }
+        )*
+    };
+}
+
+impl_vec_as! {
+    // as f32
+    u8   => f32,
+    u16  => f32,
+    u32  => f32,
+    u64  => f32,
+    u128 => f32,
+    i8   => f32,
+    i16  => f32,
+    i32  => f32,
+    i64  => f32,
+    i128 => f32,
+    f64  => f32,
+    // as f64
+    u8   => f64,
+    u16  => f64,
+    u32  => f64,
+    u64  => f64,
+    u128 => f64,
+    i8   => f64,
+    i16  => f64,
+    i32  => f64,
+    i64  => f64,
+    i128 => f64,
+    f32  => f64,
+    // as unsigned int
+    u16  => u8,
+    u32  => u8,
+    u64  => u8,
+    u128 => u8,
+    i8   => u8,
+    i16  => u8,
+    i32  => u8,
+    i64  => u8,
+    i128 => u8,
+    f32  => u8,
+    f64  => u8,
+
+    u8   => u16,
+    u32  => u16,
+    u64  => u16,
+    u128 => u16,
+    i8   => u16,
+    i16  => u16,
+    i32  => u16,
+    i64  => u16,
+    i128 => u16,
+    f32  => u16,
+    f64  => u16,
+
+    u8   => u32,
+    u16  => u32,
+    u64  => u32,
+    u128 => u32,
+    i8   => u32,
+    i16  => u32,
+    i32  => u32,
+    i64  => u32,
+    i128 => u32,
+    f32  => u32,
+    f64  => u32,
+    
+    u8   => u64,
+    u16  => u64,
+    u32  => u64,
+    u128 => u64,
+    i8   => u64,
+    i16  => u64,
+    i32  => u64,
+    i64  => u64,
+    i128 => u64,
+    f32  => u64,
+    f64  => u64,
+
+    u8   => u128,
+    u16  => u128,
+    u32  => u128,
+    u64  => u128,
+    i8   => u128,
+    i16  => u128,
+    i32  => u128,
+    i64  => u128,
+    i128 => u128,
+    f32  => u128,
+    f64  => u128,
+    // as signed int
+    u8   => i8,
+    u16  => i8,
+    u32  => i8,
+    u64  => i8,
+    u128 => i8,
+    i16  => i8,
+    i32  => i8,
+    i64  => i8,
+    i128 => i8,
+    f32  => i8,
+    f64  => i8,
+
+    u8   => i16,
+    u16  => i16,
+    u32  => i16,
+    u64  => i16,
+    u128 => i16,
+    i8   => i16,
+    i32  => i16,
+    i64  => i16,
+    i128 => i16,
+    f32  => i16,
+    f64  => i16,
+
+    u8   => i32,
+    u16  => i32,
+    u32  => i32,
+    u64  => i32,
+    u128 => i32,
+    i8   => i32,
+    i16  => i32,
+    i64  => i32,
+    i128 => i32,
+    f32  => i32,
+    f64  => i32,
+    
+    u8   => i64,
+    u16  => i64,
+    u32  => i64,
+    u64  => i64,
+    u128 => i64,
+    i8   => i64,
+    i16  => i64,
+    i32  => i64,
+    i128 => i64,
+    f32  => i64,
+    f64  => i64,
+
+    u8   => i128,
+    u16  => i128,
+    u32  => i128,
+    u64  => i128,
+    u128 => i128,
+    i8   => i128,
+    i16  => i128,
+    i32  => i128,
+    i64  => i128,
+    f32  => i128,
+    f64  => i128
+}
 
 // ---------- packed ----------
 

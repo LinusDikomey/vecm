@@ -8,6 +8,7 @@ use std::ops;
 
 pub mod mat;
 pub mod vec;
+pub mod swizzle;
 
 pub const RADIANS_TO_DEGREES: f32 = 180.0 / std::f32::consts::PI;
 
@@ -30,4 +31,15 @@ where T : ops::Add<Output = T> + ops::Sub<Output = T> + ops::Mul<Output = T> + C
 pub fn cubic<T>(x: T) -> T 
 where T : ops::Mul<Output = T> + Copy {
     x * x * x
+}
+
+
+#[cfg(test)]
+mod test {
+    #[test]
+    fn swizzle() {
+        use crate::{swizzle::*, vec::*};
+        let v = Vec3::new(1.0, 2.0, 3.0);
+        assert_eq!(v.zyxx(), Vec4::new(3.0, 2.0, 1.0, 1.0));
+    }
 }
