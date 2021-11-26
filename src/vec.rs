@@ -26,7 +26,7 @@ pub trait Convertible<T> {
 }
 
 macro_rules! impl_ops2 {
-    ($t: ident: $($op: ident = $f: ident),*) => {
+    ($t: ident: $($op: ident = $f: ident; $assign_op: ident = $assign_f: ident),*) => {
         $(
             impl<T> $op<$t<T>> for $t<T>
             where T: $op<T> {
@@ -52,11 +52,31 @@ macro_rules! impl_ops2 {
                     }
                 }
             }
+
+            impl<T> $assign_op<$t<T>> for $t<T>
+            where T: $assign_op<T> {
+                #[inline]
+                fn $assign_f(&mut self, b: $t<T>) {
+                    self.x.$assign_f(b.x);
+                    self.y.$assign_f(b.y);
+                }
+            }
+            impl<T> $assign_op<T> for $t<T>
+            where T: $assign_op<T> + Clone{
+                #[inline]
+                fn $assign_f(&mut self, b: T) {
+                    self.x.$assign_f(b.clone());
+                    self.y.$assign_f(b);
+                }
+           }
         )*
     };
 }
+/*
+
+*/
 macro_rules! impl_ops3 {
-    ($t: ident: $($op: ident = $f: ident),*) => {
+    ($t: ident: $($op: ident = $f: ident; $assign_op: ident = $assign_f: ident),*) => {
         $(
             impl<T> $op<$t<T>> for $t<T>
             where T: $op<T> {
@@ -84,11 +104,30 @@ macro_rules! impl_ops3 {
                     }
                 }
             }
+
+            impl<T> $assign_op<$t<T>> for $t<T>
+            where T: $assign_op<T> {
+                #[inline]
+                fn $assign_f(&mut self, b: $t<T>) {
+                    self.x.$assign_f(b.x);
+                    self.y.$assign_f(b.y);
+                    self.z.$assign_f(b.z);
+                }
+            }
+            impl<T> $assign_op<T> for $t<T>
+            where T: $assign_op<T> + Clone{
+                #[inline]
+                fn $assign_f(&mut self, b: T) {
+                    self.x.$assign_f(b.clone());
+                    self.y.$assign_f(b.clone());
+                    self.z.$assign_f(b);
+                }
+            }
         )*
     };
 }
 macro_rules! impl_ops4 {
-    ($t: ident: $($op: ident = $f: ident),*) => {
+    ($t: ident: $($op: ident = $f: ident; $assign_op: ident = $assign_f: ident),*) => {
         $(
             impl<T> $op<$t<T>> for $t<T>
             where T: $op<T> {
@@ -118,6 +157,27 @@ macro_rules! impl_ops4 {
                     }
                 }
             }
+
+            impl<T> $assign_op<$t<T>> for $t<T>
+            where T: $assign_op<T> {
+                #[inline]
+                fn $assign_f(&mut self, b: $t<T>) {
+                    self.x.$assign_f(b.x);
+                    self.y.$assign_f(b.y);
+                    self.z.$assign_f(b.z);
+                    self.w.$assign_f(b.w);
+                }
+            }
+            impl<T> $assign_op<T> for $t<T>
+            where T: $assign_op<T> + Clone{
+                #[inline]
+                fn $assign_f(&mut self, b: T) {
+                    self.x.$assign_f(b.clone());
+                    self.y.$assign_f(b.clone());
+                    self.z.$assign_f(b.clone());
+                    self.w.$assign_f(b.clone());
+                }
+            }
         )*
     };
 }
@@ -125,30 +185,30 @@ macro_rules! impl_ops4 {
 use std::ops::*;
 
 macro_rules! impl_ops {
-    ($($op: ident = $f: ident),*) => {
+    ($($op: ident = $f: ident; $assign_op: ident = $assign_f: ident),*) => {
         impl_ops2!{PolyVec2:
-            $($op = $f),*
+            $($op = $f; $assign_op = $assign_f),*
         }
         impl_ops3!{PolyVec3:
-            $($op = $f),*
+            $($op = $f; $assign_op = $assign_f),*
         }
         impl_ops4!{PolyVec4:
-            $($op = $f),*
+            $($op = $f; $assign_op = $assign_f),*
         }
     };
 }
 
 impl_ops!{
-    Add = add,
-    Sub = sub,
-    Mul = mul,
-    Div = div,
-    Rem = rem,
-    BitAnd = bitand,
-    BitOr = bitor,
-    BitXor = bitxor,
-    Shl = shl,
-    Shr = shr    
+    Add = add; AddAssign = add_assign,
+    Sub = sub; SubAssign = sub_assign,
+    Mul = mul; MulAssign = mul_assign,
+    Div = div; DivAssign = div_assign,
+    Rem = rem; RemAssign = rem_assign,
+    BitAnd = bitand; BitAndAssign = bitand_assign,
+    BitOr = bitor; BitOrAssign = bitor_assign,
+    BitXor = bitxor; BitXorAssign = bitxor_assign,
+    Shl = shl; ShlAssign = shl_assign,
+    Shr = shr; ShrAssign = shr_assign
 }
 
 // ---------- PolyVec2 ----------
@@ -321,38 +381,9 @@ impl<T> fmt::Display for PolyVec2<T>
         write!(f, "[{}, {}]", self.x, self.y)
     }
 }
-impl<T> ops::MulAssign<T> for PolyVec2<T>
-    where T: ops::MulAssign<T> + Copy {
-    #[inline]
-    fn mul_assign(&mut self, b: T) {
-        self.x *= b;
-        self.y *= b;
-    }
-}
-impl<T> ops::DivAssign<T> for PolyVec2<T>
-    where T: ops::DivAssign<T> + Copy {
-    #[inline]
-    fn div_assign(&mut self, b: T) {
-        self.x /= b;
-        self.y /= b;
-    }
-}
-impl<T> ops::AddAssign<PolyVec2<T>> for PolyVec2<T>
-    where T: ops::AddAssign<T> {
-    #[inline]
-    fn add_assign(&mut self, b: PolyVec2<T>) {
-        self.x += b.x;
-        self.y += b.y;
-    }
-}
-impl<T> ops::SubAssign<PolyVec2<T>> for PolyVec2<T>
-    where T: ops::SubAssign<T> {
-    #[inline]
-    fn sub_assign(&mut self, b: PolyVec2<T>) {
-        self.x -= b.x;
-        self.y -= b.y;
-    }
-}
+
+// negate
+
 impl<T> ops::Neg for PolyVec2<T> 
     where T: ops::Neg {
     type Output = PolyVec2<<T as ops::Neg>::Output>;
@@ -361,15 +392,20 @@ impl<T> ops::Neg for PolyVec2<T>
         Self::Output {x: -self.x, y: -self.y}
     }
 }
+
+// From/Into conversions
+
 impl<T, U> Convertible<PolyVec2<U>> for PolyVec2<T>
 where T: Into<U> {
     fn convert(self) -> PolyVec2<U> {
-        PolyVec2::<U> {
+        PolyVec2 {
             x: self.x.into(),
             y: self.y.into()
         }
     }
 }
+
+// float operations
 
 impl<T> PolyVec2<T> 
 where T : num_traits::Float {
@@ -597,42 +633,9 @@ impl<T> fmt::Display for PolyVec3<T>
         write!(f, "[{}, {}, {}]", self.x, self.y, self.z)
     }
 }
-impl<T> ops::MulAssign<T> for PolyVec3<T>
-    where T: ops::MulAssign<T> + Copy {
-    #[inline]
-    fn mul_assign(&mut self, b: T) {
-        self.x *= b;
-        self.y *= b;
-        self.z *= b;
-    }
-}
-impl<T> ops::DivAssign<T> for PolyVec3<T>
-    where T: ops::DivAssign<T> + Copy {
-    #[inline]
-    fn div_assign(&mut self, b: T) {
-        self.x /= b;
-        self.y /= b;
-        self.z /= b;
-    }
-}
-impl<T> ops::AddAssign<PolyVec3<T>> for PolyVec3<T>
-    where T: ops::AddAssign<T> {
-    #[inline]
-    fn add_assign(&mut self, b: PolyVec3<T>) {
-        self.x += b.x;
-        self.y += b.y;
-        self.z += b.z;
-    }
-}
-impl<T> ops::SubAssign<PolyVec3<T>> for PolyVec3<T>
-    where T: ops::SubAssign<T> {
-    #[inline]
-    fn sub_assign(&mut self, b: PolyVec3<T>) {
-        self.x -= b.x;
-        self.y -= b.y;
-        self.z -= b.z;
-    }
-}
+
+// negate
+
 impl<T> ops::Neg for PolyVec3<T> 
     where T: ops::Neg {
     type Output = PolyVec3<<T as ops::Neg>::Output>;
@@ -641,16 +644,21 @@ impl<T> ops::Neg for PolyVec3<T>
         Self::Output {x: -self.x, y: -self.y, z: -self.z}
     }
 }
+
+// From/Into conversions
+
 impl<T, U> Convertible<PolyVec3<U>> for PolyVec3<T>
 where T: Into<U> {
     fn convert(self) -> PolyVec3<U> {
-        PolyVec3::<U> {
+        PolyVec3 {
             x: self.x.into(),
             y: self.y.into(),
             z: self.z.into()
         }
     }
 }
+
+// float operations
 
 impl<T> PolyVec3<T> 
 where T : num_traits::Float {
@@ -891,50 +899,9 @@ impl<T> fmt::Display for PolyVec4<T>
         write!(f, "[{}, {}, {}, {}]", self.x, self.y, self.z, self.w)
     }
 }
-impl<T> ops::MulAssign<T> for PolyVec4<T>
-    where T: ops::MulAssign<T> + Copy {
-   
-    #[inline]
-    fn mul_assign(&mut self, b: T) {
-        self.x *= b;
-        self.y *= b;
-        self.z *= b;
-        self.w *= b;
-    }
-}
-impl<T> ops::DivAssign<T> for PolyVec4<T>
-    where T: ops::DivAssign<T> + Copy {
-   
-    #[inline]
-    fn div_assign(&mut self, b: T) {
-        self.x /= b;
-        self.y /= b;
-        self.z /= b;
-        self.w /= b;
-    }
-}
-impl<T> ops::AddAssign<PolyVec4<T>> for PolyVec4<T>
-    where T: ops::AddAssign<T> {
-   
-    #[inline]
-    fn add_assign(&mut self, b: Self) {
-        self.x += b.x;
-        self.y += b.y;
-        self.z += b.z;
-        self.w += b.w;
-    }
-}
-impl<T> ops::SubAssign<PolyVec4<T>> for PolyVec4<T>
-    where T: ops::SubAssign<T> {
-   
-    #[inline]
-    fn sub_assign(&mut self, b: Self) {
-        self.x -= b.x;
-        self.y -= b.y;
-        self.z -= b.z;
-        self.w -= b.w;
-    }
-}
+
+// negate
+
 impl<T> ops::Neg for PolyVec4<T> 
     where T: ops::Neg {
     type Output = PolyVec4<<T as ops::Neg>::Output>;
@@ -944,6 +911,22 @@ impl<T> ops::Neg for PolyVec4<T>
         Self::Output {x: -self.x, y: -self.y, z: -self.z, w: -self.w}
     }
 }
+
+// From/Into conversions
+
+impl<T, U> Convertible<PolyVec4<U>> for PolyVec4<T>
+where T: Into<U> {
+    fn convert(self) -> PolyVec4<U> {
+        PolyVec4 {
+            x: self.x.into(),
+            y: self.y.into(),
+            z: self.z.into(),
+            w: self.w.into()
+        }
+    }
+}
+
+// float operations
 
 impl<T> PolyVec4<T> 
 where T : num_traits::Float {
