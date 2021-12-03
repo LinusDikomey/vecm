@@ -12,12 +12,12 @@ pub const RADIANS_TO_DEGREES: f32 = 180.0 / std::f32::consts::PI;
 
 #[inline(always)]
 pub fn min<T>(a: T, b: T) -> T
-where T: std::cmp::Ord {
+where T: std::cmp::PartialOrd {
     if a < b { a } else {b}
 }
 #[inline(always)]
 pub fn max<T>(a: T, b: T) -> T
-where T: std::cmp::Ord {
+where T: std::cmp::PartialOrd {
     if a > b { a } else {b}
 }
 
