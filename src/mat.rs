@@ -38,7 +38,7 @@ impl Mat4x4 {
     #[inline]
     pub fn projection_matrix(viewport: Vec2u, near_plane: f32, far_plane: f32, fov: f32) -> Mat4x4 {
         let aspect_ratio = viewport.x as f32 / viewport.y as f32;
-        let y_scale = (1.0 / (fov / 2.0).to_radians().tan()) * aspect_ratio;
+        let y_scale = 1.0 / (fov / 2.0).to_radians().tan();
         let x_scale = y_scale / aspect_ratio;
         let frustrum_length = far_plane - near_plane;
         Mat4x4::new([
