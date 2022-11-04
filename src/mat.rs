@@ -1,56 +1,94 @@
-use std::ops::*;
-
+use std::{ops::*, mem::MaybeUninit};
+use num_traits::{Zero, One};
 use crate::vec::*;
 
-#[derive(Copy, Clone)]
-pub struct Mat4x4 {
-    data: [[f32; 4]; 4]
+// NOTE: matrices are in column-major order.
+
+
+pub type Mat4x4 = Mat<f32, 4, 4>;
+
+#[derive(Copy, Clone, Debug, PartialEq, Eq)]
+pub struct Mat<T, const M: usize, const N: usize> {
+    data: [[T; M]; N]
 }
-impl Mat4x4 {
+
+impl<T, const M: usize, const N: usize> Mat<T, M, N> {
     #[inline]
-    pub fn new(input: [[f32; 4]; 4]) -> Mat4x4 {
-        let mut data: [[f32; 4]; 4] = [[0.0; 4]; 4];
-        for x in 0..4 {
-            for y in 0..4 {
-                data[x][y] = input[y][x];
+    pub fn new(input: [[T; N]; M]) -> Self {
+        let mut data: MaybeUninit<[[T; M]; N]> = std::mem::MaybeUninit::uninit();
+        for (m, row) in input.into_iter().enumerate() {
+            for (n, v) in row.into_iter().enumerate() {
+                unsafe { data.assume_init_mut()[n][m] = v };
             }
         }
-        Mat4x4{data}
+        Self { data: unsafe { data.assume_init() } }
     }
+    
     #[inline]
-    pub fn identity() -> Mat4x4 {
-        Mat4x4 {data: [
-            [1.0, 0.0, 0.0, 0.0],
-            [0.0, 1.0, 0.0, 0.0],
-            [0.0, 0.0, 1.0, 0.0],
-            [0.0, 0.0, 0.0, 1.0]
-        ]}
+    pub fn data_ptr(&self) -> *const T {
+        &self.data[0][0]
     }
+}
+
+impl<T, const M: usize, const N: usize> Index<usize> for Mat<T, M, N> {
+    type Output = [T; M];
     #[inline]
-    pub fn zero() -> Mat4x4 {
-        Mat4x4 {data: [
-            [0.0, 0.0, 0.0, 0.0],
-            [0.0, 0.0, 0.0, 0.0],
-            [0.0, 0.0, 0.0, 0.0],
-            [0.0, 0.0, 0.0, 0.0]
-        ]}
+    fn index(&self, i: usize) -> &Self::Output {
+        &self.data[i]
     }
+}
+impl<T, const M: usize, const N: usize> IndexMut<usize> for Mat<T, M, N> {
     #[inline]
-    pub fn projection_matrix(viewport: Vec2u, near_plane: f32, far_plane: f32, fov: f32) -> Mat4x4 {
+    fn index_mut(&mut self, i: usize) -> &mut Self::Output {
+        &mut self.data[i]
+    }
+}
+
+impl<T: Zero + Copy, const M: usize, const N: usize> Mat<T, M, N> {
+    #[inline]
+    pub fn zero() -> Self {
+        Self { data: [[T::zero(); M]; N] }
+    }
+}
+
+// NxN (quadratic) matrices
+
+impl<T: Zero + Copy + One, const N: usize> Mat<T, N, N> {
+    #[inline]
+    pub fn identity() -> Self {
+        let mut data = [[T::zero(); N]; N];
+        for i in 0..N {
+            data[i][i] = T::one();
+        }
+        Self { data }
+    }
+
+    pub fn pow(&self, n: usize) -> Self {
+        let mut res = Mat::identity();
+        for _ in 0..n {
+            res = *self * res;
+        }
+        res
+    }
+}
+
+impl Mat<f32, 4, 4> {
+    #[inline]
+    pub fn projection_matrix(viewport: Vec2u, near_plane: f32, far_plane: f32, fov: f32) -> Self {
         let aspect_ratio = viewport.x as f32 / viewport.y as f32;
         let y_scale = 1.0 / (fov / 2.0).to_radians().tan();
         let x_scale = y_scale / aspect_ratio;
         let frustrum_length = far_plane - near_plane;
-        Mat4x4::new([
-            [x_scale, 0.0    , 0.0                                                , 0.0],
-            [0.0    , y_scale, 0.0                                                , 0.0],
-            [0.0    , 0.0    , -((far_plane + near_plane) / frustrum_length)      , -((2.0 * far_plane * near_plane) / frustrum_length)],
-            [0.0    , 0.0    , -1.0, 0.0],
+        Self::new([
+            [x_scale, 0.0    ,  0.0                                         , 0.0],
+            [0.0    , y_scale,  0.0                                         , 0.0],
+            [0.0    , 0.0    , -((far_plane + near_plane) / frustrum_length), -((2.0 * far_plane * near_plane) / frustrum_length)],
+            [0.0    , 0.0    , -1.0                                         , 0.0],
         ])
     }
     #[inline]
     pub fn ortho(left: f32, right: f32, bottom: f32, top: f32, near: f32, far: f32) -> Self {
-        Mat4x4::new([
+        Self::new([
             [2.0 / (right - left), 0.0, 0.0, -((right + left) / (right - left))],
             [0.0, 2.0 / (top - bottom), 0.0, (top + bottom) / (top - bottom)],
             [0.0, 0.0, -2.0 / (far - near), (far + near) / (far - near)],
@@ -58,16 +96,16 @@ impl Mat4x4 {
         ])
     }
     #[inline]
-    pub fn transformation_matrix(translation: Vec3, rot: Vec3, scale: Vec3) -> Mat4x4 {
-        let mut mat = Mat4x4::identity();
+    pub fn transformation_matrix(translation: Vec3, rot: Vec3, scale: Vec3) -> Self {
+        let mut mat = Self::identity();
         mat.scale(scale);
         mat.rotate(rot);
         mat.translate(translation);
         mat
     }
     #[inline]
-    pub fn view_matrix(position: Vec3, pitch: f32, yaw: f32, roll: f32) -> Mat4x4 {
-        let mut mat = Mat4x4::identity();
+    pub fn view_matrix(position: Vec3, pitch: f32, yaw: f32, roll: f32) -> Self {
+        let mut mat = Self::identity();
         mat.translate(-position);
         mat.rotate(Vec3::new(-pitch, -yaw, -roll));
         mat
@@ -79,35 +117,35 @@ impl Mat4x4 {
         self[2][2] *= scale.z;
     }
     #[inline]
-    pub fn rx(r: f32) -> Mat4x4 {
-        [
+    pub fn rx(r: f32) -> Self {
+        Self::new([
             [1.0, 0.0 , 0.0, 0.0],
             [0.0, r.cos(), r.sin(), 0.0],
             [0.0, -r.sin(), r.cos(), 0.0],
             [0.0, 0.0, 0.0, 1.0]
-        ].into()
+        ])
     }
     #[inline]
-    pub fn ry(r: f32) -> Mat4x4 {
-        [
+    pub fn ry(r: f32) -> Self {
+        Self::new([
             [r.cos(), 0.0 , -r.sin(), 0.0],
             [0.0, 1.0, 0.0, 0.0],
             [r.sin(), 0.0, r.cos(), 0.0],
             [0.0, 0.0, 0.0, 1.0]
-        ].into()
+        ])
     }
     #[inline]
-    pub fn rz(r: f32) -> Mat4x4 {
-        [
+    pub fn rz(r: f32) -> Self {
+        Self::new([
             [r.cos(), -r.sin() , 0.0, 0.0],
             [r.sin(), r.cos(), 0.0, 0.0],
             [0.0, 0.0, 1.0, 0.0],
             [0.0, 0.0, 0.0, 1.0]
-        ].into()
+        ])
     }
     #[inline]
     pub fn rotate(&mut self, r: Vec3) {
-        *self = Mat4x4::rx(r.x) * Mat4x4::ry(r.y) * Mat4x4::rz(r.z) * *self;
+        *self = Self::rx(r.x) * Self::ry(r.y) * Self::rz(r.z) * *self;
     }
     #[inline]
     pub fn translate(&mut self, t: Vec3) {
@@ -115,67 +153,63 @@ impl Mat4x4 {
         self[3][1] += t.y;
         self[3][2] += t.z;
     }
-
-    #[inline]
-    pub unsafe fn data_ptr<'a>(&self) -> *const f32 {
-        //#[allow(unaligned_references)]
-        &self.data[0][0]
-    }
 }
 
-impl std::fmt::Display for Mat4x4 {
+impl<T: std::fmt::Display, const M: usize, const N: usize> std::fmt::Display for Mat<T, M, N> {
     #[inline]
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        let mut out = "\n".to_owned();
-        for y in 0..4 {
-            out.push('[');
-            for x in 0..4 {
-                out.push_str(&format!("{}, ", self[x][y]));
+        writeln!(f)?;
+        for m in 0..M {
+            write!(f, "[")?;
+            for n in 0..N {
+                if n != 0 {
+                    write!(f, ", ")?;
+                }
+                write!(f, "{}", self[n][m])?;
             }
-            out.push_str("]\n");
+            writeln!(f, "],")?;
         }
-        write!(f, "{}", out)
+        Ok(())
     }
 
 }
 
-impl Add<Mat4x4> for Mat4x4 {
-    type Output = Mat4x4;
+impl<T: Zero + Copy, const M: usize, const N: usize> Add<Self> for Mat<T, M, N> {
+    type Output = Self;
     #[inline]
-    fn add(self, b: Mat4x4) -> Self::Output {
-        let mut c = Mat4x4::zero();
+    fn add(self, b: Self) -> Self::Output {
+        let mut c = Self::zero();
 
-        for x in 0..4 {
-            for y in 0..4 {
-                c[x][y] = self[x][y] + b[x][y];
+        for m in 0..M {
+            for n in 0..N {
+                c[n][m] = self[n][m] + b[n][m];
             }
         }
         c
     }
 }
 
-impl AddAssign<Mat4x4> for Mat4x4 {
+impl<T: AddAssign + Clone, const N: usize, const M: usize> AddAssign<Self> for Mat<T, N, M> {
     #[inline]
-    fn add_assign(&mut self, b: Mat4x4) {
-        for x in 0..4 {
-            for y in 0..4 {
-                self[x][y] += b[x][y];
+    fn add_assign(&mut self, b: Self) {
+        for x in 0..M {
+            for y in 0..N {
+                self[x][y] += b[x][y].clone();
             }
         }
     }
 }
 
-
-impl Mul<Mat4x4> for Mat4x4 {
-    type Output = Mat4x4;
+impl<T: Zero + Copy + Add + Mul<Output = T>, const L: usize, const M: usize, const N: usize> Mul<Mat<T, M, N>> for Mat<T, L, M> {
+    type Output = Mat<T, L, N>;
     #[inline]
-    fn mul(self, b: Mat4x4) -> Self::Output {
-        let mut c = Mat4x4::zero();
+    fn mul(self, b: Mat<T, M, N>) -> Self::Output {
+        let mut c = Mat::zero();
 
-        for y in 0..4 {
-            for x in 0..4 {
-                for i in 0..4 {
-                    c[x][y] += self[i][y] * b[x][i];
+        for n in 0..N {
+            for l in 0..L {
+                for i in 0..M {
+                    c[n][l] = c[n][l] + self[i][l] * b[n][i];
                 }
             }
         }
@@ -183,31 +217,9 @@ impl Mul<Mat4x4> for Mat4x4 {
     }
 }
 
-impl From<[[f32; 4]; 4]> for Mat4x4 {
+impl<T: AddAssign> AddAssign<PolyVec3<T>> for Mat<T, 4, 4> {
     #[inline]
-    fn from(data: [[f32; 4]; 4]) -> Mat4x4 {
-        Mat4x4::new(data)
-    }
-
-}
-
-impl Index<usize> for Mat4x4 {
-    type Output = [f32; 4];
-    #[inline]
-    fn index(&self, i: usize) -> &Self::Output {
-        &self.data[i]
-    }
-}
-impl IndexMut<usize> for Mat4x4 {
-    #[inline]
-    fn index_mut(&mut self, i: usize) -> &mut Self::Output {
-        &mut self.data[i]
-    }
-}
-
-impl AddAssign<Vec3> for Mat4x4 {
-    #[inline]
-    fn add_assign(&mut self, v: Vec3) {
+    fn add_assign(&mut self, v: PolyVec3<T>) {
         self[0][3] += v.x;
         self[1][3] += v.y;
         self[2][3] += v.z;
@@ -230,5 +242,63 @@ impl<R: std::io::Read> binverse::serialize::Deserialize<R> for Mat4x4 {
     #[inline]
     fn deserialize(d: &mut binverse::streams::Deserializer<R>) -> binverse::error::BinverseResult<Self> {
         Ok(Self { data: d.deserialize()? })
+    }
+}
+
+#[cfg(test)]
+mod tests {
+
+    use super::*;
+
+    #[test]
+    fn matrix_multiplication() {
+        let a = Mat::new([
+            [1, 2, 3],
+            [5, 6, 7]
+        ]);
+
+        let b = Mat::new([
+            [2, 3, 4, 5],
+            [6, 7, 8, 9],
+            [10, 11, 12, 13]
+        ]);
+
+        assert_eq!(a*b, Mat::new([
+            [44, 50, 56, 62],
+            [116, 134, 152, 170],
+        ]));
+    }
+
+    #[test]
+    fn power() {
+        let a = Mat::new([
+            [1, 2, 3],
+            [4, 5, 6],
+            [7, 8, 9],
+        ]);
+        assert_eq!(a.pow(0), Mat::identity());
+        assert_eq!(a.pow(1), a);
+        eprintln!("{}", a.pow(2));
+        assert_eq!(a.pow(2), Mat::new([
+            [30, 36, 42],
+            [66, 81, 96],
+            [102, 126, 150],
+        ]));
+        assert_eq!(a.pow(3), Mat::new([
+            [468, 576, 684],
+            [1062, 1305, 1548],
+            [1656, 2034, 2412],
+        ]));
+    }
+
+    #[test]
+    fn display() {  
+        let a = Mat::new([
+            [1, 2, 3],
+            [4, 5, 6],
+            [7, 8, 9],
+        ]);
+
+        assert_eq!(a.to_string(), "\n[1, 2, 3],\n[4, 5, 6],\n[7, 8, 9],\n");
     }
 }

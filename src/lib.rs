@@ -1,7 +1,3 @@
-#![feature(const_fn_trait_bound)]
-
-extern crate num_traits;
-
 use std::ops;
 
 pub mod mat;
