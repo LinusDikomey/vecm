@@ -13,12 +13,13 @@ pub struct Mat<T, const M: usize, const N: usize> {
 }
 
 impl<T, const M: usize, const N: usize> Mat<T, M, N> {
+
     #[inline]
     pub fn new(input: [[T; N]; M]) -> Self {
         let mut data: MaybeUninit<[[T; M]; N]> = std::mem::MaybeUninit::uninit();
         for (m, row) in input.into_iter().enumerate() {
             for (n, v) in row.into_iter().enumerate() {
-                unsafe { data.assume_init_mut()[n][m] = v };
+                unsafe { (*data.as_mut_ptr())[n][m] = v };
             }
         }
         Self { data: unsafe { data.assume_init() } }
@@ -27,6 +28,16 @@ impl<T, const M: usize, const N: usize> Mat<T, M, N> {
     #[inline]
     pub fn data_ptr(&self) -> *const T {
         &self.data[0][0]
+    }
+
+    pub fn transpose(self) -> Mat<T, N, M> {
+        let mut data: MaybeUninit<[[T; N]; M]> = MaybeUninit::uninit();
+        for (x, row) in self.data.into_iter().enumerate() {
+            for (y, item) in row.into_iter().enumerate() {
+                unsafe { (*data.as_mut_ptr())[y][x] = item; }
+            }
+        }
+        Mat { data: unsafe { data.assume_init() } }
     }
 }
 
@@ -300,5 +311,19 @@ mod tests {
         ]);
 
         assert_eq!(a.to_string(), "\n[1, 2, 3],\n[4, 5, 6],\n[7, 8, 9],\n");
+    }
+
+    #[test]
+    fn transpose() {
+        let a = Mat::new([
+            [1, 2, 3],
+            [4, 5, 6]
+        ]);
+
+        assert_eq!(a.transpose(), Mat::new([
+            [1, 4],
+            [2, 5],
+            [3, 6]
+        ]));
     }
 }
