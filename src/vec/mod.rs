@@ -1,6 +1,5 @@
-use std::fmt;
+use std::{default::Default, fmt};
 
-pub mod packed;
 pub mod ops;
 pub use ops::*;
 
@@ -22,26 +21,29 @@ pub trait W<T> {
 }
 
 /// Used for From/Into conversions of Vector components. For primitive conversions, look at [`VecFrom`]/[`VecInto`] 
-pub trait Convertible<T> {
+pub trait Convert<T> {
     fn convert(self) -> T;
 }
 
 // ---------- Struct definitions ----------
 
-#[derive(Clone, Copy, Debug, Default, Eq, PartialEq, Hash)]
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[repr(C)]
 pub struct PolyVec2<T> {
     pub x: T,
     pub y: T
 }
 
-#[derive(Clone, Copy, Debug, Default, Eq, PartialEq, Hash)]
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[repr(C)]
 pub struct PolyVec3<T> {
     pub x: T,
     pub y: T,
     pub z: T
 }
 
-#[derive(Clone, Copy, Debug, Default, Eq, PartialEq, Hash)]
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[repr(C)]
 pub struct PolyVec4<T> {
     pub x: T,
     pub y: T,
@@ -110,7 +112,7 @@ impl<T> PolyVec4<T> {
 #[macro_export]
 macro_rules! vec2 {
     ($v: expr) => { $crate::vec::PolyVec2 { x: $v, y: $v } };
-    ($x: expr, ..) => { $crate::vec::PolyVec2 { x: $x, y: std::default::Default::default() } };
+    ($x: expr, ..) => { $crate::vec::PolyVec2 { x: $x, y: Default::default() } };
     ($x: expr, $y: expr) => { $crate::vec::PolyVec2 { x: $x, y: $y } };
 }
 pub use vec2;
@@ -118,8 +120,8 @@ pub use vec2;
 #[macro_export]
 macro_rules! vec3 {
     ($v: expr) => { $crate::vec::PolyVec3 { x: $v, y: $v, z: $v } };
-    ($x: expr, ..) => { $crate::vec::PolyVec3 { x: $x, y: std::default::Default::default(), z: std::default::Default::default() } };
-    ($x: expr, $y: expr, ..) => { $crate::vec::PolyVec3 { x: $x, y: $y, z: std::default::Default::default() } };
+    ($x: expr, ..) => { $crate::vec::PolyVec3 { x: $x, y: Default::default(), z: Default::default() } };
+    ($x: expr, $y: expr, ..) => { $crate::vec::PolyVec3 { x: $x, y: $y, z: Default::default() } };
     ($x: expr, $y: expr, $z: expr) => { $crate::vec::PolyVec3 { x: $x, y: $y, z: $z } };
 }
 pub use vec3;
@@ -127,9 +129,9 @@ pub use vec3;
 #[macro_export]
 macro_rules! vec4 {
     ($v: expr) => { $crate::vec::PolyVec4 { x: $v, y: $v, z: $v } };
-    ($x: expr, ..) => { $crate::vec::PolyVec4 { x: $x, y: std::default::Default::default(), z: std::default::Default::default(), w: std::default::Default::default() } };
-    ($x: expr, $y: expr, ..) => { $crate::vec::PolyVec4 { x: $x, y: $y, z: std::default::Default::default(), w: std::default::Default::default() } };
-    ($x: expr, $y: expr, $z: expr, ..) => { $crate::vec::PolyVec4 { x: $x, y: $y, z: $z, w: std::default::Default::default() } };
+    ($x: expr, ..) => { $crate::vec::PolyVec4 { x: $x, y: Default::default(), z: Default::default(), w: Default::default() } };
+    ($x: expr, $y: expr, ..) => { $crate::vec::PolyVec4 { x: $x, y: $y, z: Default::default(), w: Default::default() } };
+    ($x: expr, $y: expr, $z: expr, ..) => { $crate::vec::PolyVec4 { x: $x, y: $y, z: $z, w: Default::default() } };
     ($x: expr, $y: expr, $z: expr, $w: expr) => { $crate::vec::PolyVec4 { x: $x, y: $y, z: $z, w: $w } };
 }
 pub use vec4;
@@ -285,7 +287,7 @@ where T: fmt::Display {
 
 // ---------- From/Into conversions ----------
 
-impl<T, U> Convertible<PolyVec2<U>> for PolyVec2<T>
+impl<T, U> Convert<PolyVec2<U>> for PolyVec2<T>
 where T: Into<U> {
     fn convert(self) -> PolyVec2<U> {
         PolyVec2 {
@@ -295,7 +297,7 @@ where T: Into<U> {
     }
 }
 
-impl<T, U> Convertible<PolyVec3<U>> for PolyVec3<T>
+impl<T, U> Convert<PolyVec3<U>> for PolyVec3<T>
 where T: Into<U> {
     fn convert(self) -> PolyVec3<U> {
         PolyVec3 {
@@ -307,7 +309,7 @@ where T: Into<U> {
 }
 
 
-impl<T, U> Convertible<PolyVec4<U>> for PolyVec4<T>
+impl<T, U> Convert<PolyVec4<U>> for PolyVec4<T>
 where T: Into<U> {
     fn convert(self) -> PolyVec4<U> {
         PolyVec4 {

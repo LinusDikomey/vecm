@@ -8,6 +8,7 @@ use crate::vec::*;
 pub type Mat4x4 = Mat<f32, 4, 4>;
 
 #[derive(Copy, Clone, Debug, PartialEq, Eq)]
+#[repr(C)]
 pub struct Mat<T, const M: usize, const N: usize> {
     data: [[T; M]; N]
 }
