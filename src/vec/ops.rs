@@ -378,3 +378,18 @@ impl<T> Neg for PolyVec4<T>
         Self::Output { x: -self.x, y: -self.y, z: -self.z, w: -self.w }
     }
 }
+
+// cross
+impl<T> PolyVec3<T>
+where
+    T: Mul<T, Output = T> + Sub<T, Output = T> + Copy
+{
+    #[inline]
+    pub fn cross(self, other: Self) -> Self {
+        Self {
+            x: self.y * other.z - self.z * other.y,
+            y: self.z * other.x - self.x * other.z,
+            z: self.x * other.y - self.y * other.x,
+        }
+    }
+}
