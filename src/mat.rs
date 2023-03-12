@@ -1,8 +1,9 @@
+//! NOTE: matrices are in column-major order.
+
 use std::{ops::*, mem::MaybeUninit};
 use num_traits::{Zero, One};
 use crate::vec::*;
 
-// NOTE: matrices are in column-major order.
 
 
 pub type Mat4x4 = Mat<f32, 4, 4>;

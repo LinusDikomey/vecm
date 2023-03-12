@@ -2,7 +2,10 @@ use std::ops;
 
 pub mod mat;
 pub mod vec;
+mod quaternion;
 pub mod swizzle;
+
+pub use quaternion::Quaternion;
 
 pub const RADIANS_TO_DEGREES: f32 = 180.0 / std::f32::consts::PI;
 
@@ -95,3 +98,4 @@ mod test {
         }
     }
 }
+
