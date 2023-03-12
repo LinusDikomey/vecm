@@ -194,9 +194,9 @@ impl<T> From<[T; 2]> for PolyVec2<T> {
         Self { x, y }
     }
 }
-impl<T> Into<[T; 2]> for PolyVec2<T> {
-    fn into(self) -> [T; 2] {
-        [self.x, self.y]  
+impl<T> From<PolyVec2<T>> for [T; 2] {
+    fn from(v: PolyVec2<T>) -> Self {
+        [v.x, v.y]
     }
 }
 
@@ -206,9 +206,9 @@ impl<T> From<[T; 3]> for PolyVec3<T> {
         Self { x, y, z }
     }
 }
-impl<T> Into<[T; 3]> for PolyVec3<T> {
-    fn into(self) -> [T; 3] {
-        [self.x, self.y, self.z]
+impl<T> From<PolyVec3<T>> for [T; 3] {
+    fn from(v: PolyVec3<T>) -> Self {
+        [v.x, v.y, v.z]
     }
 }
 
@@ -218,9 +218,9 @@ impl<T> From<[T; 4]> for PolyVec4<T> {
         Self { x, y, z, w }
     }
 }
-impl<T> Into<[T; 4]> for PolyVec4<T> {
-    fn into(self) -> [T; 4] {
-        [self.x, self.y, self.z, self.w]
+impl<T> From<PolyVec4<T>> for [T; 4] {
+    fn from(v: PolyVec4<T>) -> [T; 4] {
+        [v.x, v.y, v.z, v.w]
     }
 }
 
@@ -231,9 +231,9 @@ impl<T> From<(T, T)> for PolyVec2<T> {
         Self::new(t.0, t.1)
     }
 }
-impl<T> Into<(T, T)> for PolyVec2<T> {
-    fn into(self) -> (T, T) {
-        (self.x, self.y)  
+impl<T> From<PolyVec2<T>> for (T, T) {
+    fn from(v: PolyVec2<T>) -> (T, T) {
+        (v.x, v.y)
     }
 }
 
@@ -242,9 +242,9 @@ impl<T> From<(T, T, T)> for PolyVec3<T> {
         Self::new(t.0, t.1, t.2)
     }
 }
-impl<T> Into<(T, T, T)> for PolyVec3<T> {
-    fn into(self) -> (T, T, T) {
-        (self.x, self.y, self.z) 
+impl<T> From<PolyVec3<T>> for (T, T, T) {
+    fn from(v: PolyVec3<T>) -> (T, T, T) {
+        (v.x, v.y, v.z)
     }
 }
 
@@ -253,9 +253,9 @@ impl<T> From<(T, T, T, T)> for PolyVec4<T> {
         Self::new(t.0, t.1, t.2, t.3)
     }
 }
-impl<T> Into<(T, T, T, T)> for PolyVec4<T> {
-    fn into(self) -> (T, T, T, T) {
-        (self.x, self.y, self.z, self.w)
+impl<T> From<PolyVec4<T>> for (T, T, T, T) {
+    fn from(v: PolyVec4<T>) -> (T, T, T, T) {
+        (v.x, v.y, v.z, v.w)
     }
 }
 
