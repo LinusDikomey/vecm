@@ -44,6 +44,28 @@ impl Quaternion {
         }
     }
 
+    #[must_use = "only calculates the euler vector"]
+    pub fn euler(self) -> Vec3 {
+        // Source: https://en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles#Source_code_2
+
+        // roll (x-axis rotation)
+        let sinr_cosp = 2.0 * (self.w * self.x + self.y * self.z);
+        let cosr_cosp = 1.0 - 2.0 * (self.x * self.x + self.y * self.y);
+        let x = f32::atan2(sinr_cosp, cosr_cosp);
+
+        // pitch (y-axis rotation)
+        let sinp = (1.0 + 2.0 * (self.w * self.y - self.x * self.z)).sqrt();
+        let cosp = (1.0 - 2.0 * (self.w * self.y - self.x * self.z)).sqrt();
+        let y = 2.0 * f32::atan2(sinp, cosp) - std::f32::consts::FRAC_PI_2;
+
+        // yaw (z-axis rotation)
+        let siny_cosp = 2.0 * (self.w * self.z + self.x * self.y);
+        let cosy_cosp = 1.0 - 2.0 * (self.y * self.y + self.z * self.z);
+        let z = f32::atan2(siny_cosp, cosy_cosp);
+
+        Vec3 { x, y, z }
+    }
+
     /// Retrieves the vector-part of the Quaternion: [x, y, z]
     #[must_use = "only retrieves the v-vector"]
     pub fn v(self) -> Vec3 {
