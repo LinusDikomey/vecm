@@ -2,7 +2,7 @@
 
 use std::{ops::*, mem::MaybeUninit};
 use num_traits::{Zero, One};
-use crate::vec::*;
+use crate::{vec::*, Quaternion};
 
 
 
@@ -109,19 +109,18 @@ impl Mat<f32, 4, 4> {
         ])
     }
     #[inline]
-    pub fn transformation_matrix(translation: Vec3, rot: Vec3, scale: Vec3) -> Self {
+    pub fn transformation_matrix(translation: Vec3, rotation: Quaternion, scale: Vec3) -> Self {
         let mut mat = Self::identity();
         mat.scale(scale);
-        mat.rotate(rot);
+        mat = rotation.matrix() * mat;
         mat.translate(translation);
         mat
     }
     #[inline]
-    pub fn view_matrix(position: Vec3, pitch: f32, yaw: f32, roll: f32) -> Self {
+    pub fn view_matrix(position: Vec3, rotation: Quaternion) -> Self {
         let mut mat = Self::identity();
         mat.translate(-position);
-        mat.rotate(Vec3::new(-pitch, -yaw, -roll));
-        mat
+        rotation.conjugate().matrix() * mat
     }
     #[inline]
     pub fn scale(&mut self, scale: Vec3) {

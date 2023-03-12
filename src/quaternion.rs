@@ -45,11 +45,13 @@ impl Quaternion {
     }
 
     /// Retrieves the vector-part of the Quaternion: [x, y, z]
+    #[must_use = "only retrieves the v-vector"]
     pub fn v(self) -> Vec3 {
         Vec3::new(self.x, self.y, self.z)
     }
 
     /// Retrieves the equivalent rotation matrix.
+    #[must_use = "only calculates the rotation matrix"]
     pub fn matrix(&self) -> Mat4x4 {
         let &Quaternion { x, y, z, w } = self;
          Mat4x4::new([
@@ -60,10 +62,12 @@ impl Quaternion {
         ])
     }
 
+    #[must_use = "only calculates the dot product"]
     pub fn dot(self, other: Self) -> f32 {
         self.w * other.w + self.x * other.x + self.y * other.y + self.z * other.z
     }
 
+    #[must_use = "only calculates the length"]
     pub fn length(self) -> f32 {
         (self.w * self.w + self.x * self.x + self.y * self.y + self.z * self.z).sqrt()
     }
@@ -87,6 +91,7 @@ impl Quaternion {
         }
     }
 
+    #[must_use = "returns the new, conjugated quaternion"]
     pub fn conjugate(self) -> Self {
         Self {
             w: self.w,
