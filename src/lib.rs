@@ -70,7 +70,7 @@ mod test {
         assert_eq!(vec4![1.0, 2.0, 3.0, 4.0].yzw().square_magnitude(), 4.0 + 9.0 + 16.0);
     }
 
-    #[cfg(feature = "binverse_impls")]
+    #[cfg(feature = "binverse")]
     mod binverse_tests {
         use binverse::{serialize::Serialize, streams::{Deserializer, Serializer}};
 

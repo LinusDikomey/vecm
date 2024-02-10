@@ -2,6 +2,7 @@ use crate::{vec::Vec3, mat::Mat4x4};
 
 
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct Quaternion {
     pub w: f32,
     pub x: f32,
@@ -234,7 +235,7 @@ impl std::ops::Mul<Quaternion> for Vec3 {
     }
 }
 
-#[cfg(feature = "binverse_impls")]
+#[cfg(feature = "binverse")]
 impl<W: std::io::Write> binverse::serialize::Serialize<W> for Quaternion {
     #[inline]
     fn serialize(&self, s: &mut binverse::streams::Serializer<W>) -> binverse::error::BinverseResult<()> {
@@ -244,7 +245,7 @@ impl<W: std::io::Write> binverse::serialize::Serialize<W> for Quaternion {
         self.z.serialize(s)
     }
 }
-#[cfg(feature = "binverse_impls")]
+#[cfg(feature = "binverse")]
 impl<R: std::io::Read> binverse::serialize::Deserialize<R> for Quaternion {
     #[inline]
     fn deserialize(d: &mut binverse::streams::Deserializer<R>) -> binverse::error::BinverseResult<Self> {

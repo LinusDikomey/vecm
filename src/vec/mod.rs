@@ -1,7 +1,5 @@
 pub mod ops;
 
-pub use ops::*;
-
 use std::{default::Default, fmt};
 use num_traits::{Zero, One};
 
@@ -32,6 +30,7 @@ pub trait Convert<T> {
 
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Hash, PartialOrd, Ord)]
 #[repr(C)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct PolyVec2<T> {
     pub x: T,
     pub y: T
@@ -39,6 +38,7 @@ pub struct PolyVec2<T> {
 
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Hash, PartialOrd, Ord)]
 #[repr(C)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct PolyVec3<T> {
     pub x: T,
     pub y: T,
@@ -47,6 +47,7 @@ pub struct PolyVec3<T> {
 
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Hash, PartialOrd, Ord)]
 #[repr(C)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct PolyVec4<T> {
     pub x: T,
     pub y: T,
@@ -578,7 +579,7 @@ impl_vec_as! {
 
 // ---------- binverse implementations ----------
 
-#[cfg(feature = "binverse_impls")]
+#[cfg(feature = "binverse")]
 impl<T, W: std::io::Write> binverse::serialize::Serialize<W> for PolyVec2<T>
 where T: binverse::serialize::Serialize<W> {
     #[inline]
@@ -588,7 +589,7 @@ where T: binverse::serialize::Serialize<W> {
         Ok(())
     }
 }
-#[cfg(feature = "binverse_impls")]
+#[cfg(feature = "binverse")]
 impl<T, R: std::io::Read> binverse::serialize::Deserialize<R> for PolyVec2<T>
 where T: binverse::serialize::Deserialize<R> {
     #[inline]
@@ -600,7 +601,7 @@ where T: binverse::serialize::Deserialize<R> {
     }
 }
 
-#[cfg(feature = "binverse_impls")]
+#[cfg(feature = "binverse")]
 impl<T, W: std::io::Write> binverse::serialize::Serialize<W> for PolyVec3<T>
 where T: binverse::serialize::Serialize<W> {
     #[inline]
@@ -611,7 +612,7 @@ where T: binverse::serialize::Serialize<W> {
         Ok(())
     }
 }
-#[cfg(feature = "binverse_impls")]
+#[cfg(feature = "binverse")]
 impl<T, R: std::io::Read> binverse::serialize::Deserialize<R> for PolyVec3<T>
 where T: binverse::serialize::Deserialize<R> {
     #[inline]
@@ -624,7 +625,7 @@ where T: binverse::serialize::Deserialize<R> {
     }
 }
 
-#[cfg(feature = "binverse_impls")]
+#[cfg(feature = "binverse")]
 impl<T, W: std::io::Write> binverse::serialize::Serialize<W> for PolyVec4<T>
 where T: binverse::serialize::Serialize<W> {
     #[inline]
@@ -636,7 +637,7 @@ where T: binverse::serialize::Serialize<W> {
         Ok(())
     }
 }
-#[cfg(feature = "binverse_impls")]
+#[cfg(feature = "binverse")]
 impl<T, R: std::io::Read> binverse::serialize::Deserialize<R> for PolyVec4<T>
 where T: binverse::serialize::Deserialize<R> {
     #[inline]

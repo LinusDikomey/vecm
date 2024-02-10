@@ -242,19 +242,59 @@ impl<T: AddAssign> AddAssign<PolyVec3<T>> for Mat<T, 4, 4> {
 
 // binverse serialization
 
-#[cfg(feature = "binverse_impls")]
+#[cfg(feature = "binverse")]
 impl<W: std::io::Write> binverse::serialize::Serialize<W> for Mat4x4 {
     #[inline]
     fn serialize(&self, s: &mut binverse::streams::Serializer<W>) -> binverse::error::BinverseResult<()> {
         self.data.serialize(s)
     }
 }
-#[cfg(feature = "binverse_impls")]
+#[cfg(feature = "binverse")]
 impl<R: std::io::Read> binverse::serialize::Deserialize<R> for Mat4x4 {
     #[inline]
     fn deserialize(d: &mut binverse::streams::Deserializer<R>) -> binverse::error::BinverseResult<Self> {
         Ok(Self { data: d.deserialize()? })
     }
+}
+
+// Serde can't serialize arrays of arbitrary size so we have to implement each size seperately
+// using the following macro.
+// For now there are only quadratic matrices up to size 5.
+// That should hopefully cover the most common use cases.
+
+#[cfg(feature = "serde")]
+macro_rules! serde_mat {
+    ($($n: literal, $m: literal)*) => {
+        $(
+            impl<T: serde::Serialize> serde::Serialize for Mat<T, $n, $m> {
+                fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+                where
+                    S: serde::Serializer
+                {
+                    self.data.serialize(serializer)
+                }
+            }
+            impl<'de, T: serde::Deserialize<'de>> serde::Deserialize<'de> for Mat<T, $n, $m> {
+                fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+                where
+                    D: serde::Deserializer<'de>
+                {
+                    Ok(Self {
+                        data: serde::Deserialize::deserialize(deserializer)?,
+                    })
+                }
+            }
+        )*
+    };
+}
+
+#[cfg(feature = "serde")]
+serde_mat!{
+    1, 1
+    2, 2
+    3, 3
+    4, 4
+    5, 5
 }
 
 #[cfg(test)]
