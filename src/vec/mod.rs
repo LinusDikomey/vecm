@@ -1,7 +1,10 @@
-use std::{default::Default, fmt};
-
 pub mod ops;
+
 pub use ops::*;
+
+use std::{default::Default, fmt};
+use num_traits::{Zero, One};
+
 
 pub trait X<T> {
     fn x(&self) -> &T;
@@ -138,52 +141,79 @@ pub use vec4;
 
 // ---------- zero/one ----------
 
-impl<T> PolyVec2<T>
-where T : num_traits::Zero {
+impl<T: Zero> Zero for PolyVec2<T> {
     #[inline]
-    pub fn is_zero(&self) -> bool { self.x.is_zero() && self.y.is_zero() }
+    fn is_zero(&self) -> bool { self.x.is_zero() && self.y.is_zero() }
     #[inline]
-    pub fn zero() -> Self { Self { x: T::zero(), y: T::zero() } }
+    fn zero() -> Self { Self { x: T::zero(), y: T::zero() } }
 }
-impl<T> PolyVec2<T>
-where T : num_traits::One + PartialEq {
+impl<T: Zero> PolyVec2<T> {
     #[inline]
-    pub fn is_one(&self) -> bool { self.x.is_one() && self.y.is_one() }
+    pub fn is_zero(&self) -> bool { Zero::is_zero(self) }
     #[inline]
-    pub fn one() -> Self { Self { x: T::one(), y: T::one() }}
+    pub fn zero() -> Self { Zero::zero() }
 }
-
-impl<T> PolyVec3<T>
-where T : num_traits::Zero {
+impl<T: PartialEq + One> One for PolyVec2<T> {
     #[inline]
-    pub fn is_zero(&self) -> bool { self.x.is_zero() && self.y.is_zero() && self.z.is_zero() }
+    fn is_one(&self) -> bool { self.x.is_one() && self.y.is_one() }
     #[inline]
-    pub fn zero() -> Self { Self { x: T::zero(), y: T::zero(), z: T::zero() } }
+    fn one() -> Self { Self { x: T::one(), y: T::one() }}
 }
-impl<T> PolyVec3<T>
-where T : num_traits::One + PartialEq {
+impl<T: PartialEq + One> PolyVec2<T> {
     #[inline]
-    pub fn is_one(&self) -> bool { self.x.is_one() && self.y.is_one() && self.z.is_one() }
+    pub fn is_one(&self) -> bool { One::is_one(self) }
     #[inline]
-    pub fn
-    
-    one() -> Self { Self { x: T::one(), y: T::one(), z: T::one() } }
+    pub fn one() -> Self { One::one() }
 }
 
-impl<T> PolyVec4<T>
-where T : num_traits::Zero {
+impl<T: Zero> Zero for PolyVec3<T> {
     #[inline]
-    pub fn is_zero(&self) -> bool { self.x.is_zero() && self.y.is_zero() && self.z.is_zero() && self.w.is_zero() }
+    fn is_zero(&self) -> bool { self.x.is_zero() && self.y.is_zero() && self.z.is_zero() }
     #[inline]
-    pub fn zero() -> Self { Self { x: T::zero(), y: T::zero(), z: T::zero(), w: T::zero() } }
+    fn zero() -> Self { Self { x: T::zero(), y: T::zero(), z: T::zero() } }
+}
+impl<T: Zero> PolyVec3<T> {
+    #[inline]
+    pub fn is_zero(&self) -> bool { Zero::is_zero(self) }
+    #[inline]
+    pub fn zero() -> Self { Zero::zero() }
+}
+impl<T: One + PartialEq> One for PolyVec3<T> {
+    #[inline]
+    fn is_one(&self) -> bool { self.x.is_one() && self.y.is_one() && self.z.is_one() }
+    #[inline]
+    fn one() -> Self { Self { x: T::one(), y: T::one(), z: T::one() } }
+}
+impl<T: PartialEq + One> PolyVec3<T> {
+    #[inline]
+    pub fn is_one(&self) -> bool { One::is_one(self) }
+    #[inline]
+    pub fn one() -> Self { One::one() }
 }
 
-impl<T> PolyVec4<T>
-where T : num_traits::One + PartialEq {
+impl<T: Zero> Zero for PolyVec4<T> {
     #[inline]
-    pub fn is_one(&self) -> bool { self.x.is_one() && self.y.is_one() && self.z.is_one() && self.w.is_one() }
+    fn is_zero(&self) -> bool { self.x.is_zero() && self.y.is_zero() && self.z.is_zero() && self.w.is_zero() }
     #[inline]
-    pub fn one() -> Self { Self { x: T::one(), y: T::one(), z: T::one(), w: T::one() } }
+    fn zero() -> Self { Self { x: T::zero(), y: T::zero(), z: T::zero(), w: T::zero() } }
+}
+impl<T: Zero> PolyVec4<T> {
+    #[inline]
+    pub fn is_zero(&self) -> bool { Zero::is_zero(self) }
+    #[inline]
+    pub fn zero() -> Self { Zero::zero() }
+}
+impl<T: One + PartialEq> One for PolyVec4<T> {
+    #[inline]
+    fn is_one(&self) -> bool { self.x.is_one() && self.y.is_one() && self.z.is_one() && self.w.is_one() }
+    #[inline]
+    fn one() -> Self { Self { x: T::one(), y: T::one(), z: T::one(), w: T::one() } }
+}
+impl<T: PartialEq + One> PolyVec4<T> {
+    #[inline]
+    pub fn is_one(&self) -> bool { One::is_one(self) }
+    #[inline]
+    pub fn one() -> Self { One::one() }
 }
 
 // ---------- From/Into array ----------

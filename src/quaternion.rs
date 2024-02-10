@@ -27,14 +27,14 @@ impl Quaternion {
     }
 
     /// Creates a rotation Quaternion from euler angles in 3-2-1 order.
-    pub fn from_euler(euler: Vec3) -> Self {
+    pub fn euler(x: f32, y: f32, z: f32) -> Self {
         // Source: https://en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles#Source_code
-        let cr = (euler.x * 0.5).cos();
-        let sr = (euler.x * 0.5).sin();
-        let cp = (euler.y * 0.5).cos();
-        let sp = (euler.y * 0.5).sin();
-        let cy = (euler.z * 0.5).cos();
-        let sy = (euler.z * 0.5).sin();
+        let cr = (x * 0.5).cos();
+        let sr = (x * 0.5).sin();
+        let cp = (y * 0.5).cos();
+        let sp = (y * 0.5).sin();
+        let cy = (z * 0.5).cos();
+        let sy = (z * 0.5).sin();
 
         Self {
             w: cr * cp * cy + sr * sp * sy,
@@ -45,7 +45,7 @@ impl Quaternion {
     }
 
     #[must_use = "only calculates the euler vector"]
-    pub fn euler(self) -> Vec3 {
+    pub fn to_euler(self) -> Vec3 {
         // Source: https://en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles#Source_code_2
 
         // roll (x-axis rotation)
@@ -68,7 +68,7 @@ impl Quaternion {
 
     /// Retrieves the vector-part of the Quaternion: [x, y, z]
     #[must_use = "only retrieves the v-vector"]
-    pub fn v(self) -> Vec3 {
+    pub const fn v(self) -> Vec3 {
         Vec3::new(self.x, self.y, self.z)
     }
 
@@ -128,6 +128,7 @@ impl Quaternion {
         ((1.0 - t).sin() * o) / o.sin() * self + (t * o).sin() / o.sin() * other
     }
 }
+
 impl std::ops::Mul<Self> for Quaternion {
     type Output = Self;
 

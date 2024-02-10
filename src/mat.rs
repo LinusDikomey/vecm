@@ -28,7 +28,7 @@ impl<T, const M: usize, const N: usize> Mat<T, M, N> {
     }
     
     #[inline]
-    pub fn data_ptr(&self) -> *const T {
+    pub const fn data_ptr(&self) -> *const T {
         &self.data[0][0]
     }
 
