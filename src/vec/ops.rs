@@ -173,7 +173,7 @@ macro_rules! impl_ops {
     };
 }
 
-impl_ops!{
+impl_ops! {
     Add = add; AddAssign = add_assign,
     Sub = sub; SubAssign = sub_assign,
     Mul = mul; MulAssign = mul_assign,
@@ -186,23 +186,28 @@ impl_ops!{
     Shr = shr; ShrAssign = shr_assign
 }
 
-
 // ---------- magnitude mathematics ----------
 
-impl<T> PolyVec2<T> 
-where T : Add<T, Output = T> + Mul<T, Output = T> + Copy {
+impl<T> PolyVec2<T>
+where
+    T: Add<T, Output = T> + Mul<T, Output = T> + Copy,
+{
     #[inline]
     pub fn square_magnitude(&self) -> T {
         self.x * self.x + self.y * self.y
     }
     #[inline]
     pub fn magnitude(&self) -> T
-    where T: num_traits::Float {
+    where
+        T: num_traits::Float,
+    {
         self.square_magnitude().sqrt()
     }
     #[inline]
     pub fn normalized(&self) -> Self
-    where T: num_traits::Float + Div<T, Output = T> {
+    where
+        T: num_traits::Float + Div<T, Output = T>,
+    {
         let m = self.magnitude();
         if m.is_zero() {
             Self::zero()
@@ -212,25 +217,33 @@ where T : Add<T, Output = T> + Mul<T, Output = T> + Copy {
     }
     #[inline]
     pub fn normalize(&mut self)
-    where T: num_traits::Float + Div<T, Output = T> {
+    where
+        T: num_traits::Float + Div<T, Output = T>,
+    {
         *self = self.normalized();
     }
 }
 
-impl<T> PolyVec3<T> 
-where T : Add<T, Output = T> + Mul<T, Output = T> + Copy {
+impl<T> PolyVec3<T>
+where
+    T: Add<T, Output = T> + Mul<T, Output = T> + Copy,
+{
     #[inline]
     pub fn square_magnitude(&self) -> T {
         self.x * self.x + self.y * self.y + self.z * self.z
     }
     #[inline]
     pub fn magnitude(&self) -> T
-    where T: num_traits::Float {
+    where
+        T: num_traits::Float,
+    {
         self.square_magnitude().sqrt()
     }
     #[inline]
     pub fn normalized(&self) -> Self
-    where T: num_traits::Float + Div<T, Output = T> {
+    where
+        T: num_traits::Float + Div<T, Output = T>,
+    {
         let m = self.magnitude();
         if m.is_zero() {
             Self::zero()
@@ -240,25 +253,33 @@ where T : Add<T, Output = T> + Mul<T, Output = T> + Copy {
     }
     #[inline]
     pub fn normalize(&mut self)
-    where T: num_traits::Float + Div<T, Output = T> {
+    where
+        T: num_traits::Float + Div<T, Output = T>,
+    {
         *self = self.normalized();
     }
 }
 
-impl<T> PolyVec4<T> 
-where T : Add<T, Output = T> + Mul<T, Output = T> + Copy {
+impl<T> PolyVec4<T>
+where
+    T: Add<T, Output = T> + Mul<T, Output = T> + Copy,
+{
     #[inline]
     pub fn square_magnitude(&self) -> T {
         self.x * self.x + self.y * self.y + self.z * self.z + self.w * self.w
     }
     #[inline]
     pub fn magnitude(&self) -> T
-    where T: num_traits::Float {
+    where
+        T: num_traits::Float,
+    {
         self.square_magnitude().sqrt()
     }
     #[inline]
     pub fn normalized(&self) -> Self
-    where T: num_traits::Float + Div<T, Output = T> {
+    where
+        T: num_traits::Float + Div<T, Output = T>,
+    {
         let m = self.magnitude();
         if m.is_zero() {
             Self::zero()
@@ -268,7 +289,9 @@ where T : Add<T, Output = T> + Mul<T, Output = T> + Copy {
     }
     #[inline]
     pub fn normalize(&mut self)
-    where T: num_traits::Float + Div<T, Output = T> {
+    where
+        T: num_traits::Float + Div<T, Output = T>,
+    {
         *self = self.normalized();
     }
 }
@@ -298,7 +321,7 @@ macro_rules! trig {
     };
 }
 
-trig!{
+trig! {
     sin asin sinh asinh
     cos acos cosh acosh
     tan atan tanh atanh
@@ -307,8 +330,14 @@ trig!{
 
 // ---------- angle mathematics ----------
 
-impl<T> PolyVec2<T> 
-where T : Add<T, Output = T> + Mul<T, Output = T> + Div<T, Output = T> + num_traits::float::Float + Copy {
+impl<T> PolyVec2<T>
+where
+    T: Add<T, Output = T>
+        + Mul<T, Output = T>
+        + Div<T, Output = T>
+        + num_traits::float::Float
+        + Copy,
+{
     /// returns the angle between two vectors in radians
     #[inline]
     pub fn angle(&self, other: &Self) -> T {
@@ -321,12 +350,16 @@ where T : Add<T, Output = T> + Mul<T, Output = T> + Div<T, Output = T> + num_tra
     }
 }
 
-impl<T> PolyVec3<T> 
-where T : Add<T, Output = T> + Mul<T, Output = T> + Div<T, Output = T> + num_traits::Float + Copy {
+impl<T> PolyVec3<T>
+where
+    T: Add<T, Output = T> + Mul<T, Output = T> + Div<T, Output = T> + num_traits::Float + Copy,
+{
     /// returns the angle between two vectors in radians
     #[inline]
     pub fn angle(&self, other: &Self) -> T {
-        ((self.x * other.x + self.y * other.y + self.z * other.z) / (self.magnitude() * other.magnitude())).acos()
+        ((self.x * other.x + self.y * other.y + self.z * other.z)
+            / (self.magnitude() * other.magnitude()))
+        .acos()
     }
     /// returns the angle between two vectors in degrees and assumes that both vectors have a length of 1 to simplify the calculation
     #[inline]
@@ -335,12 +368,16 @@ where T : Add<T, Output = T> + Mul<T, Output = T> + Div<T, Output = T> + num_tra
     }
 }
 
-impl<T> PolyVec4<T> 
-where T : Add<T, Output = T> + Mul<T, Output = T> + Div<T, Output = T> + num_traits::Float + Copy {
+impl<T> PolyVec4<T>
+where
+    T: Add<T, Output = T> + Mul<T, Output = T> + Div<T, Output = T> + num_traits::Float + Copy,
+{
     /// returns the angle between two vectors in radians
     #[inline]
     pub fn angle(&self, other: &Self) -> T {
-        ((self.x * other.x + self.y * other.y + self.z * other.z + self.w * other.w) / (self.magnitude() * other.magnitude())).acos()
+        ((self.x * other.x + self.y * other.y + self.z * other.z + self.w * other.w)
+            / (self.magnitude() * other.magnitude()))
+        .acos()
     }
     /// returns the angle between two vectors in degrees and assumes that both vectors have a length of 1 to simplify the calculation
     #[inline]
@@ -351,38 +388,56 @@ where T : Add<T, Output = T> + Mul<T, Output = T> + Div<T, Output = T> + num_tra
 
 // ---------- negate ----------
 
-impl<T> Neg for PolyVec2<T> 
-    where T: Neg {
+impl<T> Neg for PolyVec2<T>
+where
+    T: Neg,
+{
     type Output = PolyVec2<<T as Neg>::Output>;
     #[inline]
     fn neg(self) -> Self::Output {
-        Self::Output { x: -self.x, y: -self.y }
+        Self::Output {
+            x: -self.x,
+            y: -self.y,
+        }
     }
 }
 
-impl<T> Neg for PolyVec3<T> 
-    where T: Neg {
+impl<T> Neg for PolyVec3<T>
+where
+    T: Neg,
+{
     type Output = PolyVec3<<T as Neg>::Output>;
     #[inline]
     fn neg(self) -> Self::Output {
-        Self::Output { x: -self.x, y: -self.y, z: -self.z }
+        Self::Output {
+            x: -self.x,
+            y: -self.y,
+            z: -self.z,
+        }
     }
 }
 
-impl<T> Neg for PolyVec4<T> 
-    where T: Neg {
+impl<T> Neg for PolyVec4<T>
+where
+    T: Neg,
+{
     type Output = PolyVec4<<T as Neg>::Output>;
 
     #[inline]
     fn neg(self) -> Self::Output {
-        Self::Output { x: -self.x, y: -self.y, z: -self.z, w: -self.w }
+        Self::Output {
+            x: -self.x,
+            y: -self.y,
+            z: -self.z,
+            w: -self.w,
+        }
     }
 }
 
 // cross
 impl<T> PolyVec3<T>
 where
-    T: Mul<T, Output = T> + Sub<T, Output = T> + Copy
+    T: Mul<T, Output = T> + Sub<T, Output = T> + Copy,
 {
     #[inline]
     pub fn cross(self, other: Self) -> Self {
@@ -393,4 +448,3 @@ where
         }
     }
 }
-

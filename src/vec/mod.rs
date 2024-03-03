@@ -1,8 +1,7 @@
 pub mod ops;
 
+use num_traits::{One, Zero};
 use std::{default::Default, fmt};
-use num_traits::{Zero, One};
-
 
 pub trait X<T> {
     fn x(&self) -> &T;
@@ -21,7 +20,7 @@ pub trait W<T> {
     fn set_w(&mut self, w: T);
 }
 
-/// Used for From/Into conversions of Vector components. For primitive conversions, look at [`VecFrom`]/[`VecInto`] 
+/// Used for From/Into conversions of Vector components. For primitive conversions, look at [`VecFrom`]/[`VecInto`]
 pub trait Convert<T> {
     fn convert(self) -> T;
 }
@@ -33,7 +32,7 @@ pub trait Convert<T> {
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct PolyVec2<T> {
     pub x: T,
-    pub y: T
+    pub y: T,
 }
 
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -42,7 +41,7 @@ pub struct PolyVec2<T> {
 pub struct PolyVec3<T> {
     pub x: T,
     pub y: T,
-    pub z: T
+    pub z: T,
 }
 
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -52,7 +51,7 @@ pub struct PolyVec4<T> {
     pub x: T,
     pub y: T,
     pub z: T,
-    pub w: T
+    pub w: T,
 }
 
 // ---------- Component traits ----------
@@ -64,7 +63,7 @@ macro_rules! impl_comps {
                 #[inline(always)]
                 fn $comp(&self) -> &T { &self.$comp }
                 fn $set(&mut self, v: T) { self.$comp = v; }
-            }  
+            }
         )*
     };
 }
@@ -82,7 +81,9 @@ impl<T> PolyVec2<T> {
     }
     #[inline]
     pub const fn fill(val: T) -> Self
-        where T: Copy {
+    where
+        T: Copy,
+    {
         Self { x: val, y: val }
     }
 }
@@ -90,24 +91,37 @@ impl<T> PolyVec2<T> {
 impl<T> PolyVec3<T> {
     #[inline]
     pub const fn new(x: T, y: T, z: T) -> PolyVec3<T> {
-        PolyVec3 {x, y, z}
+        PolyVec3 { x, y, z }
     }
     #[inline]
     pub const fn fill(val: T) -> Self
-        where T: Copy {
-        Self { x: val, y: val, z: val }
+    where
+        T: Copy,
+    {
+        Self {
+            x: val,
+            y: val,
+            z: val,
+        }
     }
 }
 
 impl<T> PolyVec4<T> {
     #[inline]
     pub const fn new(x: T, y: T, z: T, w: T) -> PolyVec4<T> {
-        PolyVec4 {x, y, z, w}
+        PolyVec4 { x, y, z, w }
     }
     #[inline]
-    pub const fn fill(val: T) -> Self where
-    T: Copy {
-        Self { x: val, y: val, z: val, w: val }
+    pub const fn fill(val: T) -> Self
+    where
+        T: Copy,
+    {
+        Self {
+            x: val,
+            y: val,
+            z: val,
+            w: val,
+        }
     }
 }
 
@@ -115,106 +129,246 @@ impl<T> PolyVec4<T> {
 
 #[macro_export]
 macro_rules! vec2 {
-    ($v: expr) => { $crate::vec::PolyVec2 { x: $v, y: $v } };
-    ($x: expr, ..) => { $crate::vec::PolyVec2 { x: $x, y: Default::default() } };
-    ($x: expr, $y: expr) => { $crate::vec::PolyVec2 { x: $x, y: $y } };
+    ($v: expr) => {
+        $crate::vec::PolyVec2 { x: $v, y: $v }
+    };
+    ($x: expr, ..) => {
+        $crate::vec::PolyVec2 {
+            x: $x,
+            y: Default::default(),
+        }
+    };
+    ($x: expr, $y: expr) => {
+        $crate::vec::PolyVec2 { x: $x, y: $y }
+    };
 }
 pub use vec2;
 
 #[macro_export]
 macro_rules! vec3 {
-    ($v: expr) => { $crate::vec::PolyVec3 { x: $v, y: $v, z: $v } };
-    ($x: expr, ..) => { $crate::vec::PolyVec3 { x: $x, y: Default::default(), z: Default::default() } };
-    ($x: expr, $y: expr, ..) => { $crate::vec::PolyVec3 { x: $x, y: $y, z: Default::default() } };
-    ($x: expr, $y: expr, $z: expr) => { $crate::vec::PolyVec3 { x: $x, y: $y, z: $z } };
+    ($v: expr) => {
+        $crate::vec::PolyVec3 {
+            x: $v,
+            y: $v,
+            z: $v,
+        }
+    };
+    ($x: expr, ..) => {
+        $crate::vec::PolyVec3 {
+            x: $x,
+            y: Default::default(),
+            z: Default::default(),
+        }
+    };
+    ($x: expr, $y: expr, ..) => {
+        $crate::vec::PolyVec3 {
+            x: $x,
+            y: $y,
+            z: Default::default(),
+        }
+    };
+    ($x: expr, $y: expr, $z: expr) => {
+        $crate::vec::PolyVec3 {
+            x: $x,
+            y: $y,
+            z: $z,
+        }
+    };
 }
 pub use vec3;
 
 #[macro_export]
 macro_rules! vec4 {
-    ($v: expr) => { $crate::vec::PolyVec4 { x: $v, y: $v, z: $v } };
-    ($x: expr, ..) => { $crate::vec::PolyVec4 { x: $x, y: Default::default(), z: Default::default(), w: Default::default() } };
-    ($x: expr, $y: expr, ..) => { $crate::vec::PolyVec4 { x: $x, y: $y, z: Default::default(), w: Default::default() } };
-    ($x: expr, $y: expr, $z: expr, ..) => { $crate::vec::PolyVec4 { x: $x, y: $y, z: $z, w: Default::default() } };
-    ($x: expr, $y: expr, $z: expr, $w: expr) => { $crate::vec::PolyVec4 { x: $x, y: $y, z: $z, w: $w } };
+    ($v: expr) => {
+        $crate::vec::PolyVec4 {
+            x: $v,
+            y: $v,
+            z: $v,
+        }
+    };
+    ($x: expr, ..) => {
+        $crate::vec::PolyVec4 {
+            x: $x,
+            y: Default::default(),
+            z: Default::default(),
+            w: Default::default(),
+        }
+    };
+    ($x: expr, $y: expr, ..) => {
+        $crate::vec::PolyVec4 {
+            x: $x,
+            y: $y,
+            z: Default::default(),
+            w: Default::default(),
+        }
+    };
+    ($x: expr, $y: expr, $z: expr, ..) => {
+        $crate::vec::PolyVec4 {
+            x: $x,
+            y: $y,
+            z: $z,
+            w: Default::default(),
+        }
+    };
+    ($x: expr, $y: expr, $z: expr, $w: expr) => {
+        $crate::vec::PolyVec4 {
+            x: $x,
+            y: $y,
+            z: $z,
+            w: $w,
+        }
+    };
 }
 pub use vec4;
 
 // ---------- zero/one ----------
+// the following implementations duplicate `zero`/`is_zero` because it allows calling the functions without importing the `Zero` trait. The same is done for `One`.
 
 impl<T: Zero> Zero for PolyVec2<T> {
     #[inline]
-    fn is_zero(&self) -> bool { self.x.is_zero() && self.y.is_zero() }
+    fn is_zero(&self) -> bool {
+        self.x.is_zero() && self.y.is_zero()
+    }
     #[inline]
-    fn zero() -> Self { Self { x: T::zero(), y: T::zero() } }
+    fn zero() -> Self {
+        Self {
+            x: T::zero(),
+            y: T::zero(),
+        }
+    }
 }
 impl<T: Zero> PolyVec2<T> {
     #[inline]
-    pub fn is_zero(&self) -> bool { Zero::is_zero(self) }
+    pub fn is_zero(&self) -> bool {
+        Zero::is_zero(self)
+    }
     #[inline]
-    pub fn zero() -> Self { Zero::zero() }
+    pub fn zero() -> Self {
+        Zero::zero()
+    }
 }
 impl<T: PartialEq + One> One for PolyVec2<T> {
     #[inline]
-    fn is_one(&self) -> bool { self.x.is_one() && self.y.is_one() }
+    fn is_one(&self) -> bool {
+        self.x.is_one() && self.y.is_one()
+    }
     #[inline]
-    fn one() -> Self { Self { x: T::one(), y: T::one() }}
+    fn one() -> Self {
+        Self {
+            x: T::one(),
+            y: T::one(),
+        }
+    }
 }
 impl<T: PartialEq + One> PolyVec2<T> {
     #[inline]
-    pub fn is_one(&self) -> bool { One::is_one(self) }
+    pub fn is_one(&self) -> bool {
+        One::is_one(self)
+    }
     #[inline]
-    pub fn one() -> Self { One::one() }
+    pub fn one() -> Self {
+        One::one()
+    }
 }
 
 impl<T: Zero> Zero for PolyVec3<T> {
     #[inline]
-    fn is_zero(&self) -> bool { self.x.is_zero() && self.y.is_zero() && self.z.is_zero() }
+    fn is_zero(&self) -> bool {
+        self.x.is_zero() && self.y.is_zero() && self.z.is_zero()
+    }
     #[inline]
-    fn zero() -> Self { Self { x: T::zero(), y: T::zero(), z: T::zero() } }
+    fn zero() -> Self {
+        Self {
+            x: T::zero(),
+            y: T::zero(),
+            z: T::zero(),
+        }
+    }
 }
 impl<T: Zero> PolyVec3<T> {
     #[inline]
-    pub fn is_zero(&self) -> bool { Zero::is_zero(self) }
+    pub fn is_zero(&self) -> bool {
+        Zero::is_zero(self)
+    }
     #[inline]
-    pub fn zero() -> Self { Zero::zero() }
+    pub fn zero() -> Self {
+        Zero::zero()
+    }
 }
 impl<T: One + PartialEq> One for PolyVec3<T> {
     #[inline]
-    fn is_one(&self) -> bool { self.x.is_one() && self.y.is_one() && self.z.is_one() }
+    fn is_one(&self) -> bool {
+        self.x.is_one() && self.y.is_one() && self.z.is_one()
+    }
     #[inline]
-    fn one() -> Self { Self { x: T::one(), y: T::one(), z: T::one() } }
+    fn one() -> Self {
+        Self {
+            x: T::one(),
+            y: T::one(),
+            z: T::one(),
+        }
+    }
 }
 impl<T: PartialEq + One> PolyVec3<T> {
     #[inline]
-    pub fn is_one(&self) -> bool { One::is_one(self) }
+    pub fn is_one(&self) -> bool {
+        One::is_one(self)
+    }
     #[inline]
-    pub fn one() -> Self { One::one() }
+    pub fn one() -> Self {
+        One::one()
+    }
 }
 
 impl<T: Zero> Zero for PolyVec4<T> {
     #[inline]
-    fn is_zero(&self) -> bool { self.x.is_zero() && self.y.is_zero() && self.z.is_zero() && self.w.is_zero() }
+    fn is_zero(&self) -> bool {
+        self.x.is_zero() && self.y.is_zero() && self.z.is_zero() && self.w.is_zero()
+    }
     #[inline]
-    fn zero() -> Self { Self { x: T::zero(), y: T::zero(), z: T::zero(), w: T::zero() } }
+    fn zero() -> Self {
+        Self {
+            x: T::zero(),
+            y: T::zero(),
+            z: T::zero(),
+            w: T::zero(),
+        }
+    }
 }
 impl<T: Zero> PolyVec4<T> {
     #[inline]
-    pub fn is_zero(&self) -> bool { Zero::is_zero(self) }
+    pub fn is_zero(&self) -> bool {
+        Zero::is_zero(self)
+    }
     #[inline]
-    pub fn zero() -> Self { Zero::zero() }
+    pub fn zero() -> Self {
+        Zero::zero()
+    }
 }
 impl<T: One + PartialEq> One for PolyVec4<T> {
     #[inline]
-    fn is_one(&self) -> bool { self.x.is_one() && self.y.is_one() && self.z.is_one() && self.w.is_one() }
+    fn is_one(&self) -> bool {
+        self.x.is_one() && self.y.is_one() && self.z.is_one() && self.w.is_one()
+    }
     #[inline]
-    fn one() -> Self { Self { x: T::one(), y: T::one(), z: T::one(), w: T::one() } }
+    fn one() -> Self {
+        Self {
+            x: T::one(),
+            y: T::one(),
+            z: T::one(),
+            w: T::one(),
+        }
+    }
 }
 impl<T: PartialEq + One> PolyVec4<T> {
     #[inline]
-    pub fn is_one(&self) -> bool { One::is_one(self) }
+    pub fn is_one(&self) -> bool {
+        One::is_one(self)
+    }
     #[inline]
-    pub fn one() -> Self { One::one() }
+    pub fn one() -> Self {
+        One::one()
+    }
 }
 
 // ---------- From/Into array ----------
@@ -293,7 +447,9 @@ impl<T> From<PolyVec4<T>> for (T, T, T, T) {
 // ---------- display ----------
 
 impl<T> fmt::Display for PolyVec2<T>
-where T: fmt::Display {
+where
+    T: fmt::Display,
+{
     #[inline]
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "[{}, {}]", self.x, self.y)
@@ -301,7 +457,9 @@ where T: fmt::Display {
 }
 
 impl<T> fmt::Display for PolyVec3<T>
-where T: fmt::Display {
+where
+    T: fmt::Display,
+{
     #[inline]
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "[{}, {}, {}]", self.x, self.y, self.z)
@@ -309,7 +467,9 @@ where T: fmt::Display {
 }
 
 impl<T> fmt::Display for PolyVec4<T>
-where T: fmt::Display {
+where
+    T: fmt::Display,
+{
     #[inline]
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "[{}, {}, {}, {}]", self.x, self.y, self.z, self.w)
@@ -319,35 +479,40 @@ where T: fmt::Display {
 // ---------- From/Into conversions ----------
 
 impl<T, U> Convert<PolyVec2<U>> for PolyVec2<T>
-where T: Into<U> {
+where
+    T: Into<U>,
+{
     fn convert(self) -> PolyVec2<U> {
         PolyVec2 {
             x: self.x.into(),
-            y: self.y.into()
+            y: self.y.into(),
         }
     }
 }
 
 impl<T, U> Convert<PolyVec3<U>> for PolyVec3<T>
-where T: Into<U> {
+where
+    T: Into<U>,
+{
     fn convert(self) -> PolyVec3<U> {
         PolyVec3 {
             x: self.x.into(),
             y: self.y.into(),
-            z: self.z.into()
+            z: self.z.into(),
         }
     }
 }
 
-
 impl<T, U> Convert<PolyVec4<U>> for PolyVec4<T>
-where T: Into<U> {
+where
+    T: Into<U>,
+{
     fn convert(self) -> PolyVec4<U> {
         PolyVec4 {
             x: self.x.into(),
             y: self.y.into(),
             z: self.z.into(),
-            w: self.w.into()
+            w: self.w.into(),
         }
     }
 }
@@ -381,15 +546,19 @@ pub trait VecInto<I> {
     fn vec_into(self) -> I;
 }
 
-impl<F, I> VecFrom<F> for I 
-where I: From<F> {
+impl<F, I> VecFrom<F> for I
+where
+    I: From<F>,
+{
     fn vec_from(f: F) -> Self {
         f.into()
     }
 }
 
 impl<F, I> VecInto<I> for F
-where I: VecFrom<F> {
+where
+    I: VecFrom<F>,
+{
     fn vec_into(self) -> I {
         I::vec_from(self)
     }
@@ -490,7 +659,7 @@ impl_vec_as! {
     i128 => u32,
     f32  => u32,
     f64  => u32,
-    
+
     u8   => u64,
     u16  => u64,
     u32  => u64,
@@ -550,7 +719,7 @@ impl_vec_as! {
     i128 => i32,
     f32  => i32,
     f64  => i32,
-    
+
     u8   => i64,
     u16  => i64,
     u32  => i64,
@@ -576,14 +745,18 @@ impl_vec_as! {
     f64  => i128
 }
 
-
 // ---------- binverse implementations ----------
 
 #[cfg(feature = "binverse")]
 impl<T, W: std::io::Write> binverse::serialize::Serialize<W> for PolyVec2<T>
-where T: binverse::serialize::Serialize<W> {
+where
+    T: binverse::serialize::Serialize<W>,
+{
     #[inline]
-    fn serialize(&self, s: &mut binverse::streams::Serializer<W>) -> binverse::error::BinverseResult<()> {
+    fn serialize(
+        &self,
+        s: &mut binverse::streams::Serializer<W>,
+    ) -> binverse::error::BinverseResult<()> {
         self.x.serialize(s)?;
         self.y.serialize(s)?;
         Ok(())
@@ -591,21 +764,30 @@ where T: binverse::serialize::Serialize<W> {
 }
 #[cfg(feature = "binverse")]
 impl<T, R: std::io::Read> binverse::serialize::Deserialize<R> for PolyVec2<T>
-where T: binverse::serialize::Deserialize<R> {
+where
+    T: binverse::serialize::Deserialize<R>,
+{
     #[inline]
-    fn deserialize(d: &mut binverse::streams::Deserializer<R>) -> binverse::error::BinverseResult<Self> {
+    fn deserialize(
+        d: &mut binverse::streams::Deserializer<R>,
+    ) -> binverse::error::BinverseResult<Self> {
         Ok(Self {
             x: d.deserialize()?,
-            y: d.deserialize()?
+            y: d.deserialize()?,
         })
     }
 }
 
 #[cfg(feature = "binverse")]
 impl<T, W: std::io::Write> binverse::serialize::Serialize<W> for PolyVec3<T>
-where T: binverse::serialize::Serialize<W> {
+where
+    T: binverse::serialize::Serialize<W>,
+{
     #[inline]
-    fn serialize(&self, s: &mut binverse::streams::Serializer<W>) -> binverse::error::BinverseResult<()> {
+    fn serialize(
+        &self,
+        s: &mut binverse::streams::Serializer<W>,
+    ) -> binverse::error::BinverseResult<()> {
         self.x.serialize(s)?;
         self.y.serialize(s)?;
         self.z.serialize(s)?;
@@ -614,9 +796,13 @@ where T: binverse::serialize::Serialize<W> {
 }
 #[cfg(feature = "binverse")]
 impl<T, R: std::io::Read> binverse::serialize::Deserialize<R> for PolyVec3<T>
-where T: binverse::serialize::Deserialize<R> {
+where
+    T: binverse::serialize::Deserialize<R>,
+{
     #[inline]
-    fn deserialize(d: &mut binverse::streams::Deserializer<R>) -> binverse::error::BinverseResult<Self> {
+    fn deserialize(
+        d: &mut binverse::streams::Deserializer<R>,
+    ) -> binverse::error::BinverseResult<Self> {
         Ok(Self {
             x: d.deserialize()?,
             y: d.deserialize()?,
@@ -627,9 +813,14 @@ where T: binverse::serialize::Deserialize<R> {
 
 #[cfg(feature = "binverse")]
 impl<T, W: std::io::Write> binverse::serialize::Serialize<W> for PolyVec4<T>
-where T: binverse::serialize::Serialize<W> {
+where
+    T: binverse::serialize::Serialize<W>,
+{
     #[inline]
-    fn serialize(&self, s: &mut binverse::streams::Serializer<W>) -> binverse::error::BinverseResult<()> {
+    fn serialize(
+        &self,
+        s: &mut binverse::streams::Serializer<W>,
+    ) -> binverse::error::BinverseResult<()> {
         self.x.serialize(s)?;
         self.y.serialize(s)?;
         self.z.serialize(s)?;
@@ -639,9 +830,13 @@ where T: binverse::serialize::Serialize<W> {
 }
 #[cfg(feature = "binverse")]
 impl<T, R: std::io::Read> binverse::serialize::Deserialize<R> for PolyVec4<T>
-where T: binverse::serialize::Deserialize<R> {
+where
+    T: binverse::serialize::Deserialize<R>,
+{
     #[inline]
-    fn deserialize(d: &mut binverse::streams::Deserializer<R>) -> binverse::error::BinverseResult<Self> {
+    fn deserialize(
+        d: &mut binverse::streams::Deserializer<R>,
+    ) -> binverse::error::BinverseResult<Self> {
         Ok(Self {
             x: d.deserialize()?,
             y: d.deserialize()?,

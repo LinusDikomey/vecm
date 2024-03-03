@@ -1,5 +1,4 @@
-use crate::{vec::Vec3, mat::Mat4x4};
-
+use crate::{mat::Mat4x4, vec::Vec3};
 
 #[derive(Clone, Copy, Debug, PartialEq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
@@ -11,7 +10,12 @@ pub struct Quaternion {
 }
 impl Default for Quaternion {
     fn default() -> Self {
-        Self { x: 0.0, y: 0.0, z: 0.0, w: 1.0 }
+        Self {
+            x: 0.0,
+            y: 0.0,
+            z: 0.0,
+            w: 1.0,
+        }
     }
 }
 impl Quaternion {
@@ -77,11 +81,26 @@ impl Quaternion {
     #[must_use = "only calculates the rotation matrix"]
     pub fn matrix(&self) -> Mat4x4 {
         let &Quaternion { x, y, z, w } = self;
-         Mat4x4::new([
-            [1.0 - 2.0 * y * y - 2.0 * z * z, 2.0 * x * y - 2.0 * w * z      , 2.0 * x * z + 2.0 * w * y      , 0.0],
-            [2.0 * x * y + 2.0 * w * z      , 1.0 - 2.0 * x * x - 2.0 * z * z, 2.0 * y * z - 2.0 * w * x      , 0.0],
-            [2.0 * x * z - 2.0 * w * y      , 2.0 * y * z + 2.0 * w * x      , 1.0 - 2.0 * x * x - 2.0 * y * y, 0.0],
-            [0.0                            , 0.0                            , 0.0                            , 1.0],
+        Mat4x4::new([
+            [
+                1.0 - 2.0 * y * y - 2.0 * z * z,
+                2.0 * x * y - 2.0 * w * z,
+                2.0 * x * z + 2.0 * w * y,
+                0.0,
+            ],
+            [
+                2.0 * x * y + 2.0 * w * z,
+                1.0 - 2.0 * x * x - 2.0 * z * z,
+                2.0 * y * z - 2.0 * w * x,
+                0.0,
+            ],
+            [
+                2.0 * x * z - 2.0 * w * y,
+                2.0 * y * z + 2.0 * w * x,
+                1.0 - 2.0 * x * x - 2.0 * y * y,
+                0.0,
+            ],
+            [0.0, 0.0, 0.0, 1.0],
         ])
     }
 
@@ -238,7 +257,10 @@ impl std::ops::Mul<Quaternion> for Vec3 {
 #[cfg(feature = "binverse")]
 impl<W: std::io::Write> binverse::serialize::Serialize<W> for Quaternion {
     #[inline]
-    fn serialize(&self, s: &mut binverse::streams::Serializer<W>) -> binverse::error::BinverseResult<()> {
+    fn serialize(
+        &self,
+        s: &mut binverse::streams::Serializer<W>,
+    ) -> binverse::error::BinverseResult<()> {
         self.w.serialize(s)?;
         self.x.serialize(s)?;
         self.y.serialize(s)?;
@@ -248,7 +270,9 @@ impl<W: std::io::Write> binverse::serialize::Serialize<W> for Quaternion {
 #[cfg(feature = "binverse")]
 impl<R: std::io::Read> binverse::serialize::Deserialize<R> for Quaternion {
     #[inline]
-    fn deserialize(d: &mut binverse::streams::Deserializer<R>) -> binverse::error::BinverseResult<Self> {
+    fn deserialize(
+        d: &mut binverse::streams::Deserializer<R>,
+    ) -> binverse::error::BinverseResult<Self> {
         Ok(Self {
             w: d.deserialize()?,
             x: d.deserialize()?,
@@ -257,4 +281,3 @@ impl<R: std::io::Read> binverse::serialize::Deserialize<R> for Quaternion {
         })
     }
 }
-

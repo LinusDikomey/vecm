@@ -1,21 +1,18 @@
 //! NOTE: matrices are in column-major order.
 
-use std::{ops::*, mem::MaybeUninit};
-use num_traits::{Zero, One};
 use crate::{vec::*, Quaternion};
-
-
+use num_traits::{One, Zero};
+use std::{mem::MaybeUninit, ops::*};
 
 pub type Mat4x4 = Mat<f32, 4, 4>;
 
 #[derive(Copy, Clone, Debug, PartialEq, Eq)]
 #[repr(C)]
 pub struct Mat<T, const M: usize, const N: usize> {
-    data: [[T; M]; N]
+    data: [[T; M]; N],
 }
 
 impl<T, const M: usize, const N: usize> Mat<T, M, N> {
-
     #[inline]
     pub fn new(input: [[T; N]; M]) -> Self {
         let mut data: MaybeUninit<[[T; M]; N]> = std::mem::MaybeUninit::uninit();
@@ -24,9 +21,11 @@ impl<T, const M: usize, const N: usize> Mat<T, M, N> {
                 unsafe { (*data.as_mut_ptr())[n][m] = v };
             }
         }
-        Self { data: unsafe { data.assume_init() } }
+        Self {
+            data: unsafe { data.assume_init() },
+        }
     }
-    
+
     #[inline]
     pub const fn data_ptr(&self) -> *const T {
         &self.data[0][0]
@@ -36,10 +35,14 @@ impl<T, const M: usize, const N: usize> Mat<T, M, N> {
         let mut data: MaybeUninit<[[T; N]; M]> = MaybeUninit::uninit();
         for (x, row) in self.data.into_iter().enumerate() {
             for (y, item) in row.into_iter().enumerate() {
-                unsafe { (*data.as_mut_ptr())[y][x] = item; }
+                unsafe {
+                    (*data.as_mut_ptr())[y][x] = item;
+                }
             }
         }
-        Mat { data: unsafe { data.assume_init() } }
+        Mat {
+            data: unsafe { data.assume_init() },
+        }
     }
 }
 
@@ -60,7 +63,9 @@ impl<T, const M: usize, const N: usize> IndexMut<usize> for Mat<T, M, N> {
 impl<T: Zero + Copy, const M: usize, const N: usize> Mat<T, M, N> {
     #[inline]
     pub fn zero() -> Self {
-        Self { data: [[T::zero(); M]; N] }
+        Self {
+            data: [[T::zero(); M]; N],
+        }
     }
 }
 
@@ -93,19 +98,34 @@ impl Mat<f32, 4, 4> {
         let x_scale = y_scale / aspect_ratio;
         let frustrum_length = far_plane - near_plane;
         Self::new([
-            [x_scale, 0.0    ,  0.0                                         , 0.0],
-            [0.0    , y_scale,  0.0                                         , 0.0],
-            [0.0    , 0.0    , -((far_plane + near_plane) / frustrum_length), -((2.0 * far_plane * near_plane) / frustrum_length)],
-            [0.0    , 0.0    , -1.0                                         , 0.0],
+            [x_scale, 0.0, 0.0, 0.0],
+            [0.0, y_scale, 0.0, 0.0],
+            [
+                0.0,
+                0.0,
+                -((far_plane + near_plane) / frustrum_length),
+                -((2.0 * far_plane * near_plane) / frustrum_length),
+            ],
+            [0.0, 0.0, -1.0, 0.0],
         ])
     }
     #[inline]
     pub fn ortho(left: f32, right: f32, bottom: f32, top: f32, near: f32, far: f32) -> Self {
         Self::new([
-            [2.0 / (right - left), 0.0, 0.0, -((right + left) / (right - left))],
-            [0.0, 2.0 / (top - bottom), 0.0, (top + bottom) / (top - bottom)],
+            [
+                2.0 / (right - left),
+                0.0,
+                0.0,
+                -((right + left) / (right - left)),
+            ],
+            [
+                0.0,
+                2.0 / (top - bottom),
+                0.0,
+                (top + bottom) / (top - bottom),
+            ],
             [0.0, 0.0, -2.0 / (far - near), (far + near) / (far - near)],
-            [0.0, 0.0, 0.0, 1.0]
+            [0.0, 0.0, 0.0, 1.0],
         ])
     }
     #[inline]
@@ -131,28 +151,28 @@ impl Mat<f32, 4, 4> {
     #[inline]
     pub fn rx(r: f32) -> Self {
         Self::new([
-            [1.0, 0.0 , 0.0, 0.0],
+            [1.0, 0.0, 0.0, 0.0],
             [0.0, r.cos(), r.sin(), 0.0],
             [0.0, -r.sin(), r.cos(), 0.0],
-            [0.0, 0.0, 0.0, 1.0]
+            [0.0, 0.0, 0.0, 1.0],
         ])
     }
     #[inline]
     pub fn ry(r: f32) -> Self {
         Self::new([
-            [r.cos(), 0.0 , -r.sin(), 0.0],
+            [r.cos(), 0.0, -r.sin(), 0.0],
             [0.0, 1.0, 0.0, 0.0],
             [r.sin(), 0.0, r.cos(), 0.0],
-            [0.0, 0.0, 0.0, 1.0]
+            [0.0, 0.0, 0.0, 1.0],
         ])
     }
     #[inline]
     pub fn rz(r: f32) -> Self {
         Self::new([
-            [r.cos(), -r.sin() , 0.0, 0.0],
+            [r.cos(), -r.sin(), 0.0, 0.0],
             [r.sin(), r.cos(), 0.0, 0.0],
             [0.0, 0.0, 1.0, 0.0],
-            [0.0, 0.0, 0.0, 1.0]
+            [0.0, 0.0, 0.0, 1.0],
         ])
     }
     #[inline]
@@ -183,7 +203,6 @@ impl<T: std::fmt::Display, const M: usize, const N: usize> std::fmt::Display for
         }
         Ok(())
     }
-
 }
 
 impl<T: Zero + Copy, const M: usize, const N: usize> Add<Self> for Mat<T, M, N> {
@@ -212,7 +231,9 @@ impl<T: AddAssign + Clone, const N: usize, const M: usize> AddAssign<Self> for M
     }
 }
 
-impl<T: Zero + Copy + Add + Mul<Output = T>, const L: usize, const M: usize, const N: usize> Mul<Mat<T, M, N>> for Mat<T, L, M> {
+impl<T: Zero + Copy + Add + Mul<Output = T>, const L: usize, const M: usize, const N: usize>
+    Mul<Mat<T, M, N>> for Mat<T, L, M>
+{
     type Output = Mat<T, L, N>;
     #[inline]
     fn mul(self, b: Mat<T, M, N>) -> Self::Output {
@@ -238,22 +259,27 @@ impl<T: AddAssign> AddAssign<PolyVec3<T>> for Mat<T, 4, 4> {
     }
 }
 
-
-
 // binverse serialization
 
 #[cfg(feature = "binverse")]
 impl<W: std::io::Write> binverse::serialize::Serialize<W> for Mat4x4 {
     #[inline]
-    fn serialize(&self, s: &mut binverse::streams::Serializer<W>) -> binverse::error::BinverseResult<()> {
+    fn serialize(
+        &self,
+        s: &mut binverse::streams::Serializer<W>,
+    ) -> binverse::error::BinverseResult<()> {
         self.data.serialize(s)
     }
 }
 #[cfg(feature = "binverse")]
 impl<R: std::io::Read> binverse::serialize::Deserialize<R> for Mat4x4 {
     #[inline]
-    fn deserialize(d: &mut binverse::streams::Deserializer<R>) -> binverse::error::BinverseResult<Self> {
-        Ok(Self { data: d.deserialize()? })
+    fn deserialize(
+        d: &mut binverse::streams::Deserializer<R>,
+    ) -> binverse::error::BinverseResult<Self> {
+        Ok(Self {
+            data: d.deserialize()?,
+        })
     }
 }
 
@@ -289,7 +315,7 @@ macro_rules! serde_mat {
 }
 
 #[cfg(feature = "serde")]
-serde_mat!{
+serde_mat! {
     1, 1
     2, 2
     3, 3
@@ -304,67 +330,40 @@ mod tests {
 
     #[test]
     fn matrix_multiplication() {
-        let a = Mat::new([
-            [1, 2, 3],
-            [5, 6, 7]
-        ]);
+        let a = Mat::new([[1, 2, 3], [5, 6, 7]]);
 
-        let b = Mat::new([
-            [2, 3, 4, 5],
-            [6, 7, 8, 9],
-            [10, 11, 12, 13]
-        ]);
+        let b = Mat::new([[2, 3, 4, 5], [6, 7, 8, 9], [10, 11, 12, 13]]);
 
-        assert_eq!(a*b, Mat::new([
-            [44, 50, 56, 62],
-            [116, 134, 152, 170],
-        ]));
+        assert_eq!(a * b, Mat::new([[44, 50, 56, 62], [116, 134, 152, 170],]));
     }
 
     #[test]
     fn power() {
-        let a = Mat::new([
-            [1, 2, 3],
-            [4, 5, 6],
-            [7, 8, 9],
-        ]);
+        let a = Mat::new([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);
         assert_eq!(a.pow(0), Mat::identity());
         assert_eq!(a.pow(1), a);
         eprintln!("{}", a.pow(2));
-        assert_eq!(a.pow(2), Mat::new([
-            [30, 36, 42],
-            [66, 81, 96],
-            [102, 126, 150],
-        ]));
-        assert_eq!(a.pow(3), Mat::new([
-            [468, 576, 684],
-            [1062, 1305, 1548],
-            [1656, 2034, 2412],
-        ]));
+        assert_eq!(
+            a.pow(2),
+            Mat::new([[30, 36, 42], [66, 81, 96], [102, 126, 150],])
+        );
+        assert_eq!(
+            a.pow(3),
+            Mat::new([[468, 576, 684], [1062, 1305, 1548], [1656, 2034, 2412],])
+        );
     }
 
     #[test]
-    fn display() {  
-        let a = Mat::new([
-            [1, 2, 3],
-            [4, 5, 6],
-            [7, 8, 9],
-        ]);
+    fn display() {
+        let a = Mat::new([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);
 
         assert_eq!(a.to_string(), "\n[1, 2, 3],\n[4, 5, 6],\n[7, 8, 9],\n");
     }
 
     #[test]
     fn transpose() {
-        let a = Mat::new([
-            [1, 2, 3],
-            [4, 5, 6]
-        ]);
+        let a = Mat::new([[1, 2, 3], [4, 5, 6]]);
 
-        assert_eq!(a.transpose(), Mat::new([
-            [1, 4],
-            [2, 5],
-            [3, 6]
-        ]));
+        assert_eq!(a.transpose(), Mat::new([[1, 4], [2, 5], [3, 6]]));
     }
 }

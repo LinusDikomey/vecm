@@ -1,6 +1,6 @@
 pub mod mat;
-pub mod vec;
 pub mod swizzle;
+pub mod vec;
 
 mod quaternion;
 
@@ -9,17 +9,20 @@ pub use quaternion::Quaternion;
 use std::ops;
 
 #[inline(always)]
-pub fn lerp<T>(a: T, b: T, t: T) -> T 
-where T : ops::Add<Output = T> + ops::Sub<Output = T> + ops::Mul<Output = T> + Copy {
+pub fn lerp<T>(a: T, b: T, t: T) -> T
+where
+    T: ops::Add<Output = T> + ops::Sub<Output = T> + ops::Mul<Output = T> + Copy,
+{
     a + (b - a) * t
 }
 
 #[inline(always)]
-pub fn cubic<T>(x: T) -> T 
-where T : ops::Mul<Output = T> + Copy {
+pub fn cubic<T>(x: T) -> T
+where
+    T: ops::Mul<Output = T> + Copy,
+{
     x * x * x
 }
-
 
 #[cfg(test)]
 mod test {
@@ -54,27 +57,24 @@ mod test {
         let v1 = vec2![1.0, 2.0];
         assert_eq!(v1, (vec3![1.0] + vec3![0.0, 1.0, 0.0]).xy());
 
-        assert_eq!(
-            Vec3i::new(1, 2, 3),
-            vec3![1, 2, 3]
-        );
-        assert_eq!(
-            PolyVec3::<u16>::fill(12),
-            vec3![12]
-        );
-        assert_eq!(
-            vec4![12.0, 4.0, ..],
-            Vec4::new(12.0, 4.0, 0.0, 0.0)
-        );
+        assert_eq!(Vec3i::new(1, 2, 3), vec3![1, 2, 3]);
+        assert_eq!(PolyVec3::<u16>::fill(12), vec3![12]);
+        assert_eq!(vec4![12.0, 4.0, ..], Vec4::new(12.0, 4.0, 0.0, 0.0));
 
-        assert_eq!(vec4![1.0, 2.0, 3.0, 4.0].yzw().square_magnitude(), 4.0 + 9.0 + 16.0);
+        assert_eq!(
+            vec4![1.0, 2.0, 3.0, 4.0].yzw().square_magnitude(),
+            4.0 + 9.0 + 16.0
+        );
     }
 
     #[cfg(feature = "binverse")]
     mod binverse_tests {
-        use binverse::{serialize::Serialize, streams::{Deserializer, Serializer}};
+        use binverse::{
+            serialize::Serialize,
+            streams::{Deserializer, Serializer},
+        };
 
-        use crate::{*, vec::*};
+        use crate::{vec::*, *};
 
         #[test]
         fn binverse_vecs() {
@@ -86,4 +86,3 @@ mod test {
         }
     }
 }
-
