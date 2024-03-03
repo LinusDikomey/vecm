@@ -1,6 +1,6 @@
 pub mod ops;
 
-use num_traits::{One, Zero};
+use num_traits::{ConstOne, ConstZero, One, Zero};
 use std::{default::Default, fmt};
 
 pub trait X<T> {
@@ -369,6 +369,61 @@ impl<T: PartialEq + One> PolyVec4<T> {
     pub fn one() -> Self {
         One::one()
     }
+}
+
+// ---------- axis unit vectors ----------
+impl<T: ConstZero + ConstOne> PolyVec2<T> {
+    pub const X: Self = Self {
+        x: T::ONE,
+        y: T::ZERO,
+    };
+    pub const Y: Self = Self {
+        x: T::ZERO,
+        y: T::ONE,
+    };
+}
+impl<T: ConstZero + ConstOne> PolyVec3<T> {
+    pub const X: Self = Self {
+        x: T::ONE,
+        y: T::ZERO,
+        z: T::ZERO,
+    };
+    pub const Y: Self = Self {
+        x: T::ZERO,
+        y: T::ONE,
+        z: T::ZERO,
+    };
+    pub const Z: Self = Self {
+        x: T::ZERO,
+        y: T::ZERO,
+        z: T::ONE,
+    };
+}
+impl<T: ConstZero + ConstOne> PolyVec4<T> {
+    pub const X: Self = Self {
+        x: T::ONE,
+        y: T::ZERO,
+        z: T::ZERO,
+        w: T::ZERO,
+    };
+    pub const Y: Self = Self {
+        x: T::ZERO,
+        y: T::ONE,
+        z: T::ZERO,
+        w: T::ZERO,
+    };
+    pub const Z: Self = Self {
+        x: T::ZERO,
+        y: T::ZERO,
+        z: T::ONE,
+        w: T::ZERO,
+    };
+    pub const W: Self = Self {
+        x: T::ZERO,
+        y: T::ZERO,
+        z: T::ZERO,
+        w: T::ONE,
+    };
 }
 
 // ---------- From/Into array ----------
