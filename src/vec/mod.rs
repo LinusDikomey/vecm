@@ -1,7 +1,11 @@
 pub mod ops;
 
 use num_traits::{ConstOne, ConstZero, One, Zero};
-use std::{default::Default, fmt};
+use std::{
+    default::Default,
+    fmt,
+    ops::{Index, IndexMut},
+};
 
 pub trait X<T> {
     fn x(&self) -> &T;
@@ -220,6 +224,76 @@ macro_rules! vec4 {
     };
 }
 pub use vec4;
+
+// ---------- indexing ----------
+impl<T> Index<usize> for PolyVec2<T> {
+    type Output = T;
+
+    fn index(&self, index: usize) -> &Self::Output {
+        match index {
+            0 => &self.x,
+            1 => &self.y,
+            _ => panic!("index {index} out of range for Vec2"),
+        }
+    }
+}
+impl<T> IndexMut<usize> for PolyVec2<T> {
+    fn index_mut(&mut self, index: usize) -> &mut Self::Output {
+        match index {
+            0 => &mut self.x,
+            1 => &mut self.y,
+            _ => panic!("index {index} out of range for Vec2"),
+        }
+    }
+}
+
+impl<T> Index<usize> for PolyVec3<T> {
+    type Output = T;
+
+    fn index(&self, index: usize) -> &Self::Output {
+        match index {
+            0 => &self.x,
+            1 => &self.y,
+            2 => &self.z,
+            _ => panic!("index {index} out of range for Vec3"),
+        }
+    }
+}
+impl<T> IndexMut<usize> for PolyVec3<T> {
+    fn index_mut(&mut self, index: usize) -> &mut Self::Output {
+        match index {
+            0 => &mut self.x,
+            1 => &mut self.y,
+            2 => &mut self.z,
+            _ => panic!("index {index} out of range for Vec3"),
+        }
+    }
+}
+
+impl<T> Index<usize> for PolyVec4<T> {
+    type Output = T;
+
+    fn index(&self, index: usize) -> &Self::Output {
+        match index {
+            0 => &self.x,
+            1 => &self.y,
+            2 => &self.z,
+            3 => &self.w,
+            _ => panic!("index {index} out of range for Vec4"),
+        }
+    }
+}
+impl<T> IndexMut<usize> for PolyVec4<T> {
+    fn index_mut(&mut self, index: usize) -> &mut Self::Output {
+        match index {
+            0 => &mut self.x,
+            1 => &mut self.y,
+            2 => &mut self.z,
+            3 => &mut self.w,
+            _ => panic!("index {index} out of range for Vec4"),
+        }
+    }
+}
 
 // ---------- zero/one ----------
 // the following implementations duplicate `zero`/`is_zero` because it allows calling the functions without importing the `Zero` trait. The same is done for `One`.
