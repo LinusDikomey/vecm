@@ -1,4 +1,4 @@
-use crate::{mat::Mat4x4, vec::Vec3};
+use crate::{Mat4x4, Vec3};
 
 #[derive(Clone, Copy, Debug, PartialEq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]

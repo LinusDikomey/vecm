@@ -1,10 +1,11 @@
 //! NOTE: matrices are in column-major order.
 
-use crate::{vec::*, Quaternion};
+use crate::{PolyVec3, Quaternion, Vec2u, Vec3};
 use num_traits::{One, Zero};
-use std::{mem::MaybeUninit, ops::*};
-
-pub type Mat4x4 = Mat<f32, 4, 4>;
+use std::{
+    mem::MaybeUninit,
+    ops::{Add, AddAssign, Index, IndexMut, Mul},
+};
 
 #[derive(Copy, Clone, Debug, PartialEq, Eq)]
 #[repr(C)]

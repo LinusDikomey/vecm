@@ -1,4 +1,4 @@
-pub mod ops;
+mod ops;
 
 use num_traits::{ConstOne, ConstZero, One, Zero};
 use std::{
@@ -146,7 +146,6 @@ macro_rules! vec2 {
         $crate::vec::PolyVec2 { x: $x, y: $y }
     };
 }
-pub use vec2;
 
 #[macro_export]
 macro_rules! vec3 {
@@ -179,7 +178,6 @@ macro_rules! vec3 {
         }
     };
 }
-pub use vec3;
 
 #[macro_export]
 macro_rules! vec4 {
@@ -223,7 +221,6 @@ macro_rules! vec4 {
         }
     };
 }
-pub use vec4;
 
 // ---------- indexing ----------
 impl<T> Index<usize> for PolyVec2<T> {
@@ -558,23 +555,6 @@ where
         }
     }
 }
-
-// ---------- type aliases ----------
-
-pub type Vec2 = PolyVec2<f32>;
-pub type Vec2i = PolyVec2<i32>;
-pub type Vec2u = PolyVec2<u32>;
-pub type Vec2b = PolyVec2<u8>;
-
-pub type Vec3 = PolyVec3<f32>;
-pub type Vec3i = PolyVec3<i32>;
-pub type Vec3u = PolyVec3<u32>;
-pub type Vec3b = PolyVec3<u8>;
-
-pub type Vec4 = PolyVec4<f32>;
-pub type Vec4i = PolyVec4<i32>;
-pub type Vec4u = PolyVec4<u32>;
-pub type Vec4b = PolyVec4<u8>;
 
 // ---------- type conversions ----------
 

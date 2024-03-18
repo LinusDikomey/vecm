@@ -1,12 +1,31 @@
-pub mod mat;
 pub mod swizzle;
-pub mod vec;
 
+mod mat;
 mod quaternion;
-
-pub use quaternion::Quaternion;
+mod vec;
 
 use std::ops;
+
+pub use mat::Mat;
+pub use quaternion::Quaternion;
+pub use vec::{Convert, PolyVec2, PolyVec3, PolyVec4, VecFrom, VecInto, W, X, Y, Z};
+
+pub type Vec2 = PolyVec2<f32>;
+pub type Vec2i = PolyVec2<i32>;
+pub type Vec2u = PolyVec2<u32>;
+pub type Vec2b = PolyVec2<u8>;
+
+pub type Vec3 = PolyVec3<f32>;
+pub type Vec3i = PolyVec3<i32>;
+pub type Vec3u = PolyVec3<u32>;
+pub type Vec3b = PolyVec3<u8>;
+
+pub type Vec4 = PolyVec4<f32>;
+pub type Vec4i = PolyVec4<i32>;
+pub type Vec4u = PolyVec4<u32>;
+pub type Vec4b = PolyVec4<u8>;
+
+pub type Mat4x4 = Mat<f32, 4, 4>;
 
 #[inline(always)]
 pub fn lerp<T>(a: T, b: T, t: T) -> T
@@ -26,8 +45,7 @@ where
 
 #[cfg(test)]
 mod test {
-    use crate::{swizzle::*, vec::*};
-    use crate::{vec2, vec3, vec4};
+    use super::{swizzle::*, *};
 
     #[test]
     fn swizzle() {

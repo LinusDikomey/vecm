@@ -1,5 +1,9 @@
+use std::ops::{
+    Add, AddAssign, BitAnd, BitAndAssign, BitOr, BitOrAssign, BitXor, BitXorAssign, Div, DivAssign,
+    Mul, MulAssign, Neg, Rem, RemAssign, Shl, ShlAssign, Shr, ShrAssign, Sub, SubAssign,
+};
+
 use super::{PolyVec2, PolyVec3, PolyVec4};
-use std::ops::*;
 
 // ---------- Basic math operations ----------
 
