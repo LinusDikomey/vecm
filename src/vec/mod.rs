@@ -298,152 +298,65 @@ impl<T> IndexMut<usize> for PolyVec4<T> {
 // ---------- zero/one ----------
 // the following implementations duplicate `zero`/`is_zero` because it allows calling the functions without importing the `Zero` trait. The same is done for `One`.
 
-impl<T: Zero> Zero for PolyVec2<T> {
-    #[inline]
-    fn is_zero(&self) -> bool {
-        self.x.is_zero() && self.y.is_zero()
-    }
-    #[inline]
-    fn zero() -> Self {
-        Self {
-            x: T::zero(),
-            y: T::zero(),
+macro_rules! num_trait_impls {
+    ($t: ident $($c: ident)*) => {
+        impl<T: Zero> Zero for $t<T> {
+            fn is_zero(&self) -> bool {
+                $(self.$c.is_zero())&&*
+            }
+            fn zero() -> Self {
+                Self {
+                    $($c: T::zero()),*
+                }
+            }
         }
-    }
-}
-impl<T: Zero> PolyVec2<T> {
-    #[inline]
-    pub fn is_zero(&self) -> bool {
-        Zero::is_zero(self)
-    }
-    #[inline]
-    pub fn zero() -> Self {
-        Zero::zero()
-    }
-}
-impl<T: PartialEq + One> One for PolyVec2<T> {
-    #[inline]
-    fn is_one(&self) -> bool {
-        self.x.is_one() && self.y.is_one()
-    }
-    #[inline]
-    fn one() -> Self {
-        Self {
-            x: T::one(),
-            y: T::one(),
+        impl<T: ConstZero> ConstZero for $t<T> {
+            const ZERO: Self = Self {
+                $($c: T::ZERO),*
+            };
         }
-    }
-}
-impl<T: PartialEq + One> PolyVec2<T> {
-    #[inline]
-    pub fn is_one(&self) -> bool {
-        One::is_one(self)
-    }
-    #[inline]
-    pub fn one() -> Self {
-        One::one()
-    }
-}
+        impl<T: PartialEq + One> One for $t<T> {
+            #[inline]
+            fn one() -> Self {
+                Self {
+                    $($c: T::one()),*
+                }
+            }
+        }
+        impl<T: PartialEq + ConstOne> ConstOne for $t<T> {
+            const ONE: Self = Self {
+                $($c: T::ONE),*
+            };
+        }
 
-impl<T: Zero> Zero for PolyVec3<T> {
-    #[inline]
-    fn is_zero(&self) -> bool {
-        self.x.is_zero() && self.y.is_zero() && self.z.is_zero()
-    }
-    #[inline]
-    fn zero() -> Self {
-        Self {
-            x: T::zero(),
-            y: T::zero(),
-            z: T::zero(),
+        // also expose the API without having to import the type
+        impl<T: Zero> $t<T> {
+            pub fn is_zero(&self) -> bool {
+                Zero::is_zero(self)
+            }
+            pub fn zero() -> Self {
+                Zero::zero()
+            }
         }
-    }
-}
-impl<T: Zero> PolyVec3<T> {
-    #[inline]
-    pub fn is_zero(&self) -> bool {
-        Zero::is_zero(self)
-    }
-    #[inline]
-    pub fn zero() -> Self {
-        Zero::zero()
-    }
-}
-impl<T: One + PartialEq> One for PolyVec3<T> {
-    #[inline]
-    fn is_one(&self) -> bool {
-        self.x.is_one() && self.y.is_one() && self.z.is_one()
-    }
-    #[inline]
-    fn one() -> Self {
-        Self {
-            x: T::one(),
-            y: T::one(),
-            z: T::one(),
+        impl<T: ConstZero> $t<T> {
+            pub const ZERO: Self = ConstZero::ZERO;
         }
-    }
-}
-impl<T: PartialEq + One> PolyVec3<T> {
-    #[inline]
-    pub fn is_one(&self) -> bool {
-        One::is_one(self)
-    }
-    #[inline]
-    pub fn one() -> Self {
-        One::one()
-    }
-}
-
-impl<T: Zero> Zero for PolyVec4<T> {
-    #[inline]
-    fn is_zero(&self) -> bool {
-        self.x.is_zero() && self.y.is_zero() && self.z.is_zero() && self.w.is_zero()
-    }
-    #[inline]
-    fn zero() -> Self {
-        Self {
-            x: T::zero(),
-            y: T::zero(),
-            z: T::zero(),
-            w: T::zero(),
+        impl<T: PartialEq + One> $t<T> {
+            pub fn is_one(&self) -> bool {
+                One::is_one(self)
+            }
+            pub fn one() -> Self {
+                One::one()
+            }
         }
-    }
-}
-impl<T: Zero> PolyVec4<T> {
-    #[inline]
-    pub fn is_zero(&self) -> bool {
-        Zero::is_zero(self)
-    }
-    #[inline]
-    pub fn zero() -> Self {
-        Zero::zero()
-    }
-}
-impl<T: One + PartialEq> One for PolyVec4<T> {
-    #[inline]
-    fn is_one(&self) -> bool {
-        self.x.is_one() && self.y.is_one() && self.z.is_one() && self.w.is_one()
-    }
-    #[inline]
-    fn one() -> Self {
-        Self {
-            x: T::one(),
-            y: T::one(),
-            z: T::one(),
-            w: T::one(),
+        impl<T: PartialEq + ConstOne> $t<T> {
+            pub const ONE: Self = ConstOne::ONE;
         }
-    }
+    };
 }
-impl<T: PartialEq + One> PolyVec4<T> {
-    #[inline]
-    pub fn is_one(&self) -> bool {
-        One::is_one(self)
-    }
-    #[inline]
-    pub fn one() -> Self {
-        One::one()
-    }
-}
+num_trait_impls!(PolyVec2 x y);
+num_trait_impls!(PolyVec3 x y z);
+num_trait_impls!(PolyVec4 x y z w);
 
 // ---------- axis unit vectors ----------
 impl<T: ConstZero + ConstOne> PolyVec2<T> {
