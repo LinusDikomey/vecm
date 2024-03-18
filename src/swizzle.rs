@@ -4,10 +4,10 @@ use crate::vec::{PolyVec2, PolyVec3, PolyVec4, W, X, Y, Z};
 
 // ---------- 2-Component Swizzle ----------
 
-pub trait SwizzleXX<T> {
+pub trait XX<T> {
     fn xx(&self) -> PolyVec2<T>;
 }
-impl<S, T> SwizzleXX<T> for S
+impl<S, T> XX<T> for S
 where
     S: X<T>,
     T: Copy,
@@ -17,10 +17,10 @@ where
         PolyVec2::new(*self.x(), *self.x())
     }
 }
-pub trait SwizzleXY<T> {
+pub trait XY<T> {
     fn xy(&self) -> PolyVec2<T>;
 }
-impl<S, T> SwizzleXY<T> for S
+impl<S, T> XY<T> for S
 where
     S: X<T> + Y<T>,
     T: Copy,
@@ -30,10 +30,10 @@ where
         PolyVec2::new(*self.x(), *self.y())
     }
 }
-pub trait SwizzleXZ<T> {
+pub trait XZ<T> {
     fn xz(&self) -> PolyVec2<T>;
 }
-impl<S, T> SwizzleXZ<T> for S
+impl<S, T> XZ<T> for S
 where
     S: X<T> + Z<T>,
     T: Copy,
@@ -43,10 +43,10 @@ where
         PolyVec2::new(*self.x(), *self.z())
     }
 }
-pub trait SwizzleXW<T> {
+pub trait XW<T> {
     fn xw(&self) -> PolyVec2<T>;
 }
-impl<S, T> SwizzleXW<T> for S
+impl<S, T> XW<T> for S
 where
     S: X<T> + W<T>,
     T: Copy,
@@ -56,10 +56,10 @@ where
         PolyVec2::new(*self.x(), *self.w())
     }
 }
-pub trait SwizzleYX<T> {
+pub trait YX<T> {
     fn yx(&self) -> PolyVec2<T>;
 }
-impl<S, T> SwizzleYX<T> for S
+impl<S, T> YX<T> for S
 where
     S: Y<T> + X<T>,
     T: Copy,
@@ -69,10 +69,10 @@ where
         PolyVec2::new(*self.y(), *self.x())
     }
 }
-pub trait SwizzleYY<T> {
+pub trait YY<T> {
     fn yy(&self) -> PolyVec2<T>;
 }
-impl<S, T> SwizzleYY<T> for S
+impl<S, T> YY<T> for S
 where
     S: Y<T>,
     T: Copy,
@@ -82,10 +82,10 @@ where
         PolyVec2::new(*self.y(), *self.y())
     }
 }
-pub trait SwizzleYZ<T> {
+pub trait YZ<T> {
     fn yz(&self) -> PolyVec2<T>;
 }
-impl<S, T> SwizzleYZ<T> for S
+impl<S, T> YZ<T> for S
 where
     S: Y<T> + Z<T>,
     T: Copy,
@@ -95,10 +95,10 @@ where
         PolyVec2::new(*self.y(), *self.z())
     }
 }
-pub trait SwizzleYW<T> {
+pub trait YW<T> {
     fn yw(&self) -> PolyVec2<T>;
 }
-impl<S, T> SwizzleYW<T> for S
+impl<S, T> YW<T> for S
 where
     S: Y<T> + W<T>,
     T: Copy,
@@ -108,10 +108,10 @@ where
         PolyVec2::new(*self.y(), *self.w())
     }
 }
-pub trait SwizzleZX<T> {
+pub trait ZX<T> {
     fn zx(&self) -> PolyVec2<T>;
 }
-impl<S, T> SwizzleZX<T> for S
+impl<S, T> ZX<T> for S
 where
     S: Z<T> + X<T>,
     T: Copy,
@@ -121,10 +121,10 @@ where
         PolyVec2::new(*self.z(), *self.x())
     }
 }
-pub trait SwizzleZY<T> {
+pub trait ZY<T> {
     fn zy(&self) -> PolyVec2<T>;
 }
-impl<S, T> SwizzleZY<T> for S
+impl<S, T> ZY<T> for S
 where
     S: Z<T> + Y<T>,
     T: Copy,
@@ -134,10 +134,10 @@ where
         PolyVec2::new(*self.z(), *self.y())
     }
 }
-pub trait SwizzleZZ<T> {
+pub trait ZZ<T> {
     fn zz(&self) -> PolyVec2<T>;
 }
-impl<S, T> SwizzleZZ<T> for S
+impl<S, T> ZZ<T> for S
 where
     S: Z<T>,
     T: Copy,
@@ -147,10 +147,10 @@ where
         PolyVec2::new(*self.z(), *self.z())
     }
 }
-pub trait SwizzleZW<T> {
+pub trait ZW<T> {
     fn zw(&self) -> PolyVec2<T>;
 }
-impl<S, T> SwizzleZW<T> for S
+impl<S, T> ZW<T> for S
 where
     S: Z<T> + W<T>,
     T: Copy,
@@ -160,10 +160,10 @@ where
         PolyVec2::new(*self.z(), *self.w())
     }
 }
-pub trait SwizzleWX<T> {
+pub trait WX<T> {
     fn wx(&self) -> PolyVec2<T>;
 }
-impl<S, T> SwizzleWX<T> for S
+impl<S, T> WX<T> for S
 where
     S: W<T> + X<T>,
     T: Copy,
@@ -173,10 +173,10 @@ where
         PolyVec2::new(*self.w(), *self.x())
     }
 }
-pub trait SwizzleWY<T> {
+pub trait WY<T> {
     fn wy(&self) -> PolyVec2<T>;
 }
-impl<S, T> SwizzleWY<T> for S
+impl<S, T> WY<T> for S
 where
     S: W<T> + Y<T>,
     T: Copy,
@@ -186,10 +186,10 @@ where
         PolyVec2::new(*self.w(), *self.y())
     }
 }
-pub trait SwizzleWZ<T> {
+pub trait WZ<T> {
     fn wz(&self) -> PolyVec2<T>;
 }
-impl<S, T> SwizzleWZ<T> for S
+impl<S, T> WZ<T> for S
 where
     S: W<T> + Z<T>,
     T: Copy,
@@ -199,10 +199,10 @@ where
         PolyVec2::new(*self.w(), *self.z())
     }
 }
-pub trait SwizzleWW<T> {
+pub trait WW<T> {
     fn ww(&self) -> PolyVec2<T>;
 }
-impl<S, T> SwizzleWW<T> for S
+impl<S, T> WW<T> for S
 where
     S: W<T>,
     T: Copy,
@@ -215,10 +215,10 @@ where
 
 // ---------- 3-Component Swizzle ----------
 
-pub trait SwizzleXXX<T> {
+pub trait XXX<T> {
     fn xxx(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleXXX<T> for S
+impl<S, T> XXX<T> for S
 where
     S: X<T>,
     T: Copy,
@@ -228,10 +228,10 @@ where
         PolyVec3::new(*self.x(), *self.x(), *self.x())
     }
 }
-pub trait SwizzleXXY<T> {
+pub trait XXY<T> {
     fn xxy(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleXXY<T> for S
+impl<S, T> XXY<T> for S
 where
     S: X<T> + Y<T>,
     T: Copy,
@@ -241,10 +241,10 @@ where
         PolyVec3::new(*self.x(), *self.x(), *self.y())
     }
 }
-pub trait SwizzleXXZ<T> {
+pub trait XXZ<T> {
     fn xxz(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleXXZ<T> for S
+impl<S, T> XXZ<T> for S
 where
     S: X<T> + Z<T>,
     T: Copy,
@@ -254,10 +254,10 @@ where
         PolyVec3::new(*self.x(), *self.x(), *self.z())
     }
 }
-pub trait SwizzleXXW<T> {
+pub trait XXW<T> {
     fn xxw(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleXXW<T> for S
+impl<S, T> XXW<T> for S
 where
     S: X<T> + W<T>,
     T: Copy,
@@ -267,10 +267,10 @@ where
         PolyVec3::new(*self.x(), *self.x(), *self.w())
     }
 }
-pub trait SwizzleXYX<T> {
+pub trait XYX<T> {
     fn xyx(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleXYX<T> for S
+impl<S, T> XYX<T> for S
 where
     S: X<T> + Y<T> + X<T>,
     T: Copy,
@@ -280,10 +280,10 @@ where
         PolyVec3::new(*self.x(), *self.y(), *self.x())
     }
 }
-pub trait SwizzleXYY<T> {
+pub trait XYY<T> {
     fn xyy(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleXYY<T> for S
+impl<S, T> XYY<T> for S
 where
     S: X<T> + Y<T>,
     T: Copy,
@@ -293,10 +293,10 @@ where
         PolyVec3::new(*self.x(), *self.y(), *self.y())
     }
 }
-pub trait SwizzleXYZ<T> {
+pub trait XYZ<T> {
     fn xyz(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleXYZ<T> for S
+impl<S, T> XYZ<T> for S
 where
     S: X<T> + Y<T> + Z<T>,
     T: Copy,
@@ -306,10 +306,10 @@ where
         PolyVec3::new(*self.x(), *self.y(), *self.z())
     }
 }
-pub trait SwizzleXYW<T> {
+pub trait XYW<T> {
     fn xyw(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleXYW<T> for S
+impl<S, T> XYW<T> for S
 where
     S: X<T> + Y<T> + W<T>,
     T: Copy,
@@ -319,10 +319,10 @@ where
         PolyVec3::new(*self.x(), *self.y(), *self.w())
     }
 }
-pub trait SwizzleXZX<T> {
+pub trait XZX<T> {
     fn xzx(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleXZX<T> for S
+impl<S, T> XZX<T> for S
 where
     S: X<T> + Z<T> + X<T>,
     T: Copy,
@@ -332,10 +332,10 @@ where
         PolyVec3::new(*self.x(), *self.z(), *self.x())
     }
 }
-pub trait SwizzleXZY<T> {
+pub trait XZY<T> {
     fn xzy(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleXZY<T> for S
+impl<S, T> XZY<T> for S
 where
     S: X<T> + Z<T> + Y<T>,
     T: Copy,
@@ -345,10 +345,10 @@ where
         PolyVec3::new(*self.x(), *self.z(), *self.y())
     }
 }
-pub trait SwizzleXZZ<T> {
+pub trait XZZ<T> {
     fn xzz(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleXZZ<T> for S
+impl<S, T> XZZ<T> for S
 where
     S: X<T> + Z<T>,
     T: Copy,
@@ -358,10 +358,10 @@ where
         PolyVec3::new(*self.x(), *self.z(), *self.z())
     }
 }
-pub trait SwizzleXZW<T> {
+pub trait XZW<T> {
     fn xzw(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleXZW<T> for S
+impl<S, T> XZW<T> for S
 where
     S: X<T> + Z<T> + W<T>,
     T: Copy,
@@ -371,10 +371,10 @@ where
         PolyVec3::new(*self.x(), *self.z(), *self.w())
     }
 }
-pub trait SwizzleXWX<T> {
+pub trait XWX<T> {
     fn xwx(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleXWX<T> for S
+impl<S, T> XWX<T> for S
 where
     S: X<T> + W<T> + X<T>,
     T: Copy,
@@ -384,10 +384,10 @@ where
         PolyVec3::new(*self.x(), *self.w(), *self.x())
     }
 }
-pub trait SwizzleXWY<T> {
+pub trait XWY<T> {
     fn xwy(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleXWY<T> for S
+impl<S, T> XWY<T> for S
 where
     S: X<T> + W<T> + Y<T>,
     T: Copy,
@@ -397,10 +397,10 @@ where
         PolyVec3::new(*self.x(), *self.w(), *self.y())
     }
 }
-pub trait SwizzleXWZ<T> {
+pub trait XWZ<T> {
     fn xwz(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleXWZ<T> for S
+impl<S, T> XWZ<T> for S
 where
     S: X<T> + W<T> + Z<T>,
     T: Copy,
@@ -410,10 +410,10 @@ where
         PolyVec3::new(*self.x(), *self.w(), *self.z())
     }
 }
-pub trait SwizzleXWW<T> {
+pub trait XWW<T> {
     fn xww(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleXWW<T> for S
+impl<S, T> XWW<T> for S
 where
     S: X<T> + W<T>,
     T: Copy,
@@ -423,10 +423,10 @@ where
         PolyVec3::new(*self.x(), *self.w(), *self.w())
     }
 }
-pub trait SwizzleYXX<T> {
+pub trait YXX<T> {
     fn yxx(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleYXX<T> for S
+impl<S, T> YXX<T> for S
 where
     S: Y<T> + X<T>,
     T: Copy,
@@ -436,10 +436,10 @@ where
         PolyVec3::new(*self.y(), *self.x(), *self.x())
     }
 }
-pub trait SwizzleYXY<T> {
+pub trait YXY<T> {
     fn yxy(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleYXY<T> for S
+impl<S, T> YXY<T> for S
 where
     S: Y<T> + X<T> + Y<T>,
     T: Copy,
@@ -449,10 +449,10 @@ where
         PolyVec3::new(*self.y(), *self.x(), *self.y())
     }
 }
-pub trait SwizzleYXZ<T> {
+pub trait YXZ<T> {
     fn yxz(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleYXZ<T> for S
+impl<S, T> YXZ<T> for S
 where
     S: Y<T> + X<T> + Z<T>,
     T: Copy,
@@ -462,10 +462,10 @@ where
         PolyVec3::new(*self.y(), *self.x(), *self.z())
     }
 }
-pub trait SwizzleYXW<T> {
+pub trait YXW<T> {
     fn yxw(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleYXW<T> for S
+impl<S, T> YXW<T> for S
 where
     S: Y<T> + X<T> + W<T>,
     T: Copy,
@@ -475,10 +475,10 @@ where
         PolyVec3::new(*self.y(), *self.x(), *self.w())
     }
 }
-pub trait SwizzleYYX<T> {
+pub trait YYX<T> {
     fn yyx(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleYYX<T> for S
+impl<S, T> YYX<T> for S
 where
     S: Y<T> + X<T>,
     T: Copy,
@@ -488,10 +488,10 @@ where
         PolyVec3::new(*self.y(), *self.y(), *self.x())
     }
 }
-pub trait SwizzleYYY<T> {
+pub trait YYY<T> {
     fn yyy(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleYYY<T> for S
+impl<S, T> YYY<T> for S
 where
     S: Y<T>,
     T: Copy,
@@ -501,10 +501,10 @@ where
         PolyVec3::new(*self.y(), *self.y(), *self.y())
     }
 }
-pub trait SwizzleYYZ<T> {
+pub trait YYZ<T> {
     fn yyz(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleYYZ<T> for S
+impl<S, T> YYZ<T> for S
 where
     S: Y<T> + Z<T>,
     T: Copy,
@@ -514,10 +514,10 @@ where
         PolyVec3::new(*self.y(), *self.y(), *self.z())
     }
 }
-pub trait SwizzleYYW<T> {
+pub trait YYW<T> {
     fn yyw(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleYYW<T> for S
+impl<S, T> YYW<T> for S
 where
     S: Y<T> + W<T>,
     T: Copy,
@@ -527,10 +527,10 @@ where
         PolyVec3::new(*self.y(), *self.y(), *self.w())
     }
 }
-pub trait SwizzleYZX<T> {
+pub trait YZX<T> {
     fn yzx(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleYZX<T> for S
+impl<S, T> YZX<T> for S
 where
     S: Y<T> + Z<T> + X<T>,
     T: Copy,
@@ -540,10 +540,10 @@ where
         PolyVec3::new(*self.y(), *self.z(), *self.x())
     }
 }
-pub trait SwizzleYZY<T> {
+pub trait YZY<T> {
     fn yzy(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleYZY<T> for S
+impl<S, T> YZY<T> for S
 where
     S: Y<T> + Z<T> + Y<T>,
     T: Copy,
@@ -553,10 +553,10 @@ where
         PolyVec3::new(*self.y(), *self.z(), *self.y())
     }
 }
-pub trait SwizzleYZZ<T> {
+pub trait YZZ<T> {
     fn yzz(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleYZZ<T> for S
+impl<S, T> YZZ<T> for S
 where
     S: Y<T> + Z<T>,
     T: Copy,
@@ -566,10 +566,10 @@ where
         PolyVec3::new(*self.y(), *self.z(), *self.z())
     }
 }
-pub trait SwizzleYZW<T> {
+pub trait YZW<T> {
     fn yzw(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleYZW<T> for S
+impl<S, T> YZW<T> for S
 where
     S: Y<T> + Z<T> + W<T>,
     T: Copy,
@@ -579,10 +579,10 @@ where
         PolyVec3::new(*self.y(), *self.z(), *self.w())
     }
 }
-pub trait SwizzleYWX<T> {
+pub trait YWX<T> {
     fn ywx(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleYWX<T> for S
+impl<S, T> YWX<T> for S
 where
     S: Y<T> + W<T> + X<T>,
     T: Copy,
@@ -592,10 +592,10 @@ where
         PolyVec3::new(*self.y(), *self.w(), *self.x())
     }
 }
-pub trait SwizzleYWY<T> {
+pub trait YWY<T> {
     fn ywy(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleYWY<T> for S
+impl<S, T> YWY<T> for S
 where
     S: Y<T> + W<T> + Y<T>,
     T: Copy,
@@ -605,10 +605,10 @@ where
         PolyVec3::new(*self.y(), *self.w(), *self.y())
     }
 }
-pub trait SwizzleYWZ<T> {
+pub trait YWZ<T> {
     fn ywz(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleYWZ<T> for S
+impl<S, T> YWZ<T> for S
 where
     S: Y<T> + W<T> + Z<T>,
     T: Copy,
@@ -618,10 +618,10 @@ where
         PolyVec3::new(*self.y(), *self.w(), *self.z())
     }
 }
-pub trait SwizzleYWW<T> {
+pub trait YWW<T> {
     fn yww(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleYWW<T> for S
+impl<S, T> YWW<T> for S
 where
     S: Y<T> + W<T>,
     T: Copy,
@@ -631,10 +631,10 @@ where
         PolyVec3::new(*self.y(), *self.w(), *self.w())
     }
 }
-pub trait SwizzleZXX<T> {
+pub trait ZXX<T> {
     fn zxx(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleZXX<T> for S
+impl<S, T> ZXX<T> for S
 where
     S: Z<T> + X<T>,
     T: Copy,
@@ -644,10 +644,10 @@ where
         PolyVec3::new(*self.z(), *self.x(), *self.x())
     }
 }
-pub trait SwizzleZXY<T> {
+pub trait ZXY<T> {
     fn zxy(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleZXY<T> for S
+impl<S, T> ZXY<T> for S
 where
     S: Z<T> + X<T> + Y<T>,
     T: Copy,
@@ -657,10 +657,10 @@ where
         PolyVec3::new(*self.z(), *self.x(), *self.y())
     }
 }
-pub trait SwizzleZXZ<T> {
+pub trait ZXZ<T> {
     fn zxz(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleZXZ<T> for S
+impl<S, T> ZXZ<T> for S
 where
     S: Z<T> + X<T> + Z<T>,
     T: Copy,
@@ -670,10 +670,10 @@ where
         PolyVec3::new(*self.z(), *self.x(), *self.z())
     }
 }
-pub trait SwizzleZXW<T> {
+pub trait ZXW<T> {
     fn zxw(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleZXW<T> for S
+impl<S, T> ZXW<T> for S
 where
     S: Z<T> + X<T> + W<T>,
     T: Copy,
@@ -683,10 +683,10 @@ where
         PolyVec3::new(*self.z(), *self.x(), *self.w())
     }
 }
-pub trait SwizzleZYX<T> {
+pub trait ZYX<T> {
     fn zyx(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleZYX<T> for S
+impl<S, T> ZYX<T> for S
 where
     S: Z<T> + Y<T> + X<T>,
     T: Copy,
@@ -696,10 +696,10 @@ where
         PolyVec3::new(*self.z(), *self.y(), *self.x())
     }
 }
-pub trait SwizzleZYY<T> {
+pub trait ZYY<T> {
     fn zyy(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleZYY<T> for S
+impl<S, T> ZYY<T> for S
 where
     S: Z<T> + Y<T>,
     T: Copy,
@@ -709,10 +709,10 @@ where
         PolyVec3::new(*self.z(), *self.y(), *self.y())
     }
 }
-pub trait SwizzleZYZ<T> {
+pub trait ZYZ<T> {
     fn zyz(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleZYZ<T> for S
+impl<S, T> ZYZ<T> for S
 where
     S: Z<T> + Y<T> + Z<T>,
     T: Copy,
@@ -722,10 +722,10 @@ where
         PolyVec3::new(*self.z(), *self.y(), *self.z())
     }
 }
-pub trait SwizzleZYW<T> {
+pub trait ZYW<T> {
     fn zyw(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleZYW<T> for S
+impl<S, T> ZYW<T> for S
 where
     S: Z<T> + Y<T> + W<T>,
     T: Copy,
@@ -735,10 +735,10 @@ where
         PolyVec3::new(*self.z(), *self.y(), *self.w())
     }
 }
-pub trait SwizzleZZX<T> {
+pub trait ZZX<T> {
     fn zzx(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleZZX<T> for S
+impl<S, T> ZZX<T> for S
 where
     S: Z<T> + X<T>,
     T: Copy,
@@ -748,10 +748,10 @@ where
         PolyVec3::new(*self.z(), *self.z(), *self.x())
     }
 }
-pub trait SwizzleZZY<T> {
+pub trait ZZY<T> {
     fn zzy(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleZZY<T> for S
+impl<S, T> ZZY<T> for S
 where
     S: Z<T> + Y<T>,
     T: Copy,
@@ -761,10 +761,10 @@ where
         PolyVec3::new(*self.z(), *self.z(), *self.y())
     }
 }
-pub trait SwizzleZZZ<T> {
+pub trait ZZZ<T> {
     fn zzz(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleZZZ<T> for S
+impl<S, T> ZZZ<T> for S
 where
     S: Z<T>,
     T: Copy,
@@ -774,10 +774,10 @@ where
         PolyVec3::new(*self.z(), *self.z(), *self.z())
     }
 }
-pub trait SwizzleZZW<T> {
+pub trait ZZW<T> {
     fn zzw(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleZZW<T> for S
+impl<S, T> ZZW<T> for S
 where
     S: Z<T> + W<T>,
     T: Copy,
@@ -787,10 +787,10 @@ where
         PolyVec3::new(*self.z(), *self.z(), *self.w())
     }
 }
-pub trait SwizzleZWX<T> {
+pub trait ZWX<T> {
     fn zwx(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleZWX<T> for S
+impl<S, T> ZWX<T> for S
 where
     S: Z<T> + W<T> + X<T>,
     T: Copy,
@@ -800,10 +800,10 @@ where
         PolyVec3::new(*self.z(), *self.w(), *self.x())
     }
 }
-pub trait SwizzleZWY<T> {
+pub trait ZWY<T> {
     fn zwy(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleZWY<T> for S
+impl<S, T> ZWY<T> for S
 where
     S: Z<T> + W<T> + Y<T>,
     T: Copy,
@@ -813,10 +813,10 @@ where
         PolyVec3::new(*self.z(), *self.w(), *self.y())
     }
 }
-pub trait SwizzleZWZ<T> {
+pub trait ZWZ<T> {
     fn zwz(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleZWZ<T> for S
+impl<S, T> ZWZ<T> for S
 where
     S: Z<T> + W<T> + Z<T>,
     T: Copy,
@@ -826,10 +826,10 @@ where
         PolyVec3::new(*self.z(), *self.w(), *self.z())
     }
 }
-pub trait SwizzleZWW<T> {
+pub trait ZWW<T> {
     fn zww(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleZWW<T> for S
+impl<S, T> ZWW<T> for S
 where
     S: Z<T> + W<T>,
     T: Copy,
@@ -839,10 +839,10 @@ where
         PolyVec3::new(*self.z(), *self.w(), *self.w())
     }
 }
-pub trait SwizzleWXX<T> {
+pub trait WXX<T> {
     fn wxx(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleWXX<T> for S
+impl<S, T> WXX<T> for S
 where
     S: W<T> + X<T>,
     T: Copy,
@@ -852,10 +852,10 @@ where
         PolyVec3::new(*self.w(), *self.x(), *self.x())
     }
 }
-pub trait SwizzleWXY<T> {
+pub trait WXY<T> {
     fn wxy(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleWXY<T> for S
+impl<S, T> WXY<T> for S
 where
     S: W<T> + X<T> + Y<T>,
     T: Copy,
@@ -865,10 +865,10 @@ where
         PolyVec3::new(*self.w(), *self.x(), *self.y())
     }
 }
-pub trait SwizzleWXZ<T> {
+pub trait WXZ<T> {
     fn wxz(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleWXZ<T> for S
+impl<S, T> WXZ<T> for S
 where
     S: W<T> + X<T> + Z<T>,
     T: Copy,
@@ -878,10 +878,10 @@ where
         PolyVec3::new(*self.w(), *self.x(), *self.z())
     }
 }
-pub trait SwizzleWXW<T> {
+pub trait WXW<T> {
     fn wxw(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleWXW<T> for S
+impl<S, T> WXW<T> for S
 where
     S: W<T> + X<T> + W<T>,
     T: Copy,
@@ -891,10 +891,10 @@ where
         PolyVec3::new(*self.w(), *self.x(), *self.w())
     }
 }
-pub trait SwizzleWYX<T> {
+pub trait WYX<T> {
     fn wyx(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleWYX<T> for S
+impl<S, T> WYX<T> for S
 where
     S: W<T> + Y<T> + X<T>,
     T: Copy,
@@ -904,10 +904,10 @@ where
         PolyVec3::new(*self.w(), *self.y(), *self.x())
     }
 }
-pub trait SwizzleWYY<T> {
+pub trait WYY<T> {
     fn wyy(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleWYY<T> for S
+impl<S, T> WYY<T> for S
 where
     S: W<T> + Y<T>,
     T: Copy,
@@ -917,10 +917,10 @@ where
         PolyVec3::new(*self.w(), *self.y(), *self.y())
     }
 }
-pub trait SwizzleWYZ<T> {
+pub trait WYZ<T> {
     fn wyz(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleWYZ<T> for S
+impl<S, T> WYZ<T> for S
 where
     S: W<T> + Y<T> + Z<T>,
     T: Copy,
@@ -930,10 +930,10 @@ where
         PolyVec3::new(*self.w(), *self.y(), *self.z())
     }
 }
-pub trait SwizzleWYW<T> {
+pub trait WYW<T> {
     fn wyw(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleWYW<T> for S
+impl<S, T> WYW<T> for S
 where
     S: W<T> + Y<T> + W<T>,
     T: Copy,
@@ -943,10 +943,10 @@ where
         PolyVec3::new(*self.w(), *self.y(), *self.w())
     }
 }
-pub trait SwizzleWZX<T> {
+pub trait WZX<T> {
     fn wzx(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleWZX<T> for S
+impl<S, T> WZX<T> for S
 where
     S: W<T> + Z<T> + X<T>,
     T: Copy,
@@ -956,10 +956,10 @@ where
         PolyVec3::new(*self.w(), *self.z(), *self.x())
     }
 }
-pub trait SwizzleWZY<T> {
+pub trait WZY<T> {
     fn wzy(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleWZY<T> for S
+impl<S, T> WZY<T> for S
 where
     S: W<T> + Z<T> + Y<T>,
     T: Copy,
@@ -969,10 +969,10 @@ where
         PolyVec3::new(*self.w(), *self.z(), *self.y())
     }
 }
-pub trait SwizzleWZZ<T> {
+pub trait WZZ<T> {
     fn wzz(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleWZZ<T> for S
+impl<S, T> WZZ<T> for S
 where
     S: W<T> + Z<T>,
     T: Copy,
@@ -982,10 +982,10 @@ where
         PolyVec3::new(*self.w(), *self.z(), *self.z())
     }
 }
-pub trait SwizzleWZW<T> {
+pub trait WZW<T> {
     fn wzw(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleWZW<T> for S
+impl<S, T> WZW<T> for S
 where
     S: W<T> + Z<T> + W<T>,
     T: Copy,
@@ -995,10 +995,10 @@ where
         PolyVec3::new(*self.w(), *self.z(), *self.w())
     }
 }
-pub trait SwizzleWWX<T> {
+pub trait WWX<T> {
     fn wwx(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleWWX<T> for S
+impl<S, T> WWX<T> for S
 where
     S: W<T> + X<T>,
     T: Copy,
@@ -1008,10 +1008,10 @@ where
         PolyVec3::new(*self.w(), *self.w(), *self.x())
     }
 }
-pub trait SwizzleWWY<T> {
+pub trait WWY<T> {
     fn wwy(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleWWY<T> for S
+impl<S, T> WWY<T> for S
 where
     S: W<T> + Y<T>,
     T: Copy,
@@ -1021,10 +1021,10 @@ where
         PolyVec3::new(*self.w(), *self.w(), *self.y())
     }
 }
-pub trait SwizzleWWZ<T> {
+pub trait WWZ<T> {
     fn wwz(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleWWZ<T> for S
+impl<S, T> WWZ<T> for S
 where
     S: W<T> + Z<T>,
     T: Copy,
@@ -1034,10 +1034,10 @@ where
         PolyVec3::new(*self.w(), *self.w(), *self.z())
     }
 }
-pub trait SwizzleWWW<T> {
+pub trait WWW<T> {
     fn www(&self) -> PolyVec3<T>;
 }
-impl<S, T> SwizzleWWW<T> for S
+impl<S, T> WWW<T> for S
 where
     S: W<T>,
     T: Copy,
@@ -1050,10 +1050,10 @@ where
 
 // ---------- 4-Component Swizzle ----------
 
-pub trait SwizzleXXXX<T> {
+pub trait XXXX<T> {
     fn xxxx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXXXX<T> for S
+impl<S, T> XXXX<T> for S
 where
     S: X<T>,
     T: Copy,
@@ -1063,10 +1063,10 @@ where
         PolyVec4::new(*self.x(), *self.x(), *self.x(), *self.x())
     }
 }
-pub trait SwizzleXXXY<T> {
+pub trait XXXY<T> {
     fn xxxy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXXXY<T> for S
+impl<S, T> XXXY<T> for S
 where
     S: X<T> + Y<T>,
     T: Copy,
@@ -1076,10 +1076,10 @@ where
         PolyVec4::new(*self.x(), *self.x(), *self.x(), *self.y())
     }
 }
-pub trait SwizzleXXXZ<T> {
+pub trait XXXZ<T> {
     fn xxxz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXXXZ<T> for S
+impl<S, T> XXXZ<T> for S
 where
     S: X<T> + Z<T>,
     T: Copy,
@@ -1089,10 +1089,10 @@ where
         PolyVec4::new(*self.x(), *self.x(), *self.x(), *self.z())
     }
 }
-pub trait SwizzleXXXW<T> {
+pub trait XXXW<T> {
     fn xxxw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXXXW<T> for S
+impl<S, T> XXXW<T> for S
 where
     S: X<T> + W<T>,
     T: Copy,
@@ -1102,10 +1102,10 @@ where
         PolyVec4::new(*self.x(), *self.x(), *self.x(), *self.w())
     }
 }
-pub trait SwizzleXXYX<T> {
+pub trait XXYX<T> {
     fn xxyx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXXYX<T> for S
+impl<S, T> XXYX<T> for S
 where
     S: X<T> + Y<T> + X<T>,
     T: Copy,
@@ -1115,10 +1115,10 @@ where
         PolyVec4::new(*self.x(), *self.x(), *self.y(), *self.x())
     }
 }
-pub trait SwizzleXXYY<T> {
+pub trait XXYY<T> {
     fn xxyy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXXYY<T> for S
+impl<S, T> XXYY<T> for S
 where
     S: X<T> + Y<T>,
     T: Copy,
@@ -1128,10 +1128,10 @@ where
         PolyVec4::new(*self.x(), *self.x(), *self.y(), *self.y())
     }
 }
-pub trait SwizzleXXYZ<T> {
+pub trait XXYZ<T> {
     fn xxyz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXXYZ<T> for S
+impl<S, T> XXYZ<T> for S
 where
     S: X<T> + Y<T> + Z<T>,
     T: Copy,
@@ -1141,10 +1141,10 @@ where
         PolyVec4::new(*self.x(), *self.x(), *self.y(), *self.z())
     }
 }
-pub trait SwizzleXXYW<T> {
+pub trait XXYW<T> {
     fn xxyw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXXYW<T> for S
+impl<S, T> XXYW<T> for S
 where
     S: X<T> + Y<T> + W<T>,
     T: Copy,
@@ -1154,10 +1154,10 @@ where
         PolyVec4::new(*self.x(), *self.x(), *self.y(), *self.w())
     }
 }
-pub trait SwizzleXXZX<T> {
+pub trait XXZX<T> {
     fn xxzx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXXZX<T> for S
+impl<S, T> XXZX<T> for S
 where
     S: X<T> + Z<T> + X<T>,
     T: Copy,
@@ -1167,10 +1167,10 @@ where
         PolyVec4::new(*self.x(), *self.x(), *self.z(), *self.x())
     }
 }
-pub trait SwizzleXXZY<T> {
+pub trait XXZY<T> {
     fn xxzy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXXZY<T> for S
+impl<S, T> XXZY<T> for S
 where
     S: X<T> + Z<T> + Y<T>,
     T: Copy,
@@ -1180,10 +1180,10 @@ where
         PolyVec4::new(*self.x(), *self.x(), *self.z(), *self.y())
     }
 }
-pub trait SwizzleXXZZ<T> {
+pub trait XXZZ<T> {
     fn xxzz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXXZZ<T> for S
+impl<S, T> XXZZ<T> for S
 where
     S: X<T> + Z<T>,
     T: Copy,
@@ -1193,10 +1193,10 @@ where
         PolyVec4::new(*self.x(), *self.x(), *self.z(), *self.z())
     }
 }
-pub trait SwizzleXXZW<T> {
+pub trait XXZW<T> {
     fn xxzw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXXZW<T> for S
+impl<S, T> XXZW<T> for S
 where
     S: X<T> + Z<T> + W<T>,
     T: Copy,
@@ -1206,10 +1206,10 @@ where
         PolyVec4::new(*self.x(), *self.x(), *self.z(), *self.w())
     }
 }
-pub trait SwizzleXXWX<T> {
+pub trait XXWX<T> {
     fn xxwx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXXWX<T> for S
+impl<S, T> XXWX<T> for S
 where
     S: X<T> + W<T> + X<T>,
     T: Copy,
@@ -1219,10 +1219,10 @@ where
         PolyVec4::new(*self.x(), *self.x(), *self.w(), *self.x())
     }
 }
-pub trait SwizzleXXWY<T> {
+pub trait XXWY<T> {
     fn xxwy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXXWY<T> for S
+impl<S, T> XXWY<T> for S
 where
     S: X<T> + W<T> + Y<T>,
     T: Copy,
@@ -1232,10 +1232,10 @@ where
         PolyVec4::new(*self.x(), *self.x(), *self.w(), *self.y())
     }
 }
-pub trait SwizzleXXWZ<T> {
+pub trait XXWZ<T> {
     fn xxwz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXXWZ<T> for S
+impl<S, T> XXWZ<T> for S
 where
     S: X<T> + W<T> + Z<T>,
     T: Copy,
@@ -1245,10 +1245,10 @@ where
         PolyVec4::new(*self.x(), *self.x(), *self.w(), *self.z())
     }
 }
-pub trait SwizzleXXWW<T> {
+pub trait XXWW<T> {
     fn xxww(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXXWW<T> for S
+impl<S, T> XXWW<T> for S
 where
     S: X<T> + W<T>,
     T: Copy,
@@ -1258,10 +1258,10 @@ where
         PolyVec4::new(*self.x(), *self.x(), *self.w(), *self.w())
     }
 }
-pub trait SwizzleXYXX<T> {
+pub trait XYXX<T> {
     fn xyxx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXYXX<T> for S
+impl<S, T> XYXX<T> for S
 where
     S: X<T> + Y<T> + X<T>,
     T: Copy,
@@ -1271,10 +1271,10 @@ where
         PolyVec4::new(*self.x(), *self.y(), *self.x(), *self.x())
     }
 }
-pub trait SwizzleXYXY<T> {
+pub trait XYXY<T> {
     fn xyxy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXYXY<T> for S
+impl<S, T> XYXY<T> for S
 where
     S: X<T> + Y<T> + X<T> + Y<T>,
     T: Copy,
@@ -1284,10 +1284,10 @@ where
         PolyVec4::new(*self.x(), *self.y(), *self.x(), *self.y())
     }
 }
-pub trait SwizzleXYXZ<T> {
+pub trait XYXZ<T> {
     fn xyxz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXYXZ<T> for S
+impl<S, T> XYXZ<T> for S
 where
     S: X<T> + Y<T> + X<T> + Z<T>,
     T: Copy,
@@ -1297,10 +1297,10 @@ where
         PolyVec4::new(*self.x(), *self.y(), *self.x(), *self.z())
     }
 }
-pub trait SwizzleXYXW<T> {
+pub trait XYXW<T> {
     fn xyxw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXYXW<T> for S
+impl<S, T> XYXW<T> for S
 where
     S: X<T> + Y<T> + X<T> + W<T>,
     T: Copy,
@@ -1310,10 +1310,10 @@ where
         PolyVec4::new(*self.x(), *self.y(), *self.x(), *self.w())
     }
 }
-pub trait SwizzleXYYX<T> {
+pub trait XYYX<T> {
     fn xyyx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXYYX<T> for S
+impl<S, T> XYYX<T> for S
 where
     S: X<T> + Y<T> + X<T>,
     T: Copy,
@@ -1323,10 +1323,10 @@ where
         PolyVec4::new(*self.x(), *self.y(), *self.y(), *self.x())
     }
 }
-pub trait SwizzleXYYY<T> {
+pub trait XYYY<T> {
     fn xyyy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXYYY<T> for S
+impl<S, T> XYYY<T> for S
 where
     S: X<T> + Y<T>,
     T: Copy,
@@ -1336,10 +1336,10 @@ where
         PolyVec4::new(*self.x(), *self.y(), *self.y(), *self.y())
     }
 }
-pub trait SwizzleXYYZ<T> {
+pub trait XYYZ<T> {
     fn xyyz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXYYZ<T> for S
+impl<S, T> XYYZ<T> for S
 where
     S: X<T> + Y<T> + Z<T>,
     T: Copy,
@@ -1349,10 +1349,10 @@ where
         PolyVec4::new(*self.x(), *self.y(), *self.y(), *self.z())
     }
 }
-pub trait SwizzleXYYW<T> {
+pub trait XYYW<T> {
     fn xyyw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXYYW<T> for S
+impl<S, T> XYYW<T> for S
 where
     S: X<T> + Y<T> + W<T>,
     T: Copy,
@@ -1362,10 +1362,10 @@ where
         PolyVec4::new(*self.x(), *self.y(), *self.y(), *self.w())
     }
 }
-pub trait SwizzleXYZX<T> {
+pub trait XYZX<T> {
     fn xyzx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXYZX<T> for S
+impl<S, T> XYZX<T> for S
 where
     S: X<T> + Y<T> + Z<T> + X<T>,
     T: Copy,
@@ -1375,10 +1375,10 @@ where
         PolyVec4::new(*self.x(), *self.y(), *self.z(), *self.x())
     }
 }
-pub trait SwizzleXYZY<T> {
+pub trait XYZY<T> {
     fn xyzy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXYZY<T> for S
+impl<S, T> XYZY<T> for S
 where
     S: X<T> + Y<T> + Z<T> + Y<T>,
     T: Copy,
@@ -1388,10 +1388,10 @@ where
         PolyVec4::new(*self.x(), *self.y(), *self.z(), *self.y())
     }
 }
-pub trait SwizzleXYZZ<T> {
+pub trait XYZZ<T> {
     fn xyzz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXYZZ<T> for S
+impl<S, T> XYZZ<T> for S
 where
     S: X<T> + Y<T> + Z<T>,
     T: Copy,
@@ -1401,10 +1401,10 @@ where
         PolyVec4::new(*self.x(), *self.y(), *self.z(), *self.z())
     }
 }
-pub trait SwizzleXYZW<T> {
+pub trait XYZW<T> {
     fn xyzw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXYZW<T> for S
+impl<S, T> XYZW<T> for S
 where
     S: X<T> + Y<T> + Z<T> + W<T>,
     T: Copy,
@@ -1414,10 +1414,10 @@ where
         PolyVec4::new(*self.x(), *self.y(), *self.z(), *self.w())
     }
 }
-pub trait SwizzleXYWX<T> {
+pub trait XYWX<T> {
     fn xywx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXYWX<T> for S
+impl<S, T> XYWX<T> for S
 where
     S: X<T> + Y<T> + W<T> + X<T>,
     T: Copy,
@@ -1427,10 +1427,10 @@ where
         PolyVec4::new(*self.x(), *self.y(), *self.w(), *self.x())
     }
 }
-pub trait SwizzleXYWY<T> {
+pub trait XYWY<T> {
     fn xywy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXYWY<T> for S
+impl<S, T> XYWY<T> for S
 where
     S: X<T> + Y<T> + W<T> + Y<T>,
     T: Copy,
@@ -1440,10 +1440,10 @@ where
         PolyVec4::new(*self.x(), *self.y(), *self.w(), *self.y())
     }
 }
-pub trait SwizzleXYWZ<T> {
+pub trait XYWZ<T> {
     fn xywz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXYWZ<T> for S
+impl<S, T> XYWZ<T> for S
 where
     S: X<T> + Y<T> + W<T> + Z<T>,
     T: Copy,
@@ -1453,10 +1453,10 @@ where
         PolyVec4::new(*self.x(), *self.y(), *self.w(), *self.z())
     }
 }
-pub trait SwizzleXYWW<T> {
+pub trait XYWW<T> {
     fn xyww(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXYWW<T> for S
+impl<S, T> XYWW<T> for S
 where
     S: X<T> + Y<T> + W<T>,
     T: Copy,
@@ -1466,10 +1466,10 @@ where
         PolyVec4::new(*self.x(), *self.y(), *self.w(), *self.w())
     }
 }
-pub trait SwizzleXZXX<T> {
+pub trait XZXX<T> {
     fn xzxx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXZXX<T> for S
+impl<S, T> XZXX<T> for S
 where
     S: X<T> + Z<T> + X<T>,
     T: Copy,
@@ -1479,10 +1479,10 @@ where
         PolyVec4::new(*self.x(), *self.z(), *self.x(), *self.x())
     }
 }
-pub trait SwizzleXZXY<T> {
+pub trait XZXY<T> {
     fn xzxy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXZXY<T> for S
+impl<S, T> XZXY<T> for S
 where
     S: X<T> + Z<T> + X<T> + Y<T>,
     T: Copy,
@@ -1492,10 +1492,10 @@ where
         PolyVec4::new(*self.x(), *self.z(), *self.x(), *self.y())
     }
 }
-pub trait SwizzleXZXZ<T> {
+pub trait XZXZ<T> {
     fn xzxz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXZXZ<T> for S
+impl<S, T> XZXZ<T> for S
 where
     S: X<T> + Z<T> + X<T> + Z<T>,
     T: Copy,
@@ -1505,10 +1505,10 @@ where
         PolyVec4::new(*self.x(), *self.z(), *self.x(), *self.z())
     }
 }
-pub trait SwizzleXZXW<T> {
+pub trait XZXW<T> {
     fn xzxw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXZXW<T> for S
+impl<S, T> XZXW<T> for S
 where
     S: X<T> + Z<T> + X<T> + W<T>,
     T: Copy,
@@ -1518,10 +1518,10 @@ where
         PolyVec4::new(*self.x(), *self.z(), *self.x(), *self.w())
     }
 }
-pub trait SwizzleXZYX<T> {
+pub trait XZYX<T> {
     fn xzyx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXZYX<T> for S
+impl<S, T> XZYX<T> for S
 where
     S: X<T> + Z<T> + Y<T> + X<T>,
     T: Copy,
@@ -1531,10 +1531,10 @@ where
         PolyVec4::new(*self.x(), *self.z(), *self.y(), *self.x())
     }
 }
-pub trait SwizzleXZYY<T> {
+pub trait XZYY<T> {
     fn xzyy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXZYY<T> for S
+impl<S, T> XZYY<T> for S
 where
     S: X<T> + Z<T> + Y<T>,
     T: Copy,
@@ -1544,10 +1544,10 @@ where
         PolyVec4::new(*self.x(), *self.z(), *self.y(), *self.y())
     }
 }
-pub trait SwizzleXZYZ<T> {
+pub trait XZYZ<T> {
     fn xzyz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXZYZ<T> for S
+impl<S, T> XZYZ<T> for S
 where
     S: X<T> + Z<T> + Y<T> + Z<T>,
     T: Copy,
@@ -1557,10 +1557,10 @@ where
         PolyVec4::new(*self.x(), *self.z(), *self.y(), *self.z())
     }
 }
-pub trait SwizzleXZYW<T> {
+pub trait XZYW<T> {
     fn xzyw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXZYW<T> for S
+impl<S, T> XZYW<T> for S
 where
     S: X<T> + Z<T> + Y<T> + W<T>,
     T: Copy,
@@ -1570,10 +1570,10 @@ where
         PolyVec4::new(*self.x(), *self.z(), *self.y(), *self.w())
     }
 }
-pub trait SwizzleXZZX<T> {
+pub trait XZZX<T> {
     fn xzzx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXZZX<T> for S
+impl<S, T> XZZX<T> for S
 where
     S: X<T> + Z<T> + X<T>,
     T: Copy,
@@ -1583,10 +1583,10 @@ where
         PolyVec4::new(*self.x(), *self.z(), *self.z(), *self.x())
     }
 }
-pub trait SwizzleXZZY<T> {
+pub trait XZZY<T> {
     fn xzzy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXZZY<T> for S
+impl<S, T> XZZY<T> for S
 where
     S: X<T> + Z<T> + Y<T>,
     T: Copy,
@@ -1596,10 +1596,10 @@ where
         PolyVec4::new(*self.x(), *self.z(), *self.z(), *self.y())
     }
 }
-pub trait SwizzleXZZZ<T> {
+pub trait XZZZ<T> {
     fn xzzz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXZZZ<T> for S
+impl<S, T> XZZZ<T> for S
 where
     S: X<T> + Z<T>,
     T: Copy,
@@ -1609,10 +1609,10 @@ where
         PolyVec4::new(*self.x(), *self.z(), *self.z(), *self.z())
     }
 }
-pub trait SwizzleXZZW<T> {
+pub trait XZZW<T> {
     fn xzzw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXZZW<T> for S
+impl<S, T> XZZW<T> for S
 where
     S: X<T> + Z<T> + W<T>,
     T: Copy,
@@ -1622,10 +1622,10 @@ where
         PolyVec4::new(*self.x(), *self.z(), *self.z(), *self.w())
     }
 }
-pub trait SwizzleXZWX<T> {
+pub trait XZWX<T> {
     fn xzwx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXZWX<T> for S
+impl<S, T> XZWX<T> for S
 where
     S: X<T> + Z<T> + W<T> + X<T>,
     T: Copy,
@@ -1635,10 +1635,10 @@ where
         PolyVec4::new(*self.x(), *self.z(), *self.w(), *self.x())
     }
 }
-pub trait SwizzleXZWY<T> {
+pub trait XZWY<T> {
     fn xzwy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXZWY<T> for S
+impl<S, T> XZWY<T> for S
 where
     S: X<T> + Z<T> + W<T> + Y<T>,
     T: Copy,
@@ -1648,10 +1648,10 @@ where
         PolyVec4::new(*self.x(), *self.z(), *self.w(), *self.y())
     }
 }
-pub trait SwizzleXZWZ<T> {
+pub trait XZWZ<T> {
     fn xzwz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXZWZ<T> for S
+impl<S, T> XZWZ<T> for S
 where
     S: X<T> + Z<T> + W<T> + Z<T>,
     T: Copy,
@@ -1661,10 +1661,10 @@ where
         PolyVec4::new(*self.x(), *self.z(), *self.w(), *self.z())
     }
 }
-pub trait SwizzleXZWW<T> {
+pub trait XZWW<T> {
     fn xzww(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXZWW<T> for S
+impl<S, T> XZWW<T> for S
 where
     S: X<T> + Z<T> + W<T>,
     T: Copy,
@@ -1674,10 +1674,10 @@ where
         PolyVec4::new(*self.x(), *self.z(), *self.w(), *self.w())
     }
 }
-pub trait SwizzleXWXX<T> {
+pub trait XWXX<T> {
     fn xwxx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXWXX<T> for S
+impl<S, T> XWXX<T> for S
 where
     S: X<T> + W<T> + X<T>,
     T: Copy,
@@ -1687,10 +1687,10 @@ where
         PolyVec4::new(*self.x(), *self.w(), *self.x(), *self.x())
     }
 }
-pub trait SwizzleXWXY<T> {
+pub trait XWXY<T> {
     fn xwxy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXWXY<T> for S
+impl<S, T> XWXY<T> for S
 where
     S: X<T> + W<T> + X<T> + Y<T>,
     T: Copy,
@@ -1700,10 +1700,10 @@ where
         PolyVec4::new(*self.x(), *self.w(), *self.x(), *self.y())
     }
 }
-pub trait SwizzleXWXZ<T> {
+pub trait XWXZ<T> {
     fn xwxz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXWXZ<T> for S
+impl<S, T> XWXZ<T> for S
 where
     S: X<T> + W<T> + X<T> + Z<T>,
     T: Copy,
@@ -1713,10 +1713,10 @@ where
         PolyVec4::new(*self.x(), *self.w(), *self.x(), *self.z())
     }
 }
-pub trait SwizzleXWXW<T> {
+pub trait XWXW<T> {
     fn xwxw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXWXW<T> for S
+impl<S, T> XWXW<T> for S
 where
     S: X<T> + W<T> + X<T> + W<T>,
     T: Copy,
@@ -1726,10 +1726,10 @@ where
         PolyVec4::new(*self.x(), *self.w(), *self.x(), *self.w())
     }
 }
-pub trait SwizzleXWYX<T> {
+pub trait XWYX<T> {
     fn xwyx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXWYX<T> for S
+impl<S, T> XWYX<T> for S
 where
     S: X<T> + W<T> + Y<T> + X<T>,
     T: Copy,
@@ -1739,10 +1739,10 @@ where
         PolyVec4::new(*self.x(), *self.w(), *self.y(), *self.x())
     }
 }
-pub trait SwizzleXWYY<T> {
+pub trait XWYY<T> {
     fn xwyy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXWYY<T> for S
+impl<S, T> XWYY<T> for S
 where
     S: X<T> + W<T> + Y<T>,
     T: Copy,
@@ -1752,10 +1752,10 @@ where
         PolyVec4::new(*self.x(), *self.w(), *self.y(), *self.y())
     }
 }
-pub trait SwizzleXWYZ<T> {
+pub trait XWYZ<T> {
     fn xwyz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXWYZ<T> for S
+impl<S, T> XWYZ<T> for S
 where
     S: X<T> + W<T> + Y<T> + Z<T>,
     T: Copy,
@@ -1765,10 +1765,10 @@ where
         PolyVec4::new(*self.x(), *self.w(), *self.y(), *self.z())
     }
 }
-pub trait SwizzleXWYW<T> {
+pub trait XWYW<T> {
     fn xwyw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXWYW<T> for S
+impl<S, T> XWYW<T> for S
 where
     S: X<T> + W<T> + Y<T> + W<T>,
     T: Copy,
@@ -1778,10 +1778,10 @@ where
         PolyVec4::new(*self.x(), *self.w(), *self.y(), *self.w())
     }
 }
-pub trait SwizzleXWZX<T> {
+pub trait XWZX<T> {
     fn xwzx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXWZX<T> for S
+impl<S, T> XWZX<T> for S
 where
     S: X<T> + W<T> + Z<T> + X<T>,
     T: Copy,
@@ -1791,10 +1791,10 @@ where
         PolyVec4::new(*self.x(), *self.w(), *self.z(), *self.x())
     }
 }
-pub trait SwizzleXWZY<T> {
+pub trait XWZY<T> {
     fn xwzy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXWZY<T> for S
+impl<S, T> XWZY<T> for S
 where
     S: X<T> + W<T> + Z<T> + Y<T>,
     T: Copy,
@@ -1804,10 +1804,10 @@ where
         PolyVec4::new(*self.x(), *self.w(), *self.z(), *self.y())
     }
 }
-pub trait SwizzleXWZZ<T> {
+pub trait XWZZ<T> {
     fn xwzz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXWZZ<T> for S
+impl<S, T> XWZZ<T> for S
 where
     S: X<T> + W<T> + Z<T>,
     T: Copy,
@@ -1817,10 +1817,10 @@ where
         PolyVec4::new(*self.x(), *self.w(), *self.z(), *self.z())
     }
 }
-pub trait SwizzleXWZW<T> {
+pub trait XWZW<T> {
     fn xwzw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXWZW<T> for S
+impl<S, T> XWZW<T> for S
 where
     S: X<T> + W<T> + Z<T> + W<T>,
     T: Copy,
@@ -1830,10 +1830,10 @@ where
         PolyVec4::new(*self.x(), *self.w(), *self.z(), *self.w())
     }
 }
-pub trait SwizzleXWWX<T> {
+pub trait XWWX<T> {
     fn xwwx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXWWX<T> for S
+impl<S, T> XWWX<T> for S
 where
     S: X<T> + W<T> + X<T>,
     T: Copy,
@@ -1843,10 +1843,10 @@ where
         PolyVec4::new(*self.x(), *self.w(), *self.w(), *self.x())
     }
 }
-pub trait SwizzleXWWY<T> {
+pub trait XWWY<T> {
     fn xwwy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXWWY<T> for S
+impl<S, T> XWWY<T> for S
 where
     S: X<T> + W<T> + Y<T>,
     T: Copy,
@@ -1856,10 +1856,10 @@ where
         PolyVec4::new(*self.x(), *self.w(), *self.w(), *self.y())
     }
 }
-pub trait SwizzleXWWZ<T> {
+pub trait XWWZ<T> {
     fn xwwz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXWWZ<T> for S
+impl<S, T> XWWZ<T> for S
 where
     S: X<T> + W<T> + Z<T>,
     T: Copy,
@@ -1869,10 +1869,10 @@ where
         PolyVec4::new(*self.x(), *self.w(), *self.w(), *self.z())
     }
 }
-pub trait SwizzleXWWW<T> {
+pub trait XWWW<T> {
     fn xwww(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleXWWW<T> for S
+impl<S, T> XWWW<T> for S
 where
     S: X<T> + W<T>,
     T: Copy,
@@ -1882,10 +1882,10 @@ where
         PolyVec4::new(*self.x(), *self.w(), *self.w(), *self.w())
     }
 }
-pub trait SwizzleYXXX<T> {
+pub trait YXXX<T> {
     fn yxxx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYXXX<T> for S
+impl<S, T> YXXX<T> for S
 where
     S: Y<T> + X<T>,
     T: Copy,
@@ -1895,10 +1895,10 @@ where
         PolyVec4::new(*self.y(), *self.x(), *self.x(), *self.x())
     }
 }
-pub trait SwizzleYXXY<T> {
+pub trait YXXY<T> {
     fn yxxy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYXXY<T> for S
+impl<S, T> YXXY<T> for S
 where
     S: Y<T> + X<T> + Y<T>,
     T: Copy,
@@ -1908,10 +1908,10 @@ where
         PolyVec4::new(*self.y(), *self.x(), *self.x(), *self.y())
     }
 }
-pub trait SwizzleYXXZ<T> {
+pub trait YXXZ<T> {
     fn yxxz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYXXZ<T> for S
+impl<S, T> YXXZ<T> for S
 where
     S: Y<T> + X<T> + Z<T>,
     T: Copy,
@@ -1921,10 +1921,10 @@ where
         PolyVec4::new(*self.y(), *self.x(), *self.x(), *self.z())
     }
 }
-pub trait SwizzleYXXW<T> {
+pub trait YXXW<T> {
     fn yxxw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYXXW<T> for S
+impl<S, T> YXXW<T> for S
 where
     S: Y<T> + X<T> + W<T>,
     T: Copy,
@@ -1934,10 +1934,10 @@ where
         PolyVec4::new(*self.y(), *self.x(), *self.x(), *self.w())
     }
 }
-pub trait SwizzleYXYX<T> {
+pub trait YXYX<T> {
     fn yxyx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYXYX<T> for S
+impl<S, T> YXYX<T> for S
 where
     S: Y<T> + X<T> + Y<T> + X<T>,
     T: Copy,
@@ -1947,10 +1947,10 @@ where
         PolyVec4::new(*self.y(), *self.x(), *self.y(), *self.x())
     }
 }
-pub trait SwizzleYXYY<T> {
+pub trait YXYY<T> {
     fn yxyy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYXYY<T> for S
+impl<S, T> YXYY<T> for S
 where
     S: Y<T> + X<T> + Y<T>,
     T: Copy,
@@ -1960,10 +1960,10 @@ where
         PolyVec4::new(*self.y(), *self.x(), *self.y(), *self.y())
     }
 }
-pub trait SwizzleYXYZ<T> {
+pub trait YXYZ<T> {
     fn yxyz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYXYZ<T> for S
+impl<S, T> YXYZ<T> for S
 where
     S: Y<T> + X<T> + Y<T> + Z<T>,
     T: Copy,
@@ -1973,10 +1973,10 @@ where
         PolyVec4::new(*self.y(), *self.x(), *self.y(), *self.z())
     }
 }
-pub trait SwizzleYXYW<T> {
+pub trait YXYW<T> {
     fn yxyw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYXYW<T> for S
+impl<S, T> YXYW<T> for S
 where
     S: Y<T> + X<T> + Y<T> + W<T>,
     T: Copy,
@@ -1986,10 +1986,10 @@ where
         PolyVec4::new(*self.y(), *self.x(), *self.y(), *self.w())
     }
 }
-pub trait SwizzleYXZX<T> {
+pub trait YXZX<T> {
     fn yxzx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYXZX<T> for S
+impl<S, T> YXZX<T> for S
 where
     S: Y<T> + X<T> + Z<T> + X<T>,
     T: Copy,
@@ -1999,10 +1999,10 @@ where
         PolyVec4::new(*self.y(), *self.x(), *self.z(), *self.x())
     }
 }
-pub trait SwizzleYXZY<T> {
+pub trait YXZY<T> {
     fn yxzy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYXZY<T> for S
+impl<S, T> YXZY<T> for S
 where
     S: Y<T> + X<T> + Z<T> + Y<T>,
     T: Copy,
@@ -2012,10 +2012,10 @@ where
         PolyVec4::new(*self.y(), *self.x(), *self.z(), *self.y())
     }
 }
-pub trait SwizzleYXZZ<T> {
+pub trait YXZZ<T> {
     fn yxzz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYXZZ<T> for S
+impl<S, T> YXZZ<T> for S
 where
     S: Y<T> + X<T> + Z<T>,
     T: Copy,
@@ -2025,10 +2025,10 @@ where
         PolyVec4::new(*self.y(), *self.x(), *self.z(), *self.z())
     }
 }
-pub trait SwizzleYXZW<T> {
+pub trait YXZW<T> {
     fn yxzw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYXZW<T> for S
+impl<S, T> YXZW<T> for S
 where
     S: Y<T> + X<T> + Z<T> + W<T>,
     T: Copy,
@@ -2038,10 +2038,10 @@ where
         PolyVec4::new(*self.y(), *self.x(), *self.z(), *self.w())
     }
 }
-pub trait SwizzleYXWX<T> {
+pub trait YXWX<T> {
     fn yxwx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYXWX<T> for S
+impl<S, T> YXWX<T> for S
 where
     S: Y<T> + X<T> + W<T> + X<T>,
     T: Copy,
@@ -2051,10 +2051,10 @@ where
         PolyVec4::new(*self.y(), *self.x(), *self.w(), *self.x())
     }
 }
-pub trait SwizzleYXWY<T> {
+pub trait YXWY<T> {
     fn yxwy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYXWY<T> for S
+impl<S, T> YXWY<T> for S
 where
     S: Y<T> + X<T> + W<T> + Y<T>,
     T: Copy,
@@ -2064,10 +2064,10 @@ where
         PolyVec4::new(*self.y(), *self.x(), *self.w(), *self.y())
     }
 }
-pub trait SwizzleYXWZ<T> {
+pub trait YXWZ<T> {
     fn yxwz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYXWZ<T> for S
+impl<S, T> YXWZ<T> for S
 where
     S: Y<T> + X<T> + W<T> + Z<T>,
     T: Copy,
@@ -2077,10 +2077,10 @@ where
         PolyVec4::new(*self.y(), *self.x(), *self.w(), *self.z())
     }
 }
-pub trait SwizzleYXWW<T> {
+pub trait YXWW<T> {
     fn yxww(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYXWW<T> for S
+impl<S, T> YXWW<T> for S
 where
     S: Y<T> + X<T> + W<T>,
     T: Copy,
@@ -2090,10 +2090,10 @@ where
         PolyVec4::new(*self.y(), *self.x(), *self.w(), *self.w())
     }
 }
-pub trait SwizzleYYXX<T> {
+pub trait YYXX<T> {
     fn yyxx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYYXX<T> for S
+impl<S, T> YYXX<T> for S
 where
     S: Y<T> + X<T>,
     T: Copy,
@@ -2103,10 +2103,10 @@ where
         PolyVec4::new(*self.y(), *self.y(), *self.x(), *self.x())
     }
 }
-pub trait SwizzleYYXY<T> {
+pub trait YYXY<T> {
     fn yyxy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYYXY<T> for S
+impl<S, T> YYXY<T> for S
 where
     S: Y<T> + X<T> + Y<T>,
     T: Copy,
@@ -2116,10 +2116,10 @@ where
         PolyVec4::new(*self.y(), *self.y(), *self.x(), *self.y())
     }
 }
-pub trait SwizzleYYXZ<T> {
+pub trait YYXZ<T> {
     fn yyxz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYYXZ<T> for S
+impl<S, T> YYXZ<T> for S
 where
     S: Y<T> + X<T> + Z<T>,
     T: Copy,
@@ -2129,10 +2129,10 @@ where
         PolyVec4::new(*self.y(), *self.y(), *self.x(), *self.z())
     }
 }
-pub trait SwizzleYYXW<T> {
+pub trait YYXW<T> {
     fn yyxw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYYXW<T> for S
+impl<S, T> YYXW<T> for S
 where
     S: Y<T> + X<T> + W<T>,
     T: Copy,
@@ -2142,10 +2142,10 @@ where
         PolyVec4::new(*self.y(), *self.y(), *self.x(), *self.w())
     }
 }
-pub trait SwizzleYYYX<T> {
+pub trait YYYX<T> {
     fn yyyx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYYYX<T> for S
+impl<S, T> YYYX<T> for S
 where
     S: Y<T> + X<T>,
     T: Copy,
@@ -2155,10 +2155,10 @@ where
         PolyVec4::new(*self.y(), *self.y(), *self.y(), *self.x())
     }
 }
-pub trait SwizzleYYYY<T> {
+pub trait YYYY<T> {
     fn yyyy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYYYY<T> for S
+impl<S, T> YYYY<T> for S
 where
     S: Y<T>,
     T: Copy,
@@ -2168,10 +2168,10 @@ where
         PolyVec4::new(*self.y(), *self.y(), *self.y(), *self.y())
     }
 }
-pub trait SwizzleYYYZ<T> {
+pub trait YYYZ<T> {
     fn yyyz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYYYZ<T> for S
+impl<S, T> YYYZ<T> for S
 where
     S: Y<T> + Z<T>,
     T: Copy,
@@ -2181,10 +2181,10 @@ where
         PolyVec4::new(*self.y(), *self.y(), *self.y(), *self.z())
     }
 }
-pub trait SwizzleYYYW<T> {
+pub trait YYYW<T> {
     fn yyyw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYYYW<T> for S
+impl<S, T> YYYW<T> for S
 where
     S: Y<T> + W<T>,
     T: Copy,
@@ -2194,10 +2194,10 @@ where
         PolyVec4::new(*self.y(), *self.y(), *self.y(), *self.w())
     }
 }
-pub trait SwizzleYYZX<T> {
+pub trait YYZX<T> {
     fn yyzx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYYZX<T> for S
+impl<S, T> YYZX<T> for S
 where
     S: Y<T> + Z<T> + X<T>,
     T: Copy,
@@ -2207,10 +2207,10 @@ where
         PolyVec4::new(*self.y(), *self.y(), *self.z(), *self.x())
     }
 }
-pub trait SwizzleYYZY<T> {
+pub trait YYZY<T> {
     fn yyzy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYYZY<T> for S
+impl<S, T> YYZY<T> for S
 where
     S: Y<T> + Z<T> + Y<T>,
     T: Copy,
@@ -2220,10 +2220,10 @@ where
         PolyVec4::new(*self.y(), *self.y(), *self.z(), *self.y())
     }
 }
-pub trait SwizzleYYZZ<T> {
+pub trait YYZZ<T> {
     fn yyzz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYYZZ<T> for S
+impl<S, T> YYZZ<T> for S
 where
     S: Y<T> + Z<T>,
     T: Copy,
@@ -2233,10 +2233,10 @@ where
         PolyVec4::new(*self.y(), *self.y(), *self.z(), *self.z())
     }
 }
-pub trait SwizzleYYZW<T> {
+pub trait YYZW<T> {
     fn yyzw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYYZW<T> for S
+impl<S, T> YYZW<T> for S
 where
     S: Y<T> + Z<T> + W<T>,
     T: Copy,
@@ -2246,10 +2246,10 @@ where
         PolyVec4::new(*self.y(), *self.y(), *self.z(), *self.w())
     }
 }
-pub trait SwizzleYYWX<T> {
+pub trait YYWX<T> {
     fn yywx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYYWX<T> for S
+impl<S, T> YYWX<T> for S
 where
     S: Y<T> + W<T> + X<T>,
     T: Copy,
@@ -2259,10 +2259,10 @@ where
         PolyVec4::new(*self.y(), *self.y(), *self.w(), *self.x())
     }
 }
-pub trait SwizzleYYWY<T> {
+pub trait YYWY<T> {
     fn yywy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYYWY<T> for S
+impl<S, T> YYWY<T> for S
 where
     S: Y<T> + W<T> + Y<T>,
     T: Copy,
@@ -2272,10 +2272,10 @@ where
         PolyVec4::new(*self.y(), *self.y(), *self.w(), *self.y())
     }
 }
-pub trait SwizzleYYWZ<T> {
+pub trait YYWZ<T> {
     fn yywz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYYWZ<T> for S
+impl<S, T> YYWZ<T> for S
 where
     S: Y<T> + W<T> + Z<T>,
     T: Copy,
@@ -2285,10 +2285,10 @@ where
         PolyVec4::new(*self.y(), *self.y(), *self.w(), *self.z())
     }
 }
-pub trait SwizzleYYWW<T> {
+pub trait YYWW<T> {
     fn yyww(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYYWW<T> for S
+impl<S, T> YYWW<T> for S
 where
     S: Y<T> + W<T>,
     T: Copy,
@@ -2298,10 +2298,10 @@ where
         PolyVec4::new(*self.y(), *self.y(), *self.w(), *self.w())
     }
 }
-pub trait SwizzleYZXX<T> {
+pub trait YZXX<T> {
     fn yzxx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYZXX<T> for S
+impl<S, T> YZXX<T> for S
 where
     S: Y<T> + Z<T> + X<T>,
     T: Copy,
@@ -2311,10 +2311,10 @@ where
         PolyVec4::new(*self.y(), *self.z(), *self.x(), *self.x())
     }
 }
-pub trait SwizzleYZXY<T> {
+pub trait YZXY<T> {
     fn yzxy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYZXY<T> for S
+impl<S, T> YZXY<T> for S
 where
     S: Y<T> + Z<T> + X<T> + Y<T>,
     T: Copy,
@@ -2324,10 +2324,10 @@ where
         PolyVec4::new(*self.y(), *self.z(), *self.x(), *self.y())
     }
 }
-pub trait SwizzleYZXZ<T> {
+pub trait YZXZ<T> {
     fn yzxz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYZXZ<T> for S
+impl<S, T> YZXZ<T> for S
 where
     S: Y<T> + Z<T> + X<T> + Z<T>,
     T: Copy,
@@ -2337,10 +2337,10 @@ where
         PolyVec4::new(*self.y(), *self.z(), *self.x(), *self.z())
     }
 }
-pub trait SwizzleYZXW<T> {
+pub trait YZXW<T> {
     fn yzxw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYZXW<T> for S
+impl<S, T> YZXW<T> for S
 where
     S: Y<T> + Z<T> + X<T> + W<T>,
     T: Copy,
@@ -2350,10 +2350,10 @@ where
         PolyVec4::new(*self.y(), *self.z(), *self.x(), *self.w())
     }
 }
-pub trait SwizzleYZYX<T> {
+pub trait YZYX<T> {
     fn yzyx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYZYX<T> for S
+impl<S, T> YZYX<T> for S
 where
     S: Y<T> + Z<T> + Y<T> + X<T>,
     T: Copy,
@@ -2363,10 +2363,10 @@ where
         PolyVec4::new(*self.y(), *self.z(), *self.y(), *self.x())
     }
 }
-pub trait SwizzleYZYY<T> {
+pub trait YZYY<T> {
     fn yzyy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYZYY<T> for S
+impl<S, T> YZYY<T> for S
 where
     S: Y<T> + Z<T> + Y<T>,
     T: Copy,
@@ -2376,10 +2376,10 @@ where
         PolyVec4::new(*self.y(), *self.z(), *self.y(), *self.y())
     }
 }
-pub trait SwizzleYZYZ<T> {
+pub trait YZYZ<T> {
     fn yzyz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYZYZ<T> for S
+impl<S, T> YZYZ<T> for S
 where
     S: Y<T> + Z<T> + Y<T> + Z<T>,
     T: Copy,
@@ -2389,10 +2389,10 @@ where
         PolyVec4::new(*self.y(), *self.z(), *self.y(), *self.z())
     }
 }
-pub trait SwizzleYZYW<T> {
+pub trait YZYW<T> {
     fn yzyw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYZYW<T> for S
+impl<S, T> YZYW<T> for S
 where
     S: Y<T> + Z<T> + Y<T> + W<T>,
     T: Copy,
@@ -2402,10 +2402,10 @@ where
         PolyVec4::new(*self.y(), *self.z(), *self.y(), *self.w())
     }
 }
-pub trait SwizzleYZZX<T> {
+pub trait YZZX<T> {
     fn yzzx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYZZX<T> for S
+impl<S, T> YZZX<T> for S
 where
     S: Y<T> + Z<T> + X<T>,
     T: Copy,
@@ -2415,10 +2415,10 @@ where
         PolyVec4::new(*self.y(), *self.z(), *self.z(), *self.x())
     }
 }
-pub trait SwizzleYZZY<T> {
+pub trait YZZY<T> {
     fn yzzy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYZZY<T> for S
+impl<S, T> YZZY<T> for S
 where
     S: Y<T> + Z<T> + Y<T>,
     T: Copy,
@@ -2428,10 +2428,10 @@ where
         PolyVec4::new(*self.y(), *self.z(), *self.z(), *self.y())
     }
 }
-pub trait SwizzleYZZZ<T> {
+pub trait YZZZ<T> {
     fn yzzz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYZZZ<T> for S
+impl<S, T> YZZZ<T> for S
 where
     S: Y<T> + Z<T>,
     T: Copy,
@@ -2441,10 +2441,10 @@ where
         PolyVec4::new(*self.y(), *self.z(), *self.z(), *self.z())
     }
 }
-pub trait SwizzleYZZW<T> {
+pub trait YZZW<T> {
     fn yzzw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYZZW<T> for S
+impl<S, T> YZZW<T> for S
 where
     S: Y<T> + Z<T> + W<T>,
     T: Copy,
@@ -2454,10 +2454,10 @@ where
         PolyVec4::new(*self.y(), *self.z(), *self.z(), *self.w())
     }
 }
-pub trait SwizzleYZWX<T> {
+pub trait YZWX<T> {
     fn yzwx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYZWX<T> for S
+impl<S, T> YZWX<T> for S
 where
     S: Y<T> + Z<T> + W<T> + X<T>,
     T: Copy,
@@ -2467,10 +2467,10 @@ where
         PolyVec4::new(*self.y(), *self.z(), *self.w(), *self.x())
     }
 }
-pub trait SwizzleYZWY<T> {
+pub trait YZWY<T> {
     fn yzwy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYZWY<T> for S
+impl<S, T> YZWY<T> for S
 where
     S: Y<T> + Z<T> + W<T> + Y<T>,
     T: Copy,
@@ -2480,10 +2480,10 @@ where
         PolyVec4::new(*self.y(), *self.z(), *self.w(), *self.y())
     }
 }
-pub trait SwizzleYZWZ<T> {
+pub trait YZWZ<T> {
     fn yzwz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYZWZ<T> for S
+impl<S, T> YZWZ<T> for S
 where
     S: Y<T> + Z<T> + W<T> + Z<T>,
     T: Copy,
@@ -2493,10 +2493,10 @@ where
         PolyVec4::new(*self.y(), *self.z(), *self.w(), *self.z())
     }
 }
-pub trait SwizzleYZWW<T> {
+pub trait YZWW<T> {
     fn yzww(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYZWW<T> for S
+impl<S, T> YZWW<T> for S
 where
     S: Y<T> + Z<T> + W<T>,
     T: Copy,
@@ -2506,10 +2506,10 @@ where
         PolyVec4::new(*self.y(), *self.z(), *self.w(), *self.w())
     }
 }
-pub trait SwizzleYWXX<T> {
+pub trait YWXX<T> {
     fn ywxx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYWXX<T> for S
+impl<S, T> YWXX<T> for S
 where
     S: Y<T> + W<T> + X<T>,
     T: Copy,
@@ -2519,10 +2519,10 @@ where
         PolyVec4::new(*self.y(), *self.w(), *self.x(), *self.x())
     }
 }
-pub trait SwizzleYWXY<T> {
+pub trait YWXY<T> {
     fn ywxy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYWXY<T> for S
+impl<S, T> YWXY<T> for S
 where
     S: Y<T> + W<T> + X<T> + Y<T>,
     T: Copy,
@@ -2532,10 +2532,10 @@ where
         PolyVec4::new(*self.y(), *self.w(), *self.x(), *self.y())
     }
 }
-pub trait SwizzleYWXZ<T> {
+pub trait YWXZ<T> {
     fn ywxz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYWXZ<T> for S
+impl<S, T> YWXZ<T> for S
 where
     S: Y<T> + W<T> + X<T> + Z<T>,
     T: Copy,
@@ -2545,10 +2545,10 @@ where
         PolyVec4::new(*self.y(), *self.w(), *self.x(), *self.z())
     }
 }
-pub trait SwizzleYWXW<T> {
+pub trait YWXW<T> {
     fn ywxw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYWXW<T> for S
+impl<S, T> YWXW<T> for S
 where
     S: Y<T> + W<T> + X<T> + W<T>,
     T: Copy,
@@ -2558,10 +2558,10 @@ where
         PolyVec4::new(*self.y(), *self.w(), *self.x(), *self.w())
     }
 }
-pub trait SwizzleYWYX<T> {
+pub trait YWYX<T> {
     fn ywyx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYWYX<T> for S
+impl<S, T> YWYX<T> for S
 where
     S: Y<T> + W<T> + Y<T> + X<T>,
     T: Copy,
@@ -2571,10 +2571,10 @@ where
         PolyVec4::new(*self.y(), *self.w(), *self.y(), *self.x())
     }
 }
-pub trait SwizzleYWYY<T> {
+pub trait YWYY<T> {
     fn ywyy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYWYY<T> for S
+impl<S, T> YWYY<T> for S
 where
     S: Y<T> + W<T> + Y<T>,
     T: Copy,
@@ -2584,10 +2584,10 @@ where
         PolyVec4::new(*self.y(), *self.w(), *self.y(), *self.y())
     }
 }
-pub trait SwizzleYWYZ<T> {
+pub trait YWYZ<T> {
     fn ywyz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYWYZ<T> for S
+impl<S, T> YWYZ<T> for S
 where
     S: Y<T> + W<T> + Y<T> + Z<T>,
     T: Copy,
@@ -2597,10 +2597,10 @@ where
         PolyVec4::new(*self.y(), *self.w(), *self.y(), *self.z())
     }
 }
-pub trait SwizzleYWYW<T> {
+pub trait YWYW<T> {
     fn ywyw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYWYW<T> for S
+impl<S, T> YWYW<T> for S
 where
     S: Y<T> + W<T> + Y<T> + W<T>,
     T: Copy,
@@ -2610,10 +2610,10 @@ where
         PolyVec4::new(*self.y(), *self.w(), *self.y(), *self.w())
     }
 }
-pub trait SwizzleYWZX<T> {
+pub trait YWZX<T> {
     fn ywzx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYWZX<T> for S
+impl<S, T> YWZX<T> for S
 where
     S: Y<T> + W<T> + Z<T> + X<T>,
     T: Copy,
@@ -2623,10 +2623,10 @@ where
         PolyVec4::new(*self.y(), *self.w(), *self.z(), *self.x())
     }
 }
-pub trait SwizzleYWZY<T> {
+pub trait YWZY<T> {
     fn ywzy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYWZY<T> for S
+impl<S, T> YWZY<T> for S
 where
     S: Y<T> + W<T> + Z<T> + Y<T>,
     T: Copy,
@@ -2636,10 +2636,10 @@ where
         PolyVec4::new(*self.y(), *self.w(), *self.z(), *self.y())
     }
 }
-pub trait SwizzleYWZZ<T> {
+pub trait YWZZ<T> {
     fn ywzz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYWZZ<T> for S
+impl<S, T> YWZZ<T> for S
 where
     S: Y<T> + W<T> + Z<T>,
     T: Copy,
@@ -2649,10 +2649,10 @@ where
         PolyVec4::new(*self.y(), *self.w(), *self.z(), *self.z())
     }
 }
-pub trait SwizzleYWZW<T> {
+pub trait YWZW<T> {
     fn ywzw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYWZW<T> for S
+impl<S, T> YWZW<T> for S
 where
     S: Y<T> + W<T> + Z<T> + W<T>,
     T: Copy,
@@ -2662,10 +2662,10 @@ where
         PolyVec4::new(*self.y(), *self.w(), *self.z(), *self.w())
     }
 }
-pub trait SwizzleYWWX<T> {
+pub trait YWWX<T> {
     fn ywwx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYWWX<T> for S
+impl<S, T> YWWX<T> for S
 where
     S: Y<T> + W<T> + X<T>,
     T: Copy,
@@ -2675,10 +2675,10 @@ where
         PolyVec4::new(*self.y(), *self.w(), *self.w(), *self.x())
     }
 }
-pub trait SwizzleYWWY<T> {
+pub trait YWWY<T> {
     fn ywwy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYWWY<T> for S
+impl<S, T> YWWY<T> for S
 where
     S: Y<T> + W<T> + Y<T>,
     T: Copy,
@@ -2688,10 +2688,10 @@ where
         PolyVec4::new(*self.y(), *self.w(), *self.w(), *self.y())
     }
 }
-pub trait SwizzleYWWZ<T> {
+pub trait YWWZ<T> {
     fn ywwz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYWWZ<T> for S
+impl<S, T> YWWZ<T> for S
 where
     S: Y<T> + W<T> + Z<T>,
     T: Copy,
@@ -2701,10 +2701,10 @@ where
         PolyVec4::new(*self.y(), *self.w(), *self.w(), *self.z())
     }
 }
-pub trait SwizzleYWWW<T> {
+pub trait YWWW<T> {
     fn ywww(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleYWWW<T> for S
+impl<S, T> YWWW<T> for S
 where
     S: Y<T> + W<T>,
     T: Copy,
@@ -2714,10 +2714,10 @@ where
         PolyVec4::new(*self.y(), *self.w(), *self.w(), *self.w())
     }
 }
-pub trait SwizzleZXXX<T> {
+pub trait ZXXX<T> {
     fn zxxx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZXXX<T> for S
+impl<S, T> ZXXX<T> for S
 where
     S: Z<T> + X<T>,
     T: Copy,
@@ -2727,10 +2727,10 @@ where
         PolyVec4::new(*self.z(), *self.x(), *self.x(), *self.x())
     }
 }
-pub trait SwizzleZXXY<T> {
+pub trait ZXXY<T> {
     fn zxxy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZXXY<T> for S
+impl<S, T> ZXXY<T> for S
 where
     S: Z<T> + X<T> + Y<T>,
     T: Copy,
@@ -2740,10 +2740,10 @@ where
         PolyVec4::new(*self.z(), *self.x(), *self.x(), *self.y())
     }
 }
-pub trait SwizzleZXXZ<T> {
+pub trait ZXXZ<T> {
     fn zxxz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZXXZ<T> for S
+impl<S, T> ZXXZ<T> for S
 where
     S: Z<T> + X<T> + Z<T>,
     T: Copy,
@@ -2753,10 +2753,10 @@ where
         PolyVec4::new(*self.z(), *self.x(), *self.x(), *self.z())
     }
 }
-pub trait SwizzleZXXW<T> {
+pub trait ZXXW<T> {
     fn zxxw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZXXW<T> for S
+impl<S, T> ZXXW<T> for S
 where
     S: Z<T> + X<T> + W<T>,
     T: Copy,
@@ -2766,10 +2766,10 @@ where
         PolyVec4::new(*self.z(), *self.x(), *self.x(), *self.w())
     }
 }
-pub trait SwizzleZXYX<T> {
+pub trait ZXYX<T> {
     fn zxyx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZXYX<T> for S
+impl<S, T> ZXYX<T> for S
 where
     S: Z<T> + X<T> + Y<T> + X<T>,
     T: Copy,
@@ -2779,10 +2779,10 @@ where
         PolyVec4::new(*self.z(), *self.x(), *self.y(), *self.x())
     }
 }
-pub trait SwizzleZXYY<T> {
+pub trait ZXYY<T> {
     fn zxyy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZXYY<T> for S
+impl<S, T> ZXYY<T> for S
 where
     S: Z<T> + X<T> + Y<T>,
     T: Copy,
@@ -2792,10 +2792,10 @@ where
         PolyVec4::new(*self.z(), *self.x(), *self.y(), *self.y())
     }
 }
-pub trait SwizzleZXYZ<T> {
+pub trait ZXYZ<T> {
     fn zxyz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZXYZ<T> for S
+impl<S, T> ZXYZ<T> for S
 where
     S: Z<T> + X<T> + Y<T> + Z<T>,
     T: Copy,
@@ -2805,10 +2805,10 @@ where
         PolyVec4::new(*self.z(), *self.x(), *self.y(), *self.z())
     }
 }
-pub trait SwizzleZXYW<T> {
+pub trait ZXYW<T> {
     fn zxyw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZXYW<T> for S
+impl<S, T> ZXYW<T> for S
 where
     S: Z<T> + X<T> + Y<T> + W<T>,
     T: Copy,
@@ -2818,10 +2818,10 @@ where
         PolyVec4::new(*self.z(), *self.x(), *self.y(), *self.w())
     }
 }
-pub trait SwizzleZXZX<T> {
+pub trait ZXZX<T> {
     fn zxzx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZXZX<T> for S
+impl<S, T> ZXZX<T> for S
 where
     S: Z<T> + X<T> + Z<T> + X<T>,
     T: Copy,
@@ -2831,10 +2831,10 @@ where
         PolyVec4::new(*self.z(), *self.x(), *self.z(), *self.x())
     }
 }
-pub trait SwizzleZXZY<T> {
+pub trait ZXZY<T> {
     fn zxzy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZXZY<T> for S
+impl<S, T> ZXZY<T> for S
 where
     S: Z<T> + X<T> + Z<T> + Y<T>,
     T: Copy,
@@ -2844,10 +2844,10 @@ where
         PolyVec4::new(*self.z(), *self.x(), *self.z(), *self.y())
     }
 }
-pub trait SwizzleZXZZ<T> {
+pub trait ZXZZ<T> {
     fn zxzz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZXZZ<T> for S
+impl<S, T> ZXZZ<T> for S
 where
     S: Z<T> + X<T> + Z<T>,
     T: Copy,
@@ -2857,10 +2857,10 @@ where
         PolyVec4::new(*self.z(), *self.x(), *self.z(), *self.z())
     }
 }
-pub trait SwizzleZXZW<T> {
+pub trait ZXZW<T> {
     fn zxzw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZXZW<T> for S
+impl<S, T> ZXZW<T> for S
 where
     S: Z<T> + X<T> + Z<T> + W<T>,
     T: Copy,
@@ -2870,10 +2870,10 @@ where
         PolyVec4::new(*self.z(), *self.x(), *self.z(), *self.w())
     }
 }
-pub trait SwizzleZXWX<T> {
+pub trait ZXWX<T> {
     fn zxwx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZXWX<T> for S
+impl<S, T> ZXWX<T> for S
 where
     S: Z<T> + X<T> + W<T> + X<T>,
     T: Copy,
@@ -2883,10 +2883,10 @@ where
         PolyVec4::new(*self.z(), *self.x(), *self.w(), *self.x())
     }
 }
-pub trait SwizzleZXWY<T> {
+pub trait ZXWY<T> {
     fn zxwy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZXWY<T> for S
+impl<S, T> ZXWY<T> for S
 where
     S: Z<T> + X<T> + W<T> + Y<T>,
     T: Copy,
@@ -2896,10 +2896,10 @@ where
         PolyVec4::new(*self.z(), *self.x(), *self.w(), *self.y())
     }
 }
-pub trait SwizzleZXWZ<T> {
+pub trait ZXWZ<T> {
     fn zxwz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZXWZ<T> for S
+impl<S, T> ZXWZ<T> for S
 where
     S: Z<T> + X<T> + W<T> + Z<T>,
     T: Copy,
@@ -2909,10 +2909,10 @@ where
         PolyVec4::new(*self.z(), *self.x(), *self.w(), *self.z())
     }
 }
-pub trait SwizzleZXWW<T> {
+pub trait ZXWW<T> {
     fn zxww(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZXWW<T> for S
+impl<S, T> ZXWW<T> for S
 where
     S: Z<T> + X<T> + W<T>,
     T: Copy,
@@ -2922,10 +2922,10 @@ where
         PolyVec4::new(*self.z(), *self.x(), *self.w(), *self.w())
     }
 }
-pub trait SwizzleZYXX<T> {
+pub trait ZYXX<T> {
     fn zyxx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZYXX<T> for S
+impl<S, T> ZYXX<T> for S
 where
     S: Z<T> + Y<T> + X<T>,
     T: Copy,
@@ -2935,10 +2935,10 @@ where
         PolyVec4::new(*self.z(), *self.y(), *self.x(), *self.x())
     }
 }
-pub trait SwizzleZYXY<T> {
+pub trait ZYXY<T> {
     fn zyxy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZYXY<T> for S
+impl<S, T> ZYXY<T> for S
 where
     S: Z<T> + Y<T> + X<T> + Y<T>,
     T: Copy,
@@ -2948,10 +2948,10 @@ where
         PolyVec4::new(*self.z(), *self.y(), *self.x(), *self.y())
     }
 }
-pub trait SwizzleZYXZ<T> {
+pub trait ZYXZ<T> {
     fn zyxz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZYXZ<T> for S
+impl<S, T> ZYXZ<T> for S
 where
     S: Z<T> + Y<T> + X<T> + Z<T>,
     T: Copy,
@@ -2961,10 +2961,10 @@ where
         PolyVec4::new(*self.z(), *self.y(), *self.x(), *self.z())
     }
 }
-pub trait SwizzleZYXW<T> {
+pub trait ZYXW<T> {
     fn zyxw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZYXW<T> for S
+impl<S, T> ZYXW<T> for S
 where
     S: Z<T> + Y<T> + X<T> + W<T>,
     T: Copy,
@@ -2974,10 +2974,10 @@ where
         PolyVec4::new(*self.z(), *self.y(), *self.x(), *self.w())
     }
 }
-pub trait SwizzleZYYX<T> {
+pub trait ZYYX<T> {
     fn zyyx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZYYX<T> for S
+impl<S, T> ZYYX<T> for S
 where
     S: Z<T> + Y<T> + X<T>,
     T: Copy,
@@ -2987,10 +2987,10 @@ where
         PolyVec4::new(*self.z(), *self.y(), *self.y(), *self.x())
     }
 }
-pub trait SwizzleZYYY<T> {
+pub trait ZYYY<T> {
     fn zyyy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZYYY<T> for S
+impl<S, T> ZYYY<T> for S
 where
     S: Z<T> + Y<T>,
     T: Copy,
@@ -3000,10 +3000,10 @@ where
         PolyVec4::new(*self.z(), *self.y(), *self.y(), *self.y())
     }
 }
-pub trait SwizzleZYYZ<T> {
+pub trait ZYYZ<T> {
     fn zyyz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZYYZ<T> for S
+impl<S, T> ZYYZ<T> for S
 where
     S: Z<T> + Y<T> + Z<T>,
     T: Copy,
@@ -3013,10 +3013,10 @@ where
         PolyVec4::new(*self.z(), *self.y(), *self.y(), *self.z())
     }
 }
-pub trait SwizzleZYYW<T> {
+pub trait ZYYW<T> {
     fn zyyw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZYYW<T> for S
+impl<S, T> ZYYW<T> for S
 where
     S: Z<T> + Y<T> + W<T>,
     T: Copy,
@@ -3026,10 +3026,10 @@ where
         PolyVec4::new(*self.z(), *self.y(), *self.y(), *self.w())
     }
 }
-pub trait SwizzleZYZX<T> {
+pub trait ZYZX<T> {
     fn zyzx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZYZX<T> for S
+impl<S, T> ZYZX<T> for S
 where
     S: Z<T> + Y<T> + Z<T> + X<T>,
     T: Copy,
@@ -3039,10 +3039,10 @@ where
         PolyVec4::new(*self.z(), *self.y(), *self.z(), *self.x())
     }
 }
-pub trait SwizzleZYZY<T> {
+pub trait ZYZY<T> {
     fn zyzy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZYZY<T> for S
+impl<S, T> ZYZY<T> for S
 where
     S: Z<T> + Y<T> + Z<T> + Y<T>,
     T: Copy,
@@ -3052,10 +3052,10 @@ where
         PolyVec4::new(*self.z(), *self.y(), *self.z(), *self.y())
     }
 }
-pub trait SwizzleZYZZ<T> {
+pub trait ZYZZ<T> {
     fn zyzz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZYZZ<T> for S
+impl<S, T> ZYZZ<T> for S
 where
     S: Z<T> + Y<T> + Z<T>,
     T: Copy,
@@ -3065,10 +3065,10 @@ where
         PolyVec4::new(*self.z(), *self.y(), *self.z(), *self.z())
     }
 }
-pub trait SwizzleZYZW<T> {
+pub trait ZYZW<T> {
     fn zyzw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZYZW<T> for S
+impl<S, T> ZYZW<T> for S
 where
     S: Z<T> + Y<T> + Z<T> + W<T>,
     T: Copy,
@@ -3078,10 +3078,10 @@ where
         PolyVec4::new(*self.z(), *self.y(), *self.z(), *self.w())
     }
 }
-pub trait SwizzleZYWX<T> {
+pub trait ZYWX<T> {
     fn zywx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZYWX<T> for S
+impl<S, T> ZYWX<T> for S
 where
     S: Z<T> + Y<T> + W<T> + X<T>,
     T: Copy,
@@ -3091,10 +3091,10 @@ where
         PolyVec4::new(*self.z(), *self.y(), *self.w(), *self.x())
     }
 }
-pub trait SwizzleZYWY<T> {
+pub trait ZYWY<T> {
     fn zywy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZYWY<T> for S
+impl<S, T> ZYWY<T> for S
 where
     S: Z<T> + Y<T> + W<T> + Y<T>,
     T: Copy,
@@ -3104,10 +3104,10 @@ where
         PolyVec4::new(*self.z(), *self.y(), *self.w(), *self.y())
     }
 }
-pub trait SwizzleZYWZ<T> {
+pub trait ZYWZ<T> {
     fn zywz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZYWZ<T> for S
+impl<S, T> ZYWZ<T> for S
 where
     S: Z<T> + Y<T> + W<T> + Z<T>,
     T: Copy,
@@ -3117,10 +3117,10 @@ where
         PolyVec4::new(*self.z(), *self.y(), *self.w(), *self.z())
     }
 }
-pub trait SwizzleZYWW<T> {
+pub trait ZYWW<T> {
     fn zyww(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZYWW<T> for S
+impl<S, T> ZYWW<T> for S
 where
     S: Z<T> + Y<T> + W<T>,
     T: Copy,
@@ -3130,10 +3130,10 @@ where
         PolyVec4::new(*self.z(), *self.y(), *self.w(), *self.w())
     }
 }
-pub trait SwizzleZZXX<T> {
+pub trait ZZXX<T> {
     fn zzxx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZZXX<T> for S
+impl<S, T> ZZXX<T> for S
 where
     S: Z<T> + X<T>,
     T: Copy,
@@ -3143,10 +3143,10 @@ where
         PolyVec4::new(*self.z(), *self.z(), *self.x(), *self.x())
     }
 }
-pub trait SwizzleZZXY<T> {
+pub trait ZZXY<T> {
     fn zzxy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZZXY<T> for S
+impl<S, T> ZZXY<T> for S
 where
     S: Z<T> + X<T> + Y<T>,
     T: Copy,
@@ -3156,10 +3156,10 @@ where
         PolyVec4::new(*self.z(), *self.z(), *self.x(), *self.y())
     }
 }
-pub trait SwizzleZZXZ<T> {
+pub trait ZZXZ<T> {
     fn zzxz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZZXZ<T> for S
+impl<S, T> ZZXZ<T> for S
 where
     S: Z<T> + X<T> + Z<T>,
     T: Copy,
@@ -3169,10 +3169,10 @@ where
         PolyVec4::new(*self.z(), *self.z(), *self.x(), *self.z())
     }
 }
-pub trait SwizzleZZXW<T> {
+pub trait ZZXW<T> {
     fn zzxw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZZXW<T> for S
+impl<S, T> ZZXW<T> for S
 where
     S: Z<T> + X<T> + W<T>,
     T: Copy,
@@ -3182,10 +3182,10 @@ where
         PolyVec4::new(*self.z(), *self.z(), *self.x(), *self.w())
     }
 }
-pub trait SwizzleZZYX<T> {
+pub trait ZZYX<T> {
     fn zzyx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZZYX<T> for S
+impl<S, T> ZZYX<T> for S
 where
     S: Z<T> + Y<T> + X<T>,
     T: Copy,
@@ -3195,10 +3195,10 @@ where
         PolyVec4::new(*self.z(), *self.z(), *self.y(), *self.x())
     }
 }
-pub trait SwizzleZZYY<T> {
+pub trait ZZYY<T> {
     fn zzyy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZZYY<T> for S
+impl<S, T> ZZYY<T> for S
 where
     S: Z<T> + Y<T>,
     T: Copy,
@@ -3208,10 +3208,10 @@ where
         PolyVec4::new(*self.z(), *self.z(), *self.y(), *self.y())
     }
 }
-pub trait SwizzleZZYZ<T> {
+pub trait ZZYZ<T> {
     fn zzyz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZZYZ<T> for S
+impl<S, T> ZZYZ<T> for S
 where
     S: Z<T> + Y<T> + Z<T>,
     T: Copy,
@@ -3221,10 +3221,10 @@ where
         PolyVec4::new(*self.z(), *self.z(), *self.y(), *self.z())
     }
 }
-pub trait SwizzleZZYW<T> {
+pub trait ZZYW<T> {
     fn zzyw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZZYW<T> for S
+impl<S, T> ZZYW<T> for S
 where
     S: Z<T> + Y<T> + W<T>,
     T: Copy,
@@ -3234,10 +3234,10 @@ where
         PolyVec4::new(*self.z(), *self.z(), *self.y(), *self.w())
     }
 }
-pub trait SwizzleZZZX<T> {
+pub trait ZZZX<T> {
     fn zzzx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZZZX<T> for S
+impl<S, T> ZZZX<T> for S
 where
     S: Z<T> + X<T>,
     T: Copy,
@@ -3247,10 +3247,10 @@ where
         PolyVec4::new(*self.z(), *self.z(), *self.z(), *self.x())
     }
 }
-pub trait SwizzleZZZY<T> {
+pub trait ZZZY<T> {
     fn zzzy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZZZY<T> for S
+impl<S, T> ZZZY<T> for S
 where
     S: Z<T> + Y<T>,
     T: Copy,
@@ -3260,10 +3260,10 @@ where
         PolyVec4::new(*self.z(), *self.z(), *self.z(), *self.y())
     }
 }
-pub trait SwizzleZZZZ<T> {
+pub trait ZZZZ<T> {
     fn zzzz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZZZZ<T> for S
+impl<S, T> ZZZZ<T> for S
 where
     S: Z<T>,
     T: Copy,
@@ -3273,10 +3273,10 @@ where
         PolyVec4::new(*self.z(), *self.z(), *self.z(), *self.z())
     }
 }
-pub trait SwizzleZZZW<T> {
+pub trait ZZZW<T> {
     fn zzzw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZZZW<T> for S
+impl<S, T> ZZZW<T> for S
 where
     S: Z<T> + W<T>,
     T: Copy,
@@ -3286,10 +3286,10 @@ where
         PolyVec4::new(*self.z(), *self.z(), *self.z(), *self.w())
     }
 }
-pub trait SwizzleZZWX<T> {
+pub trait ZZWX<T> {
     fn zzwx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZZWX<T> for S
+impl<S, T> ZZWX<T> for S
 where
     S: Z<T> + W<T> + X<T>,
     T: Copy,
@@ -3299,10 +3299,10 @@ where
         PolyVec4::new(*self.z(), *self.z(), *self.w(), *self.x())
     }
 }
-pub trait SwizzleZZWY<T> {
+pub trait ZZWY<T> {
     fn zzwy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZZWY<T> for S
+impl<S, T> ZZWY<T> for S
 where
     S: Z<T> + W<T> + Y<T>,
     T: Copy,
@@ -3312,10 +3312,10 @@ where
         PolyVec4::new(*self.z(), *self.z(), *self.w(), *self.y())
     }
 }
-pub trait SwizzleZZWZ<T> {
+pub trait ZZWZ<T> {
     fn zzwz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZZWZ<T> for S
+impl<S, T> ZZWZ<T> for S
 where
     S: Z<T> + W<T> + Z<T>,
     T: Copy,
@@ -3325,10 +3325,10 @@ where
         PolyVec4::new(*self.z(), *self.z(), *self.w(), *self.z())
     }
 }
-pub trait SwizzleZZWW<T> {
+pub trait ZZWW<T> {
     fn zzww(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZZWW<T> for S
+impl<S, T> ZZWW<T> for S
 where
     S: Z<T> + W<T>,
     T: Copy,
@@ -3338,10 +3338,10 @@ where
         PolyVec4::new(*self.z(), *self.z(), *self.w(), *self.w())
     }
 }
-pub trait SwizzleZWXX<T> {
+pub trait ZWXX<T> {
     fn zwxx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZWXX<T> for S
+impl<S, T> ZWXX<T> for S
 where
     S: Z<T> + W<T> + X<T>,
     T: Copy,
@@ -3351,10 +3351,10 @@ where
         PolyVec4::new(*self.z(), *self.w(), *self.x(), *self.x())
     }
 }
-pub trait SwizzleZWXY<T> {
+pub trait ZWXY<T> {
     fn zwxy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZWXY<T> for S
+impl<S, T> ZWXY<T> for S
 where
     S: Z<T> + W<T> + X<T> + Y<T>,
     T: Copy,
@@ -3364,10 +3364,10 @@ where
         PolyVec4::new(*self.z(), *self.w(), *self.x(), *self.y())
     }
 }
-pub trait SwizzleZWXZ<T> {
+pub trait ZWXZ<T> {
     fn zwxz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZWXZ<T> for S
+impl<S, T> ZWXZ<T> for S
 where
     S: Z<T> + W<T> + X<T> + Z<T>,
     T: Copy,
@@ -3377,10 +3377,10 @@ where
         PolyVec4::new(*self.z(), *self.w(), *self.x(), *self.z())
     }
 }
-pub trait SwizzleZWXW<T> {
+pub trait ZWXW<T> {
     fn zwxw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZWXW<T> for S
+impl<S, T> ZWXW<T> for S
 where
     S: Z<T> + W<T> + X<T> + W<T>,
     T: Copy,
@@ -3390,10 +3390,10 @@ where
         PolyVec4::new(*self.z(), *self.w(), *self.x(), *self.w())
     }
 }
-pub trait SwizzleZWYX<T> {
+pub trait ZWYX<T> {
     fn zwyx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZWYX<T> for S
+impl<S, T> ZWYX<T> for S
 where
     S: Z<T> + W<T> + Y<T> + X<T>,
     T: Copy,
@@ -3403,10 +3403,10 @@ where
         PolyVec4::new(*self.z(), *self.w(), *self.y(), *self.x())
     }
 }
-pub trait SwizzleZWYY<T> {
+pub trait ZWYY<T> {
     fn zwyy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZWYY<T> for S
+impl<S, T> ZWYY<T> for S
 where
     S: Z<T> + W<T> + Y<T>,
     T: Copy,
@@ -3416,10 +3416,10 @@ where
         PolyVec4::new(*self.z(), *self.w(), *self.y(), *self.y())
     }
 }
-pub trait SwizzleZWYZ<T> {
+pub trait ZWYZ<T> {
     fn zwyz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZWYZ<T> for S
+impl<S, T> ZWYZ<T> for S
 where
     S: Z<T> + W<T> + Y<T> + Z<T>,
     T: Copy,
@@ -3429,10 +3429,10 @@ where
         PolyVec4::new(*self.z(), *self.w(), *self.y(), *self.z())
     }
 }
-pub trait SwizzleZWYW<T> {
+pub trait ZWYW<T> {
     fn zwyw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZWYW<T> for S
+impl<S, T> ZWYW<T> for S
 where
     S: Z<T> + W<T> + Y<T> + W<T>,
     T: Copy,
@@ -3442,10 +3442,10 @@ where
         PolyVec4::new(*self.z(), *self.w(), *self.y(), *self.w())
     }
 }
-pub trait SwizzleZWZX<T> {
+pub trait ZWZX<T> {
     fn zwzx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZWZX<T> for S
+impl<S, T> ZWZX<T> for S
 where
     S: Z<T> + W<T> + Z<T> + X<T>,
     T: Copy,
@@ -3455,10 +3455,10 @@ where
         PolyVec4::new(*self.z(), *self.w(), *self.z(), *self.x())
     }
 }
-pub trait SwizzleZWZY<T> {
+pub trait ZWZY<T> {
     fn zwzy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZWZY<T> for S
+impl<S, T> ZWZY<T> for S
 where
     S: Z<T> + W<T> + Z<T> + Y<T>,
     T: Copy,
@@ -3468,10 +3468,10 @@ where
         PolyVec4::new(*self.z(), *self.w(), *self.z(), *self.y())
     }
 }
-pub trait SwizzleZWZZ<T> {
+pub trait ZWZZ<T> {
     fn zwzz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZWZZ<T> for S
+impl<S, T> ZWZZ<T> for S
 where
     S: Z<T> + W<T> + Z<T>,
     T: Copy,
@@ -3481,10 +3481,10 @@ where
         PolyVec4::new(*self.z(), *self.w(), *self.z(), *self.z())
     }
 }
-pub trait SwizzleZWZW<T> {
+pub trait ZWZW<T> {
     fn zwzw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZWZW<T> for S
+impl<S, T> ZWZW<T> for S
 where
     S: Z<T> + W<T> + Z<T> + W<T>,
     T: Copy,
@@ -3494,10 +3494,10 @@ where
         PolyVec4::new(*self.z(), *self.w(), *self.z(), *self.w())
     }
 }
-pub trait SwizzleZWWX<T> {
+pub trait ZWWX<T> {
     fn zwwx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZWWX<T> for S
+impl<S, T> ZWWX<T> for S
 where
     S: Z<T> + W<T> + X<T>,
     T: Copy,
@@ -3507,10 +3507,10 @@ where
         PolyVec4::new(*self.z(), *self.w(), *self.w(), *self.x())
     }
 }
-pub trait SwizzleZWWY<T> {
+pub trait ZWWY<T> {
     fn zwwy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZWWY<T> for S
+impl<S, T> ZWWY<T> for S
 where
     S: Z<T> + W<T> + Y<T>,
     T: Copy,
@@ -3520,10 +3520,10 @@ where
         PolyVec4::new(*self.z(), *self.w(), *self.w(), *self.y())
     }
 }
-pub trait SwizzleZWWZ<T> {
+pub trait ZWWZ<T> {
     fn zwwz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZWWZ<T> for S
+impl<S, T> ZWWZ<T> for S
 where
     S: Z<T> + W<T> + Z<T>,
     T: Copy,
@@ -3533,10 +3533,10 @@ where
         PolyVec4::new(*self.z(), *self.w(), *self.w(), *self.z())
     }
 }
-pub trait SwizzleZWWW<T> {
+pub trait ZWWW<T> {
     fn zwww(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleZWWW<T> for S
+impl<S, T> ZWWW<T> for S
 where
     S: Z<T> + W<T>,
     T: Copy,
@@ -3546,10 +3546,10 @@ where
         PolyVec4::new(*self.z(), *self.w(), *self.w(), *self.w())
     }
 }
-pub trait SwizzleWXXX<T> {
+pub trait WXXX<T> {
     fn wxxx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWXXX<T> for S
+impl<S, T> WXXX<T> for S
 where
     S: W<T> + X<T>,
     T: Copy,
@@ -3559,10 +3559,10 @@ where
         PolyVec4::new(*self.w(), *self.x(), *self.x(), *self.x())
     }
 }
-pub trait SwizzleWXXY<T> {
+pub trait WXXY<T> {
     fn wxxy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWXXY<T> for S
+impl<S, T> WXXY<T> for S
 where
     S: W<T> + X<T> + Y<T>,
     T: Copy,
@@ -3572,10 +3572,10 @@ where
         PolyVec4::new(*self.w(), *self.x(), *self.x(), *self.y())
     }
 }
-pub trait SwizzleWXXZ<T> {
+pub trait WXXZ<T> {
     fn wxxz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWXXZ<T> for S
+impl<S, T> WXXZ<T> for S
 where
     S: W<T> + X<T> + Z<T>,
     T: Copy,
@@ -3585,10 +3585,10 @@ where
         PolyVec4::new(*self.w(), *self.x(), *self.x(), *self.z())
     }
 }
-pub trait SwizzleWXXW<T> {
+pub trait WXXW<T> {
     fn wxxw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWXXW<T> for S
+impl<S, T> WXXW<T> for S
 where
     S: W<T> + X<T> + W<T>,
     T: Copy,
@@ -3598,10 +3598,10 @@ where
         PolyVec4::new(*self.w(), *self.x(), *self.x(), *self.w())
     }
 }
-pub trait SwizzleWXYX<T> {
+pub trait WXYX<T> {
     fn wxyx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWXYX<T> for S
+impl<S, T> WXYX<T> for S
 where
     S: W<T> + X<T> + Y<T> + X<T>,
     T: Copy,
@@ -3611,10 +3611,10 @@ where
         PolyVec4::new(*self.w(), *self.x(), *self.y(), *self.x())
     }
 }
-pub trait SwizzleWXYY<T> {
+pub trait WXYY<T> {
     fn wxyy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWXYY<T> for S
+impl<S, T> WXYY<T> for S
 where
     S: W<T> + X<T> + Y<T>,
     T: Copy,
@@ -3624,10 +3624,10 @@ where
         PolyVec4::new(*self.w(), *self.x(), *self.y(), *self.y())
     }
 }
-pub trait SwizzleWXYZ<T> {
+pub trait WXYZ<T> {
     fn wxyz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWXYZ<T> for S
+impl<S, T> WXYZ<T> for S
 where
     S: W<T> + X<T> + Y<T> + Z<T>,
     T: Copy,
@@ -3637,10 +3637,10 @@ where
         PolyVec4::new(*self.w(), *self.x(), *self.y(), *self.z())
     }
 }
-pub trait SwizzleWXYW<T> {
+pub trait WXYW<T> {
     fn wxyw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWXYW<T> for S
+impl<S, T> WXYW<T> for S
 where
     S: W<T> + X<T> + Y<T> + W<T>,
     T: Copy,
@@ -3650,10 +3650,10 @@ where
         PolyVec4::new(*self.w(), *self.x(), *self.y(), *self.w())
     }
 }
-pub trait SwizzleWXZX<T> {
+pub trait WXZX<T> {
     fn wxzx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWXZX<T> for S
+impl<S, T> WXZX<T> for S
 where
     S: W<T> + X<T> + Z<T> + X<T>,
     T: Copy,
@@ -3663,10 +3663,10 @@ where
         PolyVec4::new(*self.w(), *self.x(), *self.z(), *self.x())
     }
 }
-pub trait SwizzleWXZY<T> {
+pub trait WXZY<T> {
     fn wxzy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWXZY<T> for S
+impl<S, T> WXZY<T> for S
 where
     S: W<T> + X<T> + Z<T> + Y<T>,
     T: Copy,
@@ -3676,10 +3676,10 @@ where
         PolyVec4::new(*self.w(), *self.x(), *self.z(), *self.y())
     }
 }
-pub trait SwizzleWXZZ<T> {
+pub trait WXZZ<T> {
     fn wxzz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWXZZ<T> for S
+impl<S, T> WXZZ<T> for S
 where
     S: W<T> + X<T> + Z<T>,
     T: Copy,
@@ -3689,10 +3689,10 @@ where
         PolyVec4::new(*self.w(), *self.x(), *self.z(), *self.z())
     }
 }
-pub trait SwizzleWXZW<T> {
+pub trait WXZW<T> {
     fn wxzw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWXZW<T> for S
+impl<S, T> WXZW<T> for S
 where
     S: W<T> + X<T> + Z<T> + W<T>,
     T: Copy,
@@ -3702,10 +3702,10 @@ where
         PolyVec4::new(*self.w(), *self.x(), *self.z(), *self.w())
     }
 }
-pub trait SwizzleWXWX<T> {
+pub trait WXWX<T> {
     fn wxwx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWXWX<T> for S
+impl<S, T> WXWX<T> for S
 where
     S: W<T> + X<T> + W<T> + X<T>,
     T: Copy,
@@ -3715,10 +3715,10 @@ where
         PolyVec4::new(*self.w(), *self.x(), *self.w(), *self.x())
     }
 }
-pub trait SwizzleWXWY<T> {
+pub trait WXWY<T> {
     fn wxwy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWXWY<T> for S
+impl<S, T> WXWY<T> for S
 where
     S: W<T> + X<T> + W<T> + Y<T>,
     T: Copy,
@@ -3728,10 +3728,10 @@ where
         PolyVec4::new(*self.w(), *self.x(), *self.w(), *self.y())
     }
 }
-pub trait SwizzleWXWZ<T> {
+pub trait WXWZ<T> {
     fn wxwz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWXWZ<T> for S
+impl<S, T> WXWZ<T> for S
 where
     S: W<T> + X<T> + W<T> + Z<T>,
     T: Copy,
@@ -3741,10 +3741,10 @@ where
         PolyVec4::new(*self.w(), *self.x(), *self.w(), *self.z())
     }
 }
-pub trait SwizzleWXWW<T> {
+pub trait WXWW<T> {
     fn wxww(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWXWW<T> for S
+impl<S, T> WXWW<T> for S
 where
     S: W<T> + X<T> + W<T>,
     T: Copy,
@@ -3754,10 +3754,10 @@ where
         PolyVec4::new(*self.w(), *self.x(), *self.w(), *self.w())
     }
 }
-pub trait SwizzleWYXX<T> {
+pub trait WYXX<T> {
     fn wyxx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWYXX<T> for S
+impl<S, T> WYXX<T> for S
 where
     S: W<T> + Y<T> + X<T>,
     T: Copy,
@@ -3767,10 +3767,10 @@ where
         PolyVec4::new(*self.w(), *self.y(), *self.x(), *self.x())
     }
 }
-pub trait SwizzleWYXY<T> {
+pub trait WYXY<T> {
     fn wyxy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWYXY<T> for S
+impl<S, T> WYXY<T> for S
 where
     S: W<T> + Y<T> + X<T> + Y<T>,
     T: Copy,
@@ -3780,10 +3780,10 @@ where
         PolyVec4::new(*self.w(), *self.y(), *self.x(), *self.y())
     }
 }
-pub trait SwizzleWYXZ<T> {
+pub trait WYXZ<T> {
     fn wyxz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWYXZ<T> for S
+impl<S, T> WYXZ<T> for S
 where
     S: W<T> + Y<T> + X<T> + Z<T>,
     T: Copy,
@@ -3793,10 +3793,10 @@ where
         PolyVec4::new(*self.w(), *self.y(), *self.x(), *self.z())
     }
 }
-pub trait SwizzleWYXW<T> {
+pub trait WYXW<T> {
     fn wyxw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWYXW<T> for S
+impl<S, T> WYXW<T> for S
 where
     S: W<T> + Y<T> + X<T> + W<T>,
     T: Copy,
@@ -3806,10 +3806,10 @@ where
         PolyVec4::new(*self.w(), *self.y(), *self.x(), *self.w())
     }
 }
-pub trait SwizzleWYYX<T> {
+pub trait WYYX<T> {
     fn wyyx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWYYX<T> for S
+impl<S, T> WYYX<T> for S
 where
     S: W<T> + Y<T> + X<T>,
     T: Copy,
@@ -3819,10 +3819,10 @@ where
         PolyVec4::new(*self.w(), *self.y(), *self.y(), *self.x())
     }
 }
-pub trait SwizzleWYYY<T> {
+pub trait WYYY<T> {
     fn wyyy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWYYY<T> for S
+impl<S, T> WYYY<T> for S
 where
     S: W<T> + Y<T>,
     T: Copy,
@@ -3832,10 +3832,10 @@ where
         PolyVec4::new(*self.w(), *self.y(), *self.y(), *self.y())
     }
 }
-pub trait SwizzleWYYZ<T> {
+pub trait WYYZ<T> {
     fn wyyz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWYYZ<T> for S
+impl<S, T> WYYZ<T> for S
 where
     S: W<T> + Y<T> + Z<T>,
     T: Copy,
@@ -3845,10 +3845,10 @@ where
         PolyVec4::new(*self.w(), *self.y(), *self.y(), *self.z())
     }
 }
-pub trait SwizzleWYYW<T> {
+pub trait WYYW<T> {
     fn wyyw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWYYW<T> for S
+impl<S, T> WYYW<T> for S
 where
     S: W<T> + Y<T> + W<T>,
     T: Copy,
@@ -3858,10 +3858,10 @@ where
         PolyVec4::new(*self.w(), *self.y(), *self.y(), *self.w())
     }
 }
-pub trait SwizzleWYZX<T> {
+pub trait WYZX<T> {
     fn wyzx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWYZX<T> for S
+impl<S, T> WYZX<T> for S
 where
     S: W<T> + Y<T> + Z<T> + X<T>,
     T: Copy,
@@ -3871,10 +3871,10 @@ where
         PolyVec4::new(*self.w(), *self.y(), *self.z(), *self.x())
     }
 }
-pub trait SwizzleWYZY<T> {
+pub trait WYZY<T> {
     fn wyzy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWYZY<T> for S
+impl<S, T> WYZY<T> for S
 where
     S: W<T> + Y<T> + Z<T> + Y<T>,
     T: Copy,
@@ -3884,10 +3884,10 @@ where
         PolyVec4::new(*self.w(), *self.y(), *self.z(), *self.y())
     }
 }
-pub trait SwizzleWYZZ<T> {
+pub trait WYZZ<T> {
     fn wyzz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWYZZ<T> for S
+impl<S, T> WYZZ<T> for S
 where
     S: W<T> + Y<T> + Z<T>,
     T: Copy,
@@ -3897,10 +3897,10 @@ where
         PolyVec4::new(*self.w(), *self.y(), *self.z(), *self.z())
     }
 }
-pub trait SwizzleWYZW<T> {
+pub trait WYZW<T> {
     fn wyzw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWYZW<T> for S
+impl<S, T> WYZW<T> for S
 where
     S: W<T> + Y<T> + Z<T> + W<T>,
     T: Copy,
@@ -3910,10 +3910,10 @@ where
         PolyVec4::new(*self.w(), *self.y(), *self.z(), *self.w())
     }
 }
-pub trait SwizzleWYWX<T> {
+pub trait WYWX<T> {
     fn wywx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWYWX<T> for S
+impl<S, T> WYWX<T> for S
 where
     S: W<T> + Y<T> + W<T> + X<T>,
     T: Copy,
@@ -3923,10 +3923,10 @@ where
         PolyVec4::new(*self.w(), *self.y(), *self.w(), *self.x())
     }
 }
-pub trait SwizzleWYWY<T> {
+pub trait WYWY<T> {
     fn wywy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWYWY<T> for S
+impl<S, T> WYWY<T> for S
 where
     S: W<T> + Y<T> + W<T> + Y<T>,
     T: Copy,
@@ -3936,10 +3936,10 @@ where
         PolyVec4::new(*self.w(), *self.y(), *self.w(), *self.y())
     }
 }
-pub trait SwizzleWYWZ<T> {
+pub trait WYWZ<T> {
     fn wywz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWYWZ<T> for S
+impl<S, T> WYWZ<T> for S
 where
     S: W<T> + Y<T> + W<T> + Z<T>,
     T: Copy,
@@ -3949,10 +3949,10 @@ where
         PolyVec4::new(*self.w(), *self.y(), *self.w(), *self.z())
     }
 }
-pub trait SwizzleWYWW<T> {
+pub trait WYWW<T> {
     fn wyww(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWYWW<T> for S
+impl<S, T> WYWW<T> for S
 where
     S: W<T> + Y<T> + W<T>,
     T: Copy,
@@ -3962,10 +3962,10 @@ where
         PolyVec4::new(*self.w(), *self.y(), *self.w(), *self.w())
     }
 }
-pub trait SwizzleWZXX<T> {
+pub trait WZXX<T> {
     fn wzxx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWZXX<T> for S
+impl<S, T> WZXX<T> for S
 where
     S: W<T> + Z<T> + X<T>,
     T: Copy,
@@ -3975,10 +3975,10 @@ where
         PolyVec4::new(*self.w(), *self.z(), *self.x(), *self.x())
     }
 }
-pub trait SwizzleWZXY<T> {
+pub trait WZXY<T> {
     fn wzxy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWZXY<T> for S
+impl<S, T> WZXY<T> for S
 where
     S: W<T> + Z<T> + X<T> + Y<T>,
     T: Copy,
@@ -3988,10 +3988,10 @@ where
         PolyVec4::new(*self.w(), *self.z(), *self.x(), *self.y())
     }
 }
-pub trait SwizzleWZXZ<T> {
+pub trait WZXZ<T> {
     fn wzxz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWZXZ<T> for S
+impl<S, T> WZXZ<T> for S
 where
     S: W<T> + Z<T> + X<T> + Z<T>,
     T: Copy,
@@ -4001,10 +4001,10 @@ where
         PolyVec4::new(*self.w(), *self.z(), *self.x(), *self.z())
     }
 }
-pub trait SwizzleWZXW<T> {
+pub trait WZXW<T> {
     fn wzxw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWZXW<T> for S
+impl<S, T> WZXW<T> for S
 where
     S: W<T> + Z<T> + X<T> + W<T>,
     T: Copy,
@@ -4014,10 +4014,10 @@ where
         PolyVec4::new(*self.w(), *self.z(), *self.x(), *self.w())
     }
 }
-pub trait SwizzleWZYX<T> {
+pub trait WZYX<T> {
     fn wzyx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWZYX<T> for S
+impl<S, T> WZYX<T> for S
 where
     S: W<T> + Z<T> + Y<T> + X<T>,
     T: Copy,
@@ -4027,10 +4027,10 @@ where
         PolyVec4::new(*self.w(), *self.z(), *self.y(), *self.x())
     }
 }
-pub trait SwizzleWZYY<T> {
+pub trait WZYY<T> {
     fn wzyy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWZYY<T> for S
+impl<S, T> WZYY<T> for S
 where
     S: W<T> + Z<T> + Y<T>,
     T: Copy,
@@ -4040,10 +4040,10 @@ where
         PolyVec4::new(*self.w(), *self.z(), *self.y(), *self.y())
     }
 }
-pub trait SwizzleWZYZ<T> {
+pub trait WZYZ<T> {
     fn wzyz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWZYZ<T> for S
+impl<S, T> WZYZ<T> for S
 where
     S: W<T> + Z<T> + Y<T> + Z<T>,
     T: Copy,
@@ -4053,10 +4053,10 @@ where
         PolyVec4::new(*self.w(), *self.z(), *self.y(), *self.z())
     }
 }
-pub trait SwizzleWZYW<T> {
+pub trait WZYW<T> {
     fn wzyw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWZYW<T> for S
+impl<S, T> WZYW<T> for S
 where
     S: W<T> + Z<T> + Y<T> + W<T>,
     T: Copy,
@@ -4066,10 +4066,10 @@ where
         PolyVec4::new(*self.w(), *self.z(), *self.y(), *self.w())
     }
 }
-pub trait SwizzleWZZX<T> {
+pub trait WZZX<T> {
     fn wzzx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWZZX<T> for S
+impl<S, T> WZZX<T> for S
 where
     S: W<T> + Z<T> + X<T>,
     T: Copy,
@@ -4079,10 +4079,10 @@ where
         PolyVec4::new(*self.w(), *self.z(), *self.z(), *self.x())
     }
 }
-pub trait SwizzleWZZY<T> {
+pub trait WZZY<T> {
     fn wzzy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWZZY<T> for S
+impl<S, T> WZZY<T> for S
 where
     S: W<T> + Z<T> + Y<T>,
     T: Copy,
@@ -4092,10 +4092,10 @@ where
         PolyVec4::new(*self.w(), *self.z(), *self.z(), *self.y())
     }
 }
-pub trait SwizzleWZZZ<T> {
+pub trait WZZZ<T> {
     fn wzzz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWZZZ<T> for S
+impl<S, T> WZZZ<T> for S
 where
     S: W<T> + Z<T>,
     T: Copy,
@@ -4105,10 +4105,10 @@ where
         PolyVec4::new(*self.w(), *self.z(), *self.z(), *self.z())
     }
 }
-pub trait SwizzleWZZW<T> {
+pub trait WZZW<T> {
     fn wzzw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWZZW<T> for S
+impl<S, T> WZZW<T> for S
 where
     S: W<T> + Z<T> + W<T>,
     T: Copy,
@@ -4118,10 +4118,10 @@ where
         PolyVec4::new(*self.w(), *self.z(), *self.z(), *self.w())
     }
 }
-pub trait SwizzleWZWX<T> {
+pub trait WZWX<T> {
     fn wzwx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWZWX<T> for S
+impl<S, T> WZWX<T> for S
 where
     S: W<T> + Z<T> + W<T> + X<T>,
     T: Copy,
@@ -4131,10 +4131,10 @@ where
         PolyVec4::new(*self.w(), *self.z(), *self.w(), *self.x())
     }
 }
-pub trait SwizzleWZWY<T> {
+pub trait WZWY<T> {
     fn wzwy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWZWY<T> for S
+impl<S, T> WZWY<T> for S
 where
     S: W<T> + Z<T> + W<T> + Y<T>,
     T: Copy,
@@ -4144,10 +4144,10 @@ where
         PolyVec4::new(*self.w(), *self.z(), *self.w(), *self.y())
     }
 }
-pub trait SwizzleWZWZ<T> {
+pub trait WZWZ<T> {
     fn wzwz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWZWZ<T> for S
+impl<S, T> WZWZ<T> for S
 where
     S: W<T> + Z<T> + W<T> + Z<T>,
     T: Copy,
@@ -4157,10 +4157,10 @@ where
         PolyVec4::new(*self.w(), *self.z(), *self.w(), *self.z())
     }
 }
-pub trait SwizzleWZWW<T> {
+pub trait WZWW<T> {
     fn wzww(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWZWW<T> for S
+impl<S, T> WZWW<T> for S
 where
     S: W<T> + Z<T> + W<T>,
     T: Copy,
@@ -4170,10 +4170,10 @@ where
         PolyVec4::new(*self.w(), *self.z(), *self.w(), *self.w())
     }
 }
-pub trait SwizzleWWXX<T> {
+pub trait WWXX<T> {
     fn wwxx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWWXX<T> for S
+impl<S, T> WWXX<T> for S
 where
     S: W<T> + X<T>,
     T: Copy,
@@ -4183,10 +4183,10 @@ where
         PolyVec4::new(*self.w(), *self.w(), *self.x(), *self.x())
     }
 }
-pub trait SwizzleWWXY<T> {
+pub trait WWXY<T> {
     fn wwxy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWWXY<T> for S
+impl<S, T> WWXY<T> for S
 where
     S: W<T> + X<T> + Y<T>,
     T: Copy,
@@ -4196,10 +4196,10 @@ where
         PolyVec4::new(*self.w(), *self.w(), *self.x(), *self.y())
     }
 }
-pub trait SwizzleWWXZ<T> {
+pub trait WWXZ<T> {
     fn wwxz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWWXZ<T> for S
+impl<S, T> WWXZ<T> for S
 where
     S: W<T> + X<T> + Z<T>,
     T: Copy,
@@ -4209,10 +4209,10 @@ where
         PolyVec4::new(*self.w(), *self.w(), *self.x(), *self.z())
     }
 }
-pub trait SwizzleWWXW<T> {
+pub trait WWXW<T> {
     fn wwxw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWWXW<T> for S
+impl<S, T> WWXW<T> for S
 where
     S: W<T> + X<T> + W<T>,
     T: Copy,
@@ -4222,10 +4222,10 @@ where
         PolyVec4::new(*self.w(), *self.w(), *self.x(), *self.w())
     }
 }
-pub trait SwizzleWWYX<T> {
+pub trait WWYX<T> {
     fn wwyx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWWYX<T> for S
+impl<S, T> WWYX<T> for S
 where
     S: W<T> + Y<T> + X<T>,
     T: Copy,
@@ -4235,10 +4235,10 @@ where
         PolyVec4::new(*self.w(), *self.w(), *self.y(), *self.x())
     }
 }
-pub trait SwizzleWWYY<T> {
+pub trait WWYY<T> {
     fn wwyy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWWYY<T> for S
+impl<S, T> WWYY<T> for S
 where
     S: W<T> + Y<T>,
     T: Copy,
@@ -4248,10 +4248,10 @@ where
         PolyVec4::new(*self.w(), *self.w(), *self.y(), *self.y())
     }
 }
-pub trait SwizzleWWYZ<T> {
+pub trait WWYZ<T> {
     fn wwyz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWWYZ<T> for S
+impl<S, T> WWYZ<T> for S
 where
     S: W<T> + Y<T> + Z<T>,
     T: Copy,
@@ -4261,10 +4261,10 @@ where
         PolyVec4::new(*self.w(), *self.w(), *self.y(), *self.z())
     }
 }
-pub trait SwizzleWWYW<T> {
+pub trait WWYW<T> {
     fn wwyw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWWYW<T> for S
+impl<S, T> WWYW<T> for S
 where
     S: W<T> + Y<T> + W<T>,
     T: Copy,
@@ -4274,10 +4274,10 @@ where
         PolyVec4::new(*self.w(), *self.w(), *self.y(), *self.w())
     }
 }
-pub trait SwizzleWWZX<T> {
+pub trait WWZX<T> {
     fn wwzx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWWZX<T> for S
+impl<S, T> WWZX<T> for S
 where
     S: W<T> + Z<T> + X<T>,
     T: Copy,
@@ -4287,10 +4287,10 @@ where
         PolyVec4::new(*self.w(), *self.w(), *self.z(), *self.x())
     }
 }
-pub trait SwizzleWWZY<T> {
+pub trait WWZY<T> {
     fn wwzy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWWZY<T> for S
+impl<S, T> WWZY<T> for S
 where
     S: W<T> + Z<T> + Y<T>,
     T: Copy,
@@ -4300,10 +4300,10 @@ where
         PolyVec4::new(*self.w(), *self.w(), *self.z(), *self.y())
     }
 }
-pub trait SwizzleWWZZ<T> {
+pub trait WWZZ<T> {
     fn wwzz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWWZZ<T> for S
+impl<S, T> WWZZ<T> for S
 where
     S: W<T> + Z<T>,
     T: Copy,
@@ -4313,10 +4313,10 @@ where
         PolyVec4::new(*self.w(), *self.w(), *self.z(), *self.z())
     }
 }
-pub trait SwizzleWWZW<T> {
+pub trait WWZW<T> {
     fn wwzw(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWWZW<T> for S
+impl<S, T> WWZW<T> for S
 where
     S: W<T> + Z<T> + W<T>,
     T: Copy,
@@ -4326,10 +4326,10 @@ where
         PolyVec4::new(*self.w(), *self.w(), *self.z(), *self.w())
     }
 }
-pub trait SwizzleWWWX<T> {
+pub trait WWWX<T> {
     fn wwwx(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWWWX<T> for S
+impl<S, T> WWWX<T> for S
 where
     S: W<T> + X<T>,
     T: Copy,
@@ -4339,10 +4339,10 @@ where
         PolyVec4::new(*self.w(), *self.w(), *self.w(), *self.x())
     }
 }
-pub trait SwizzleWWWY<T> {
+pub trait WWWY<T> {
     fn wwwy(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWWWY<T> for S
+impl<S, T> WWWY<T> for S
 where
     S: W<T> + Y<T>,
     T: Copy,
@@ -4352,10 +4352,10 @@ where
         PolyVec4::new(*self.w(), *self.w(), *self.w(), *self.y())
     }
 }
-pub trait SwizzleWWWZ<T> {
+pub trait WWWZ<T> {
     fn wwwz(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWWWZ<T> for S
+impl<S, T> WWWZ<T> for S
 where
     S: W<T> + Z<T>,
     T: Copy,
@@ -4365,10 +4365,10 @@ where
         PolyVec4::new(*self.w(), *self.w(), *self.w(), *self.z())
     }
 }
-pub trait SwizzleWWWW<T> {
+pub trait WWWW<T> {
     fn wwww(&self) -> PolyVec4<T>;
 }
-impl<S, T> SwizzleWWWW<T> for S
+impl<S, T> WWWW<T> for S
 where
     S: W<T>,
     T: Copy,

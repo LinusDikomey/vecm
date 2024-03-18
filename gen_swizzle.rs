@@ -43,7 +43,7 @@ use crate::vec::{PolyVec2, PolyVec3, PolyVec4, W, X, Y, Z};
 
 fn gen_swizzle(count: &mut u32, s: &mut String, comps: &[char], out: &str) {
     *count += 1;
-    let mut trait_name = "Swizzle".to_owned();
+    let mut trait_name = String::new();
     let comps_str = comps.iter().collect::<String>();
     for c in comps {
         trait_name.push(c.to_uppercase().next().unwrap());
