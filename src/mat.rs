@@ -263,7 +263,11 @@ impl<T: AddAssign> AddAssign<PolyVec3<T>> for Mat<T, 4, 4> {
 // binverse serialization
 
 #[cfg(feature = "binverse")]
-impl<W: std::io::Write> binverse::serialize::Serialize<W> for Mat4x4 {
+impl<W, T, const M: usize, const N: usize> binverse::serialize::Serialize<W> for Mat<T, M, N>
+where
+    W: std::io::Write,
+    T: binverse::serialize::Serialize<W>,
+{
     #[inline]
     fn serialize(
         &self,
@@ -273,7 +277,11 @@ impl<W: std::io::Write> binverse::serialize::Serialize<W> for Mat4x4 {
     }
 }
 #[cfg(feature = "binverse")]
-impl<R: std::io::Read> binverse::serialize::Deserialize<R> for Mat4x4 {
+impl<R, T, const M: usize, const N: usize> binverse::serialize::Deserialize<R> for Mat<T, M, N>
+where
+    R: std::io::Read,
+    T: binverse::serialize::Deserialize<R>,
+{
     #[inline]
     fn deserialize(
         d: &mut binverse::streams::Deserializer<R>,

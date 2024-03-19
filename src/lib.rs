@@ -56,7 +56,6 @@ mod test {
 
     #[test]
     fn vec_operations() {
-        use crate::vec::*;
         let mut v1 = Vec3::new(1.0, 2.0, 3.0);
         assert_eq!(v1.magnitude(), 14.0_f32.sqrt());
         v1 += 1.0;
@@ -92,7 +91,7 @@ mod test {
             streams::{Deserializer, Serializer},
         };
 
-        use crate::{vec::*, *};
+        use crate::*;
 
         #[test]
         fn binverse_vecs() {
