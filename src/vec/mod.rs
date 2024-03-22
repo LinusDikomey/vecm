@@ -1,11 +1,11 @@
 mod ops;
 
-use num_traits::{ConstOne, ConstZero, One, Zero};
-use std::{
+use core::{
     default::Default,
     fmt,
     ops::{Index, IndexMut},
 };
+use num_traits::{ConstOne, ConstZero, One, Zero};
 
 pub trait X<T> {
     fn x(&self) -> &T;

@@ -1,11 +1,11 @@
 //! NOTE: matrices are in column-major order.
 
 use crate::{PolyVec3, Quaternion, Vec2u, Vec3};
-use num_traits::{One, Zero};
-use std::{
+use core::{
     mem::MaybeUninit,
     ops::{Add, AddAssign, Index, IndexMut, Mul},
 };
+use num_traits::{One, Zero};
 
 #[derive(Copy, Clone, Debug, PartialEq, Eq)]
 #[repr(C)]
@@ -16,7 +16,7 @@ pub struct Mat<T, const M: usize, const N: usize> {
 impl<T, const M: usize, const N: usize> Mat<T, M, N> {
     #[inline]
     pub fn new(input: [[T; N]; M]) -> Self {
-        let mut data: MaybeUninit<[[T; M]; N]> = std::mem::MaybeUninit::uninit();
+        let mut data: MaybeUninit<[[T; M]; N]> = core::mem::MaybeUninit::uninit();
         for (m, row) in input.into_iter().enumerate() {
             for (n, v) in row.into_iter().enumerate() {
                 unsafe { (*data.as_mut_ptr())[n][m] = v };
@@ -188,9 +188,9 @@ impl Mat<f32, 4, 4> {
     }
 }
 
-impl<T: std::fmt::Display, const M: usize, const N: usize> std::fmt::Display for Mat<T, M, N> {
+impl<T: core::fmt::Display, const M: usize, const N: usize> core::fmt::Display for Mat<T, M, N> {
     #[inline]
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
         writeln!(f)?;
         for m in 0..M {
             write!(f, "[")?;
@@ -334,7 +334,6 @@ serde_mat! {
 
 #[cfg(test)]
 mod tests {
-
     use super::*;
 
     #[test]
@@ -351,7 +350,6 @@ mod tests {
         let a = Mat::new([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);
         assert_eq!(a.pow(0), Mat::identity());
         assert_eq!(a.pow(1), a);
-        eprintln!("{}", a.pow(2));
         assert_eq!(
             a.pow(2),
             Mat::new([[30, 36, 42], [66, 81, 96], [102, 126, 150],])
@@ -360,13 +358,6 @@ mod tests {
             a.pow(3),
             Mat::new([[468, 576, 684], [1062, 1305, 1548], [1656, 2034, 2412],])
         );
-    }
-
-    #[test]
-    fn display() {
-        let a = Mat::new([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);
-
-        assert_eq!(a.to_string(), "\n[1, 2, 3],\n[4, 5, 6],\n[7, 8, 9],\n");
     }
 
     #[test]

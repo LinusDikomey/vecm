@@ -1,10 +1,12 @@
+#![cfg_attr(not(feature = "binverse"), no_std)]
+
 pub mod swizzle;
 
 mod mat;
 mod quaternion;
 mod vec;
 
-use std::ops;
+use core::ops;
 
 pub use mat::Mat;
 pub use quaternion::Quaternion;
@@ -95,8 +97,8 @@ mod test {
 
         #[test]
         fn binverse_vecs() {
-            let mut s = Serializer::new(Vec::<u8>::new(), 0).unwrap();
-            let v: Vec4i = vec4![12, 7, 42, 8];
+            let mut s = Serializer::new(Vec::new(), 0).unwrap();
+            let v = Vec4i::new(12, 7, 42, 8);
             v.serialize(&mut s).unwrap();
             let mut d = Deserializer::new(std::io::Cursor::new(s.finish())).unwrap();
             assert_eq!(v, d.deserialize().unwrap());

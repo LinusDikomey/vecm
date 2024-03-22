@@ -61,7 +61,7 @@ impl Quaternion {
         // pitch (y-axis rotation)
         let sinp = (1.0 + 2.0 * (self.w * self.y - self.x * self.z)).sqrt();
         let cosp = (1.0 - 2.0 * (self.w * self.y - self.x * self.z)).sqrt();
-        let y = 2.0 * f32::atan2(sinp, cosp) - std::f32::consts::FRAC_PI_2;
+        let y = 2.0 * f32::atan2(sinp, cosp) - core::f32::consts::FRAC_PI_2;
 
         // yaw (z-axis rotation)
         let siny_cosp = 2.0 * (self.w * self.z + self.x * self.y);
@@ -149,7 +149,7 @@ impl Quaternion {
     }
 }
 
-impl std::ops::Mul<Self> for Quaternion {
+impl core::ops::Mul<Self> for Quaternion {
     type Output = Self;
 
     fn mul(self, rhs: Self) -> Self::Output {
@@ -162,7 +162,7 @@ impl std::ops::Mul<Self> for Quaternion {
         }
     }
 }
-impl std::ops::Add<Self> for Quaternion {
+impl core::ops::Add<Self> for Quaternion {
     type Output = Self;
 
     fn add(mut self, rhs: Self) -> Self::Output {
@@ -173,7 +173,7 @@ impl std::ops::Add<Self> for Quaternion {
         self
     }
 }
-impl std::ops::AddAssign<Self> for Quaternion {
+impl core::ops::AddAssign<Self> for Quaternion {
     fn add_assign(&mut self, rhs: Self) {
         self.w += rhs.w;
         self.x += rhs.x;
@@ -181,7 +181,7 @@ impl std::ops::AddAssign<Self> for Quaternion {
         self.z += rhs.z;
     }
 }
-impl std::ops::Sub<Self> for Quaternion {
+impl core::ops::Sub<Self> for Quaternion {
     type Output = Self;
 
     fn sub(mut self, rhs: Self) -> Self::Output {
@@ -192,7 +192,7 @@ impl std::ops::Sub<Self> for Quaternion {
         self
     }
 }
-impl std::ops::SubAssign<Self> for Quaternion {
+impl core::ops::SubAssign<Self> for Quaternion {
     fn sub_assign(&mut self, rhs: Self) {
         self.w -= rhs.w;
         self.x -= rhs.x;
@@ -200,7 +200,7 @@ impl std::ops::SubAssign<Self> for Quaternion {
         self.z -= rhs.z;
     }
 }
-impl std::ops::Mul<f32> for Quaternion {
+impl core::ops::Mul<f32> for Quaternion {
     type Output = Self;
 
     fn mul(mut self, rhs: f32) -> Self::Output {
@@ -211,14 +211,14 @@ impl std::ops::Mul<f32> for Quaternion {
         self
     }
 }
-impl std::ops::Mul<Quaternion> for f32 {
+impl core::ops::Mul<Quaternion> for f32 {
     type Output = Quaternion;
 
     fn mul(self, rhs: Quaternion) -> Self::Output {
         rhs * self
     }
 }
-impl std::ops::MulAssign<f32> for Quaternion {
+impl core::ops::MulAssign<f32> for Quaternion {
     fn mul_assign(&mut self, rhs: f32) {
         self.w *= rhs;
         self.x *= rhs;
@@ -226,7 +226,7 @@ impl std::ops::MulAssign<f32> for Quaternion {
         self.z *= rhs;
     }
 }
-impl std::ops::Mul<Quaternion> for Vec3 {
+impl core::ops::Mul<Quaternion> for Vec3 {
     type Output = Vec3;
     /// NOTE: Assumes a unit-length Quaternion.
     fn mul(self, rhs: Quaternion) -> Self::Output {
