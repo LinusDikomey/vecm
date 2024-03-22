@@ -16,15 +16,7 @@ pub struct Mat<T, const M: usize, const N: usize> {
 impl<T, const M: usize, const N: usize> Mat<T, M, N> {
     #[inline]
     pub fn new(input: [[T; N]; M]) -> Self {
-        let mut data: MaybeUninit<[[T; M]; N]> = core::mem::MaybeUninit::uninit();
-        for (m, row) in input.into_iter().enumerate() {
-            for (n, v) in row.into_iter().enumerate() {
-                unsafe { (*data.as_mut_ptr())[n][m] = v };
-            }
-        }
-        Self {
-            data: unsafe { data.assume_init() },
-        }
+        Mat { data: input }.transpose()
     }
 
     #[inline]
@@ -36,9 +28,11 @@ impl<T, const M: usize, const N: usize> Mat<T, M, N> {
         let mut data: MaybeUninit<[[T; N]; M]> = MaybeUninit::uninit();
         for (x, row) in self.data.into_iter().enumerate() {
             for (y, item) in row.into_iter().enumerate() {
-                unsafe {
-                    (*data.as_mut_ptr())[y][x] = item;
-                }
+                // this can be rewritten safely with `MaybeUninit::transpose` once it is stabilized
+                let row_ptr: *mut [T; N] = data.as_mut_ptr().cast();
+                let elem_ptr: *mut T = unsafe { row_ptr.add(y) }.cast();
+                let ptr = unsafe { elem_ptr.add(x) };
+                unsafe { core::ptr::write(ptr, item) };
             }
         }
         Mat {
@@ -365,5 +359,29 @@ mod tests {
         let a = Mat::new([[1, 2, 3], [4, 5, 6]]);
 
         assert_eq!(a.transpose(), Mat::new([[1, 4], [2, 5], [3, 6]]));
+    }
+
+    #[test]
+    fn correct_drop_counts() {
+        use core::sync::atomic::{AtomicU8, Ordering};
+        const ORDERING: Ordering = Ordering::Relaxed;
+        static DROP_COUNT: AtomicU8 = AtomicU8::new(0);
+        assert_eq!(DROP_COUNT.load(ORDERING), 0);
+
+        struct CountDrop;
+        impl Drop for CountDrop {
+            fn drop(&mut self) {
+                DROP_COUNT.fetch_add(1, ORDERING);
+            }
+        }
+
+        assert_eq!(DROP_COUNT.load(ORDERING), 0);
+
+        let mat1 = Mat::new([[CountDrop, CountDrop]]);
+        let mat2 = mat1.transpose();
+
+        assert_eq!(DROP_COUNT.load(ORDERING), 0);
+        drop(mat2);
+        assert_eq!(DROP_COUNT.load(ORDERING), 2);
     }
 }
